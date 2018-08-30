@@ -5,11 +5,11 @@ import { View, Text, StyleSheet } from 'react-native';
 const ReviewRating = () => (
   <View style={styles.container}>
     <Ionicons
-      name="ios-star-outline"
+      name="ios-star"
       size={28}
       color="#FFBF00"
     />
-    <Text style={styles.number}>4</Text>
+    <Text style={styles.number}>9.5</Text>
   </View>
 );
 
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   number: {
-    marginLeft: 8,
+    marginLeft: 4,
     fontWeight: 'bold'
   }
 });

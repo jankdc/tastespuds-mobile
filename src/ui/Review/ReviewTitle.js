@@ -3,8 +3,8 @@ import { View, Text, StyleSheet } from 'react-native';
 
 const ReviewTitle = () => (
   <View style={styles.container}>
-    <Text style={styles.title}>Chicken Burger</Text>
-    <Text style={styles.place}>Patty and Bun</Text>
+    <Text style={styles.title}>Margherita Pizza</Text>
+    <Text style={styles.place}>Franco Manca</Text>
   </View>
 );
 
@@ -19,10 +19,11 @@ const styles = StyleSheet.create({
     marginLeft: 12,
   },
   place: {
+    marginTop: 2,
     marginLeft: 12,
     color: '#8B0000',
-    fontSize: 10,
-    fontWeight: 'bold'
+    fontSize: 12,
+    fontWeight: '700'
   }
 });
 
