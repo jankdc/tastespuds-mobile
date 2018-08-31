@@ -5,9 +5,9 @@ import ReviewHeader from './ReviewHeader';
 import ReviewFooter from './ReviewFooter';
 import ReviewBody from './ReviewBody';
 
-const Review = ({user}) => (
+const Review = () => (
   <View style={styles.container}>
-    <ReviewHeader user={user} />
+    <ReviewHeader />
     <ReviewBody />
     <ReviewFooter />
   </View>

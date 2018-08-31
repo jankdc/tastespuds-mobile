@@ -6,10 +6,10 @@ const ReviewHeader = ({user}) => (
   <View style={styles.container}>
     <Image
       style={styles.image}
-      source={{uri: user.imgUrl}}
+      source={{uri: 'https://via.placeholder.com/150x150'}}
       imageStyle={{borderRadius: 15}}
     />
-    <Text style={styles.name}>{user.name}</Text>
+    <Text style={styles.name}>jankdc</Text>
   </View>
 );
 
