@@ -3,7 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import { AppLoading, Font } from 'expo';
 import { EvilIcons, Ionicons } from '@expo/vector-icons';
 
-import Review from './src/ui/Review';
+import ReviewList from './src/ui/ReviewList';
 
 function cacheFonts(fonts) {
   return fonts.map(font => Font.loadAsync(font));
@@ -32,11 +32,15 @@ export default class App extends React.Component {
 
     return (
       <View style={styles.container}>
-        <Review
-          user={{
-            name: 'jankdc',
-            imgUrl: 'https://via.placeholder.com/150x150'
-          }}
+        <ReviewList
+          reviews={[
+            {
+              id: 'some-review'
+            },
+            {
+              id: 'some-other-review'
+            }
+          ]}
         />
       </View>
     );
