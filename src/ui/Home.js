@@ -14,4 +14,8 @@ const Home = () => (
   />
 );
 
+Home.navigationOptions = {
+  title: 'Tastespuds'
+};
+
 export default Home;
