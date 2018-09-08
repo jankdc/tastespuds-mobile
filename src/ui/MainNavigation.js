@@ -1,11 +1,11 @@
 import { View } from 'react-native';
 import { createBottomTabNavigator } from 'react-navigation';
 
-import Home from './Home';
+import HomeNavigation from './HomeNavigation';
 
 export default createBottomTabNavigator(
   {
-    Home,
+    Home: HomeNavigation,
     Search: View,
     Review: View,
     Messages: View,
@@ -16,6 +16,6 @@ export default createBottomTabNavigator(
       showLabel: false,
       activeTintColor: 'tomato',
       inactiveTintColor: 'gray',
-    },
+    }
   }
 );
