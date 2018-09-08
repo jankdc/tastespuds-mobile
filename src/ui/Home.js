@@ -15,7 +15,11 @@ const Home = () => (
 );
 
 Home.navigationOptions = {
-  title: 'Tastespuds'
+  title: 'Tastespuds',
+  headerTitleStyle: {
+    fontFamily: 'baloo',
+    fontSize: 28
+  }
 };
 
 export default Home;

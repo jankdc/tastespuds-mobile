@@ -14,7 +14,12 @@ export default class App extends React.Component {
   };
 
   async _loadAssetsAsync() {
-    const fontAssets = cacheFonts([Ionicons.font, EvilIcons.font]);
+    const fontAssets = cacheFonts([
+      Ionicons.font,
+      EvilIcons.font,
+      { 'baloo': require('./assets/baloo/Baloo-Regular.ttf') }
+    ]);
+
     await Promise.all([...fontAssets]);
   }
 
