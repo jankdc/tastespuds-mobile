@@ -1,7 +1,9 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import { AppLoading, Font } from 'expo';
 import { EvilIcons, Ionicons } from '@expo/vector-icons';
 
+import store from './src/store';
 import MainNavigation from './src/ui/MainNavigation';
 
 function cacheFonts(fonts) {
@@ -34,6 +36,10 @@ export default class App extends React.Component {
       );
     }
 
-    return <MainNavigation />;
+    return (
+      <Provider store={store}>
+        <MainNavigation />
+      </Provider>
+    );
   }
 }
