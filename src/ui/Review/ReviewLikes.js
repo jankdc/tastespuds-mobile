@@ -1,11 +1,11 @@
-import React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import React from 'react'
+import { Text, View, StyleSheet } from 'react-native'
 
 const ReviewLikes = () => (
   <View style={styles.container}>
     <Text style={styles.text}>12,100 likes</Text>
   </View>
-);
+)
 
 const styles = StyleSheet.create({
   container: {
@@ -18,6 +18,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 12
   }
-});
+})
 
-export default ReviewLikes;
+export default ReviewLikes

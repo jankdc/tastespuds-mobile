@@ -1,31 +1,35 @@
-import React from 'react';
-import { Provider } from 'react-redux';
-import { AppLoading, Font } from 'expo';
-import { EvilIcons, Ionicons } from '@expo/vector-icons';
+import React from 'react'
+import { Provider } from 'react-redux'
+import { AppLoading, Font } from 'expo'
+import { EvilIcons, Ionicons } from '@expo/vector-icons'
 
-import store from './src/store';
-import MainNavigation from './src/ui/MainNavigation';
+import store from './src/store'
+import MainNavigation from './src/ui/MainNavigation'
 
-function cacheFonts(fonts) {
-  return fonts.map(font => Font.loadAsync(font));
+function cacheFonts (fonts) {
+  return fonts.map(font => Font.loadAsync(font))
 }
 
 export default class App extends React.Component {
-  state = {
-    isReady: false
-  };
+  constructor (props) {
+    super(props)
 
-  async _loadAssetsAsync() {
+    this.state = {
+      isReady: false
+    }
+  }
+
+  async _loadAssetsAsync () {
     const fontAssets = cacheFonts([
       Ionicons.font,
       EvilIcons.font,
       { 'baloo': require('./assets/baloo/Baloo-Regular.ttf') }
-    ]);
+    ])
 
-    await Promise.all([...fontAssets]);
+    await Promise.all([...fontAssets])
   }
 
-  render() {
+  render () {
     if (!this.state.isReady) {
       return (
         <AppLoading
@@ -33,13 +37,13 @@ export default class App extends React.Component {
           onFinish={() => this.setState({ isReady: true })}
           onError={console.warn}
         />
-      );
+      )
     }
 
     return (
       <Provider store={store}>
         <MainNavigation />
       </Provider>
-    );
+    )
   }
 }

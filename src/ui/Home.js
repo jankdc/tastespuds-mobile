@@ -1,5 +1,5 @@
-import React from 'react';
-import ReviewList from './ReviewList';
+import React from 'react'
+import ReviewList from './ReviewList'
 
 const Home = () => (
   <ReviewList
@@ -12,7 +12,7 @@ const Home = () => (
       }
     ]}
   />
-);
+)
 
 Home.navigationOptions = {
   title: 'Tastespuds',
@@ -20,6 +20,6 @@ Home.navigationOptions = {
     fontFamily: 'baloo',
     fontSize: 28
   }
-};
+}
 
-export default Home;
+export default Home

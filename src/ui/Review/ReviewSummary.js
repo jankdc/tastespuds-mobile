@@ -1,12 +1,12 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React from 'react'
+import { View, Text, StyleSheet } from 'react-native'
 
 const ReviewSummary = () => (
   <View style={styles.container}>
     <Text style={styles.heading}>Review Summary</Text>
     <Text style={styles.summary}>🎉🎉🎉 Really good quality for its price!</Text>
   </View>
-);
+)
 
 const styles = StyleSheet.create({
   container: {
@@ -24,6 +24,6 @@ const styles = StyleSheet.create({
     marginTop: 5,
     fontSize: 12
   }
-});
+})
 
-export default ReviewSummary;
+export default ReviewSummary

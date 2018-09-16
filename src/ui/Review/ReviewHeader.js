@@ -1,17 +1,17 @@
-import React from 'react';
-import Image from 'react-native-image-progress';
-import { StyleSheet, View, Text } from 'react-native';
+import React from 'react'
+import Image from 'react-native-image-progress'
+import { StyleSheet, View, Text } from 'react-native'
 
-const ReviewHeader = ({user}) => (
+const ReviewHeader = ({ user }) => (
   <View style={styles.container}>
     <Image
       style={styles.image}
-      source={{uri: 'https://via.placeholder.com/150x150'}}
-      imageStyle={{borderRadius: 15}}
+      source={{ uri: 'https://via.placeholder.com/150x150' }}
+      imageStyle={{ borderRadius: 15 }}
     />
     <Text style={styles.name}>jankdc</Text>
   </View>
-);
+)
 
 const styles = StyleSheet.create({
   container: {
@@ -30,6 +30,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 12
   }
-});
+})
 
-export default ReviewHeader;
+export default ReviewHeader

@@ -1,25 +1,25 @@
-import React from 'react';
-import { EvilIcons } from '@expo/vector-icons';
-import { View, TouchableOpacity, StyleSheet } from 'react-native';
+import React from 'react'
+import { EvilIcons } from '@expo/vector-icons'
+import { View, TouchableOpacity, StyleSheet } from 'react-native'
 
 const ReviewMenu = () => (
   <View style={styles.container}>
     <TouchableOpacity style={styles.item}>
       <EvilIcons
-        name="heart"
+        name='heart'
         size={35}
-        color="black"
+        color='black'
       />
     </TouchableOpacity>
     <TouchableOpacity style={styles.item}>
       <EvilIcons
-        name="comment"
+        name='comment'
         size={35}
-        color="black"
+        color='black'
       />
     </TouchableOpacity>
   </View>
-);
+)
 
 const styles = StyleSheet.create({
   container: {
@@ -28,8 +28,8 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   item: {
-    marginLeft: 8,
+    marginLeft: 8
   }
-});
+})
 
-export default ReviewMenu;
+export default ReviewMenu

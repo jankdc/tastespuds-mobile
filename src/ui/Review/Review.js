@@ -1,9 +1,9 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react'
+import { StyleSheet, View } from 'react-native'
 
-import ReviewHeader from './ReviewHeader';
-import ReviewFooter from './ReviewFooter';
-import ReviewBody from './ReviewBody';
+import ReviewHeader from './ReviewHeader'
+import ReviewFooter from './ReviewFooter'
+import ReviewBody from './ReviewBody'
 
 const Review = () => (
   <View style={styles.container}>
@@ -11,13 +11,13 @@ const Review = () => (
     <ReviewBody />
     <ReviewFooter />
   </View>
-);
+)
 
 const styles = StyleSheet.create({
   container: {
     width: '100%',
     backgroundColor: 'red'
   }
-});
+})
 
-export default Review;
+export default Review

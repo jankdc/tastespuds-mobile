@@ -1,7 +1,7 @@
-import { View } from 'react-native';
-import { createBottomTabNavigator } from 'react-navigation';
+import { View } from 'react-native'
+import { createBottomTabNavigator } from 'react-navigation'
 
-import HomeNavigation from './HomeNavigation';
+import HomeNavigation from './HomeNavigation'
 
 export default createBottomTabNavigator(
   {
@@ -15,7 +15,7 @@ export default createBottomTabNavigator(
     tabBarOptions: {
       showLabel: false,
       activeTintColor: 'tomato',
-      inactiveTintColor: 'gray',
+      inactiveTintColor: 'gray'
     }
   }
-);
+)

@@ -1,23 +1,25 @@
-import React, { Component } from 'react';
-import { View, StyleSheet } from 'react-native';
-import Image from 'react-native-image-progress';
+import React, { Component } from 'react'
+import { View, StyleSheet } from 'react-native'
+import Image from 'react-native-image-progress'
 
 class FullWidthImage extends Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
 
     this.state = props.size || {
       width: 0,
       height: 0
-    };
+    }
+
+    this._onLayout = this._onLayout.bind(this)
   }
 
-  _onLayout = event => {
+  _onLayout (event) {
     const containerWidth = event.nativeEvent.layout.width
-    const { size, source } = this.props;
+    const { size, source } = this.props
 
     if (size) {
-      const { height, width } = this.props.size;
+      const { height, width } = this.props.size
       this.setState({
         width: containerWidth,
         height: containerWidth * (height / width)
@@ -32,8 +34,8 @@ class FullWidthImage extends Component {
     }
   }
 
-  render() {
-    const { style, source } = this.props;
+  render () {
+    const { style, source } = this.props
 
     return (
       <View
@@ -48,7 +50,7 @@ class FullWidthImage extends Component {
           }}
         />
       </View>
-    );
+    )
   }
 }
 
@@ -56,6 +58,6 @@ const styles = StyleSheet.create({
   container: {
     alignSelf: 'stretch'
   }
-});
+})
 
-export default FullWidthImage;
+export default FullWidthImage

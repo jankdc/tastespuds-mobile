@@ -1,12 +1,12 @@
-import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import React from 'react'
+import { View, StyleSheet } from 'react-native'
 
-import ReviewMenu from './ReviewMenu';
-import ReviewDate from './ReviewDate';
-import ReviewLikes from './ReviewLikes';
-import ReviewTitle from './ReviewTitle';
-import ReviewRating from './ReviewRating';
-import ReviewSummary from './ReviewSummary';
+import ReviewMenu from './ReviewMenu'
+import ReviewDate from './ReviewDate'
+import ReviewLikes from './ReviewLikes'
+import ReviewTitle from './ReviewTitle'
+import ReviewRating from './ReviewRating'
+import ReviewSummary from './ReviewSummary'
 
 const ReviewFooter = () => (
   <View style={styles.container}>
@@ -19,7 +19,7 @@ const ReviewFooter = () => (
     <ReviewSummary />
     <ReviewDate />
   </View>
-);
+)
 
 const styles = StyleSheet.create({
   container: {
@@ -32,6 +32,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: 'white'
   }
-});
+})
 
-export default ReviewFooter;
+export default ReviewFooter
