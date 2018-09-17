@@ -2,6 +2,7 @@ import { View } from 'react-native'
 import { createBottomTabNavigator } from 'react-navigation'
 
 import HomeNavigation from './HomeNavigation'
+import UserProfileNavigation from './UserProfileNavigation'
 
 export default createBottomTabNavigator(
   {
@@ -9,7 +10,7 @@ export default createBottomTabNavigator(
     Search: View,
     Review: View,
     Messages: View,
-    Profile: View
+    UserProfile: UserProfileNavigation
   },
   {
     tabBarOptions: {
