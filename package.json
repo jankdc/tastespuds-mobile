@@ -6,7 +6,8 @@
   "scripts": {
     "start": "react-native-scripts start",
     "eject": "react-native-scripts eject",
-    "test": "jest"
+    "test": "jest",
+    "lint": "standard"
   },
   "dependencies": {
     "expo": "^27.0.1",
