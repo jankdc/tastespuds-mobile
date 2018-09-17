@@ -2,7 +2,7 @@ import React from 'react'
 import { EvilIcons } from '@expo/vector-icons'
 import { createStackNavigator } from 'react-navigation'
 
-import UserProfile from './UserProfile'
+import UserProfile from '../ui/UserProfile'
 
 const UserProfileNavigation = createStackNavigator({
   UserProfile: {

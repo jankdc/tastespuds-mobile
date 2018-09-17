@@ -4,7 +4,7 @@ import { AppLoading, Font } from 'expo'
 import { EvilIcons, Ionicons } from '@expo/vector-icons'
 
 import store from './src/store'
-import MainNavigation from './src/ui/MainNavigation'
+import AppNavigation from './src/nav/AppNavigation'
 
 function cacheFonts (fonts) {
   return fonts.map(font => Font.loadAsync(font))
@@ -42,7 +42,7 @@ export default class App extends React.Component {
 
     return (
       <Provider store={store}>
-        <MainNavigation />
+        <AppNavigation />
       </Provider>
     )
   }

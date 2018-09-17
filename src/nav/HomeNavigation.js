@@ -2,7 +2,7 @@ import React from 'react'
 import { Ionicons } from '@expo/vector-icons'
 import { createStackNavigator } from 'react-navigation'
 
-import Home from './Home'
+import Home from '../ui/Home'
 
 const HomeNavigation = createStackNavigator({
   Home: {
