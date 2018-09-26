@@ -1,9 +1,11 @@
 import { call, all } from 'redux-saga/effects'
 
-import userSaga from './user'
+import bootSaga from './boot'
+import authSaga from './auth'
 
 export default function * rootSaga () {
   yield all([
-    call(userSaga)
+    call(bootSaga),
+    call(authSaga)
   ])
 }
