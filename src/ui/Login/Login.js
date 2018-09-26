@@ -1,30 +1,11 @@
 import React from 'react'
-import { Text, TextInput, View } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 
 class Login extends React.Component {
-  constructor (props) {
-    super(props)
-
-    this.state = {
-      inputText: null
-    }
-  }
-
   render() {
     return (
       <View style={styles.container}>
-        <View>
-          <Text style={styles.title}>
-            Tastespuds
-          </Text>
-
-          <TextInput
-
-          />
-        </View>
-        <View>
-
-        </View>
+        Login
       </View>
     )
   }
@@ -32,10 +13,8 @@ class Login extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     backgroundColor: 'gray'
-  },
-  title: {
-    fontFamily: 'baloo',
   }
 })
 
