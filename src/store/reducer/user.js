@@ -1,38 +1,61 @@
 import * as actions from '../actions'
 
 const initialState = {
-  user: null,
-  error: null,
-  isUserLoggedIn: false,
-  isUserLoggingIn: false
+  info: null,
+  isLoggedIn: false,
+
+  isRequestingLogin: false,
+  requestError: null,
+
+  isVerifyingLogin: false,
+  verificationError: null
 }
 
 export default function user (state = initialState, action = {}) {
   switch (action.type) {
-    case actions.LOGIN:
+    case actions.LOGIN_REQUEST:
       return {
         ...state,
-        error: null,
-        isUserLoggingIn: true
+        requestError: null,
+        isRequestingLogin: true
       }
-    case actions.LOGIN_PASSED:
+    case actions.LOGIN_REQUEST_PASSED:
+      return {
+        ...state,
+        isRequestingLogin: false
+      }
+    case actions.LOGIN_REQUEST_FAILED:
+      return {
+        ...state,
+        requestError: action.error,
+        isRequestingLogin: false
+      }
+    case actions.LOGIN_VERIFY:
+      return {
+        ...state,
+        verificationError: null,
+        isVerifyingLogin: true
+      }
+    case actions.LOGIN_VERIFY_PASSED:
       return {
         ...state,
         user: action.value,
-        isUserLoggedIn: true,
-        isUserLoggingIn: false
+        isLoggedIn: true,
+        isVerifyingLogin: false
       }
-    case actions.LOGIN_FAILED:
+    case actions.LOGIN_VERIFY_FAILED:
       return {
         ...state,
-        error: action.error,
-        isUserLoggedIn: false,
-        isUserLoggingIn: false
+        verificationError: action.error,
+        isLoggedIn: false,
+        isVerifyingLogin: false
       }
-    case actions.LOGIN_CANCELLED:
+    case actions.LOGIN_RESET:
       return {
         ...state,
-        isUserLoggingIn: false
+        isVerifyingLogin: false,
+        isRequestingLogin: false,
+        verificationError: null
       }
     default:
       return state

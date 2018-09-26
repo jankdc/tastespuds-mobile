@@ -11,6 +11,6 @@ export default createSwitchNavigator(
     Login: LoginNavigation
   },
   {
-    initialRouteName: 'Boot',
+    initialRouteName: 'Boot'
   }
-);
+)

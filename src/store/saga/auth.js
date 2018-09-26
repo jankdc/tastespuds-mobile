@@ -39,12 +39,11 @@ export function * getAccessToken () {
 export function * startLoginFlow () {
   while (true) {
     const { value: credentials } = yield take(actions.LOGIN_REQUEST)
-    const success = yield call(requestLogin, credentials)
 
-    while (success) {
+    while (yield call(requestLogin, credentials)) {
       const { value: code } = yield take(actions.LOGIN_VERIFY)
       const verifyTask = yield fork(verifyLogin, code)
-      const { type } = yield task([
+      const { type } = yield take([
         actions.LOGIN_RESET,
         actions.LOGIN_VERIFY_FAILED,
         actions.LOGIN_VERIFY_PASSED

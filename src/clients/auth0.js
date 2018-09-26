@@ -37,7 +37,7 @@ export async function getAccessToken (refreshToken) {
   return accessToken
 }
 
-export async function getProfileToken (accessToken) {
+export async function getUserInfo (accessToken) {
   const response = await window.fetch(`${AUTH0_DOMAIN}/userinfo`, {
     headers: {
       Accept: 'application/json',

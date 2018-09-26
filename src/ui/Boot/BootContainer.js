@@ -4,7 +4,7 @@ import Boot from './Boot'
 
 const mapDispatchToProps = dispatch => {
   return {
-    onBoot: () => dispatch({ type: actions.LOGIN })
+    onBoot: () => dispatch({ type: actions.BOOT })
   }
 }
 
