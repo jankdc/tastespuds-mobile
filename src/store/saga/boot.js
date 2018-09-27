@@ -8,6 +8,7 @@ import {
   all
 } from 'redux-saga/effects'
 
+import baloo from '../../../assets/baloo/Baloo-Regular.ttf'
 import { navigate } from '../../nav/NavigationService'
 import * as auth0 from '../../clients/auth0'
 import * as actions from '../actions'
@@ -17,7 +18,7 @@ export function * loadAssets () {
   yield all([
     call(Font.loadAsync, Ionicons.font),
     call(Font.loadAsync, EvilIcons.font),
-    call(Font.loadAsync, { 'baloo': require('../../../assets/baloo/Baloo-Regular.ttf') })
+    call(Font.loadAsync, { baloo })
   ])
 }
 
