@@ -26,6 +26,13 @@ export default function * bootSaga () {
   yield take(actions.BOOT)
   yield call(loadAssets)
 
+  // NOTE: Uncomment this if you want to delete the tokens forcefully
+  // yield all([
+  //   call(SecureStore.deleteItemAsync, 'expiresIn'),
+  //   call(SecureStore.deleteItemAsync, 'accessToken'),
+  //   call(SecureStore.deleteItemAsync, 'refreshToken')
+  // ])
+
   try {
     const accessToken = yield call(getAccessToken)
     const userInfo = yield call(auth0.getUserInfo, accessToken)
