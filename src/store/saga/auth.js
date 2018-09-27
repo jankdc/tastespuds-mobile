@@ -105,7 +105,7 @@ export function * verifyLogin (credentials) {
   } catch (error) {
     yield put({
       type: actions.LOGIN_VERIFY_FAILED,
-      error: 'Failed to request a verification code. Please try again.'
+      error: 'Failed to verify the code. Please try again.'
     })
 
     return false
