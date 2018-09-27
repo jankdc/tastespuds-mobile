@@ -38,7 +38,7 @@ export function * getAccessToken () {
 
 export function * startLoginFlow () {
   while (true) {
-    const { value: credentials } = yield take(actions.LOGIN_REQUEST)
+    const { value: credentials } = yield take(actions.LOGIN)
 
     while (yield call(requestLogin, credentials)) {
       const { value: code } = yield take(actions.VERIFY)
@@ -73,7 +73,7 @@ export function * requestLogin (credentials) {
     return true
   } catch (error) {
     yield put({
-      type: actions.LOGIN_REQUEST_FAILED,
+      type: actions.LOGIN_FAILED,
       error: 'Failed to request a verification code. Please try again.'
     })
 

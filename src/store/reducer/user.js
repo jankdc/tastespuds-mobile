@@ -13,18 +13,18 @@ const initialState = {
 
 export default function user (state = initialState, action = {}) {
   switch (action.type) {
-    case actions.LOGIN_REQUEST:
+    case actions.LOGIN:
       return {
         ...state,
         requestError: null,
         isRequestingLogin: true
       }
-    case actions.LOGIN_REQUEST_PASSED:
+    case actions.LOGIN_PASSED:
       return {
         ...state,
         isRequestingLogin: false
       }
-    case actions.LOGIN_REQUEST_FAILED:
+    case actions.LOGIN_FAILED:
       return {
         ...state,
         requestError: action.error,
