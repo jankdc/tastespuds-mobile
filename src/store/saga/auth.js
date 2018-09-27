@@ -36,13 +36,26 @@ export function * getAccessToken () {
   return yield call(auth0.getAccessToken, refreshToken)
 }
 
-export function * startLoginFlow () {
+export function * startAuthFlow () {
   while (true) {
-    const { value: credentials } = yield take(actions.LOGIN)
+    const { type, value: credentials } = yield take([actions.LOGIN, actions.REGISTER])
 
-    while (yield call(requestLogin, credentials)) {
+    let requestSuccess = false
+    if (type === actions.LOGIN) {
+      requestSuccess = yield call(requestLogin, credentials)
+    }
+
+    if (type === actions.REGISTER) {
+      requestSuccess = yield call(requestRegister, credentials)
+    }
+
+    if (!requestSuccess) {
+      continue
+    }
+
+    while (true) {
       const { value: code } = yield take(actions.VERIFY)
-      const verifyTask = yield fork(verifyLogin, code)
+      const verifyTask = yield fork(verifyCode, code)
       const { type } = yield take([
         actions.VERIFY_CANCELLED,
         actions.VERIFY_FAILED,
@@ -62,33 +75,9 @@ export function * startLoginFlow () {
   }
 }
 
-export function * requestLogin (credentials) {
+export function * verifyCode (credentials) {
   try {
-    yield call(auth0.startPasswordless, {
-      send: 'code',
-      email: credentials.email,
-      connection: 'email'
-    })
-
-    return true
-  } catch (error) {
-    yield put({
-      type: actions.LOGIN_FAILED,
-      error: 'Failed to request a verification code. Please try again.'
-    })
-
-    return false
-  }
-}
-
-export function * verifyLogin (credentials) {
-  try {
-    const { profile, tokens } = yield call(platform.createUser, {
-      email: credentials.email,
-      username: credentials.username,
-      connection: 'email',
-      verificationCode: credentials.code
-    })
+    const { user, tokens } = yield call(platform.verify, credentials)
 
     yield all([
       call(SecureStore.setItemAsync, 'expiresIn', JSON.stringify(tokens.expiresIn)),
@@ -98,7 +87,7 @@ export function * verifyLogin (credentials) {
 
     yield put({
       type: actions.VERIFY_PASSED,
-      value: profile
+      value: user
     })
 
     return true
@@ -112,9 +101,39 @@ export function * verifyLogin (credentials) {
   }
 }
 
+export function * requestLogin (credentials) {
+  try {
+    yield call(platform.login, credentials)
+
+    return true
+  } catch (error) {
+    yield put({
+      type: actions.LOGIN_FAILED,
+      error: 'Failed to login. Please try again.'
+    })
+
+    return false
+  }
+}
+
+export function * requestRegister (credentials) {
+  try {
+    yield call(platform.register, credentials)
+
+    return true
+  } catch (error) {
+    yield put({
+      type: actions.REGISTER_FAILED,
+      error: 'Failed to register. Please try again.'
+    })
+
+    return false
+  }
+}
+
 export default function * authSaga () {
   while (true) {
-    yield call(startLoginFlow)
+    yield call(startAuthFlow)
     yield take(actions.LOGOUT)
     yield all([
       call(SecureStore.deleteItemAsync, 'expiresIn'),
