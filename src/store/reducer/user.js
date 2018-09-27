@@ -30,20 +30,20 @@ export default function user (state = initialState, action = {}) {
         requestError: action.error,
         isRequestingLogin: false
       }
-    case actions.LOGIN_VERIFY:
+    case actions.VERIFY:
       return {
         ...state,
         verificationError: null,
         isVerifyingLogin: true
       }
-    case actions.LOGIN_VERIFY_PASSED:
+    case actions.VERIFY_PASSED:
       return {
         ...state,
         user: action.value,
         isLoggedIn: true,
         isVerifyingLogin: false
       }
-    case actions.LOGIN_VERIFY_FAILED:
+    case actions.VERIFY_FAILED:
       return {
         ...state,
         verificationError: action.error,

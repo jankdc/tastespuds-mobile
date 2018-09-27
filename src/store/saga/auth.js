@@ -41,12 +41,12 @@ export function * startLoginFlow () {
     const { value: credentials } = yield take(actions.LOGIN_REQUEST)
 
     while (yield call(requestLogin, credentials)) {
-      const { value: code } = yield take(actions.LOGIN_VERIFY)
+      const { value: code } = yield take(actions.VERIFY)
       const verifyTask = yield fork(verifyLogin, code)
       const { type } = yield take([
         actions.LOGIN_RESET,
-        actions.LOGIN_VERIFY_FAILED,
-        actions.LOGIN_VERIFY_PASSED
+        actions.VERIFY_FAILED,
+        actions.VERIFY_PASSED
       ])
 
       if (type === actions.LOGIN_RESET) {
@@ -54,7 +54,7 @@ export function * startLoginFlow () {
         break
       }
 
-      if (type === actions.LOGIN_VERIFY_PASSED) {
+      if (type === actions.VERIFY_PASSED) {
         yield call(navigate, 'App')
         return
       }
@@ -97,14 +97,14 @@ export function * verifyLogin (credentials) {
     ])
 
     yield put({
-      type: actions.LOGIN_VERIFY_PASSED,
+      type: actions.VERIFY_PASSED,
       value: profile
     })
 
     return true
   } catch (error) {
     yield put({
-      type: actions.LOGIN_VERIFY_FAILED,
+      type: actions.VERIFY_FAILED,
       error: 'Failed to verify the code. Please try again.'
     })
 

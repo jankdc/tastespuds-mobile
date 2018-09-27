@@ -36,7 +36,7 @@ export default function * bootSaga () {
   try {
     const accessToken = yield call(getAccessToken)
     const userInfo = yield call(auth0.getUserInfo, accessToken)
-    yield put({ type: actions.LOGIN_VERIFY_PASSED, value: userInfo })
+    yield put({ type: actions.VERIFY_PASSED, value: userInfo })
     yield call(navigate, 'App')
   } catch (error) {
     yield call(navigate, 'Login')
