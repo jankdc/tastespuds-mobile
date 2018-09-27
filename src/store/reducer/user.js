@@ -50,7 +50,7 @@ export default function user (state = initialState, action = {}) {
         isLoggedIn: false,
         isVerifyingLogin: false
       }
-    case actions.LOGIN_RESET:
+    case actions.VERIFY_CANCELLED:
       return {
         ...state,
         isVerifyingLogin: false,

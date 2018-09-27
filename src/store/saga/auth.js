@@ -44,12 +44,12 @@ export function * startLoginFlow () {
       const { value: code } = yield take(actions.VERIFY)
       const verifyTask = yield fork(verifyLogin, code)
       const { type } = yield take([
-        actions.LOGIN_RESET,
+        actions.VERIFY_CANCELLED,
         actions.VERIFY_FAILED,
         actions.VERIFY_PASSED
       ])
 
-      if (type === actions.LOGIN_RESET) {
+      if (type === actions.VERIFY_CANCELLED) {
         yield cancel(verifyTask)
         break
       }
