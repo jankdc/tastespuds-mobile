@@ -8,7 +8,10 @@ const initialState = {
   requestError: null,
 
   isVerifyingLogin: false,
-  verificationError: null
+  verificationError: null,
+
+  isRegistering: false,
+  registerError: null
 }
 
 export default function user (state = initialState, action = {}) {
@@ -29,6 +32,23 @@ export default function user (state = initialState, action = {}) {
         ...state,
         requestError: action.error,
         isRequestingLogin: false
+      }
+    case actions.REGISTER:
+      return {
+        ...state,
+        registerError: null,
+        isRequestingREGISTER: true
+      }
+    case actions.REGISTER_PASSED:
+      return {
+        ...state,
+        isRegistering: false
+      }
+    case actions.REGISTER_FAILED:
+      return {
+        ...state,
+        registerError: action.error,
+        isRegistering: false
       }
     case actions.VERIFY:
       return {
