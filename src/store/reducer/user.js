@@ -77,6 +77,10 @@ export default function user (state = initialState, action = {}) {
         isRequestingLogin: false,
         verificationError: null
       }
+    case actions.LOGOUT:
+      return {
+        ...initialState
+      }
     default:
       return state
   }

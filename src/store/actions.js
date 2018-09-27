@@ -6,6 +6,8 @@ export const LOGIN = 'tastespuds/user/LOGIN'
 export const LOGIN_FAILED = 'tastespuds/user/LOGIN_FAILED'
 export const LOGIN_PASSED = 'tastespuds/user/LOGIN_PASSED'
 
+export const LOGOUT = 'tastespuds/user/LOGOUT'
+
 export const REGISTER = 'tastespuds/user/REGISTER'
 export const REGISTER_FAILED = 'tastespuds/user/REGISTER_FAILED'
 export const REGISTER_PASSED = 'tastespuds/user/REGISTER_PASSED'
