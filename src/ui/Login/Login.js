@@ -2,7 +2,6 @@ import React from 'react'
 import {
   View,
   Text,
-  TextInput,
   TouchableOpacity,
   StyleSheet
 } from 'react-native'
@@ -15,10 +14,6 @@ class Login extends React.Component {
           <Text style={styles.title}>Tastespuds</Text>
         </View>
         <View style={styles.formContainer}>
-          <TextInput
-            style={styles.emailForm}
-            placeholder='Email address'
-          />
           <TouchableOpacity style={styles.loginButton}>
             <Text>Sign In</Text>
           </TouchableOpacity>
@@ -49,14 +44,6 @@ const styles = StyleSheet.create({
   formContainer: {
     flexDirection: 'column',
     alignItems: 'center'
-  },
-  emailForm: {
-    backgroundColor: 'white',
-    width: 300,
-    padding: 10,
-    borderWidth: 1,
-    borderRadius: 2,
-    borderColor: 'gray'
   },
   loginButton: {
     backgroundColor: 'white',
