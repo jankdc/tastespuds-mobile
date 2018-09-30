@@ -8,13 +8,15 @@ import {
 
 class Login extends React.Component {
   render () {
+    const { onLoginPress } = this.props
+
     return (
       <View style={styles.container}>
         <View style={styles.titleContainer}>
           <Text style={styles.title}>Tastespuds</Text>
         </View>
         <View style={styles.formContainer}>
-          <TouchableOpacity style={styles.loginButton}>
+          <TouchableOpacity style={styles.loginButton} onPress={onLoginPress}>
             <Text>Sign In</Text>
           </TouchableOpacity>
         </View>

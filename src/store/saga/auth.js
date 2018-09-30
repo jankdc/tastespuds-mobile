@@ -43,15 +43,15 @@ export function * startAuthFlow () {
     })
 
     if (result.type === 'error' || (result.params && result.params.error)) {
-      return put({ type: actions.LOGIN_FAILED, error: 'Login was unsuccessful. Please try again' })
+      return yield put({ type: actions.LOGIN_FAILED, error: 'Login was unsuccessful. Please try again' })
     }
 
     if (result.type === 'cancel') {
-      return put({ type: actions.LOGIN_CANCELLED })
+      return yield put({ type: actions.LOGIN_CANCELLED })
     }
 
     if (result.type !== 'success') {
-      return put({ type: actions.LOGIN_FAILED, error: 'Login was unsuccessful. Please try again' })
+      return yield put({ type: actions.LOGIN_FAILED, error: 'Login was unsuccessful. Please try again' })
     }
 
     const tokens = yield call(platform.login, result.params.code)
