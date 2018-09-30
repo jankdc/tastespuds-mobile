@@ -1,4 +1,4 @@
-import { SecureStore } from 'expo'
+import { AuthSession, SecureStore } from 'expo'
 
 import {
   call,
@@ -6,7 +6,7 @@ import {
   fork,
   put,
   all,
-  cancel
+  cancelled
 } from 'redux-saga/effects'
 
 import { navigate } from '../../nav/NavigationService'
@@ -37,104 +37,57 @@ export function * getAccessToken () {
 }
 
 export function * startAuthFlow () {
-  while (true) {
-    const { type, value: credentials } = yield take([actions.LOGIN, actions.REGISTER])
-
-    let requestSuccess = false
-    if (type === actions.LOGIN) {
-      requestSuccess = yield call(requestLogin, credentials)
-    }
-
-    if (type === actions.REGISTER) {
-      requestSuccess = yield call(requestRegister, credentials)
-    }
-
-    if (!requestSuccess) {
-      continue
-    }
-
-    while (true) {
-      const { value: code } = yield take(actions.VERIFY)
-      const verifyTask = yield fork(verifyCode, code)
-      const { type } = yield take([
-        actions.VERIFY_CANCELLED,
-        actions.VERIFY_FAILED,
-        actions.VERIFY_PASSED
-      ])
-
-      if (type === actions.VERIFY_CANCELLED) {
-        yield cancel(verifyTask)
-        break
-      }
-
-      if (type === actions.VERIFY_PASSED) {
-        yield call(navigate, 'App')
-        return
-      }
-    }
-  }
-}
-
-export function * verifyCode (credentials) {
   try {
-    const { user, tokens } = yield call(platform.verify, credentials)
+    const result = yield call(AuthSession.startAsync, {
+      authUrl: auth0.authorizeUrl()
+    })
+
+    if (result.type === 'error' || (result.params && result.params.error)) {
+      return put({ type: actions.LOGIN_FAILED, error: 'Login was unsuccessful. Please try again' })
+    }
+
+    if (result.type === 'cancel') {
+      return put({ type: actions.LOGIN_CANCELLED })
+    }
+
+    if (result.type !== 'success') {
+      return put({ type: actions.LOGIN_FAILED, error: 'Login was unsuccessful. Please try again' })
+    }
+
+    const tokens = yield call(platform.login, result.params.code)
+    const user = yield call(auth0.getUserInfo, tokens.accessToken)
+
+    if (!user.user_metadata.username) {
+      yield call(navigate, 'CreateUsername')
+      const action = yield take(actions.CREATE_USERNAME)
+      yield call(createUsername, action.value)
+    }
 
     yield all([
-      call(SecureStore.setItemAsync, 'expiresIn', JSON.stringify(tokens.expiresIn)),
+      call(SecureStore.setItemAsync, 'expiresIn', tokens.expiresIn),
       call(SecureStore.setItemAsync, 'accessToken', tokens.accessToken),
       call(SecureStore.setItemAsync, 'refreshToken', tokens.refreshToken)
     ])
 
-    yield put({
-      type: actions.VERIFY_PASSED,
-      value: user
-    })
-
-    return true
+    yield put({ type: actions.LOGIN_PASSED, value: user })
   } catch (error) {
-    yield put({
-      type: actions.VERIFY_FAILED,
-      error: 'Failed to verify the code. Please try again.'
-    })
-
-    return false
+    yield put({ type: actions.LOGIN_FAILED, error })
+  } finally {
+    if (yield cancelled()) {
+      AuthSession.dismiss()
+    }
   }
 }
 
-export function * requestLogin (credentials) {
-  try {
-    yield call(platform.login, credentials)
-
-    return true
-  } catch (error) {
-    yield put({
-      type: actions.LOGIN_FAILED,
-      error: 'Failed to login. Please try again.'
-    })
-
-    return false
-  }
-}
-
-export function * requestRegister (credentials) {
-  try {
-    yield call(platform.register, credentials)
-
-    return true
-  } catch (error) {
-    yield put({
-      type: actions.REGISTER_FAILED,
-      error: 'Failed to register. Please try again.'
-    })
-
-    return false
-  }
+export function * createUsername () {
+  console.log('some user')
 }
 
 export default function * authSaga () {
   while (true) {
-    yield call(startAuthFlow)
-    yield take(actions.LOGOUT)
+    yield take(actions.LOGIN)
+    yield fork(startAuthFlow)
+    yield take([actions.LOGOUT, actions.LOGIN_FAILED, actions.LOGIN_CANCELLED])
     yield all([
       call(SecureStore.deleteItemAsync, 'expiresIn'),
       call(SecureStore.deleteItemAsync, 'accessToken'),

@@ -3,15 +3,8 @@ import * as actions from '../actions'
 const initialState = {
   info: null,
   isLoggedIn: false,
-
-  isRequestingLogin: false,
-  requestError: null,
-
-  isVerifyingLogin: false,
-  verificationError: null,
-
-  isRegistering: false,
-  registerError: null
+  loginError: null,
+  isLoggingIn: false
 }
 
 export default function user (state = initialState, action = {}) {
@@ -19,63 +12,24 @@ export default function user (state = initialState, action = {}) {
     case actions.LOGIN:
       return {
         ...state,
-        requestError: null,
-        isRequestingLogin: true
+        loginError: null,
+        isLoggingIn: true
       }
     case actions.LOGIN_PASSED:
       return {
         ...state,
-        isRequestingLogin: false
+        isLoggingIn: false
       }
     case actions.LOGIN_FAILED:
       return {
         ...state,
-        requestError: action.error,
-        isRequestingLogin: false
+        loginError: action.error,
+        isLoggingIn: false
       }
-    case actions.REGISTER:
+    case actions.LOGIN_CANCELLED:
       return {
         ...state,
-        registerError: null,
-        isRequestingREGISTER: true
-      }
-    case actions.REGISTER_PASSED:
-      return {
-        ...state,
-        isRegistering: false
-      }
-    case actions.REGISTER_FAILED:
-      return {
-        ...state,
-        registerError: action.error,
-        isRegistering: false
-      }
-    case actions.VERIFY:
-      return {
-        ...state,
-        verificationError: null,
-        isVerifyingLogin: true
-      }
-    case actions.VERIFY_PASSED:
-      return {
-        ...state,
-        user: action.value,
-        isLoggedIn: true,
-        isVerifyingLogin: false
-      }
-    case actions.VERIFY_FAILED:
-      return {
-        ...state,
-        verificationError: action.error,
-        isLoggedIn: false,
-        isVerifyingLogin: false
-      }
-    case actions.VERIFY_CANCELLED:
-      return {
-        ...state,
-        isVerifyingLogin: false,
-        isRequestingLogin: false,
-        verificationError: null
+        isLoggingIn: false
       }
     case actions.LOGOUT:
       return {

@@ -6,11 +6,10 @@ import {
 
 import { toQueryString } from '../utils/query'
 
-export const authorizeUrl = (redirectUri) => `${AUTH0_DOMAIN}/authorize` + toQueryString({
+export const authorizeUrl = () => `${AUTH0_DOMAIN}/authorize` + toQueryString({
   scope: 'openid offline_access',
   audience: AUTH0_AUDIENCE,
   client_id: AUTH0_CLIENT_ID,
-  redirect_uri: redirectUri,
   response_type: 'code'
 })
 
