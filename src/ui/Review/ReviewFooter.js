@@ -4,7 +4,6 @@ import { View, StyleSheet } from 'react-native'
 import ReviewMenu from './ReviewMenu'
 import ReviewDate from './ReviewDate'
 import ReviewLikes from './ReviewLikes'
-import ReviewTitle from './ReviewTitle'
 import ReviewRating from './ReviewRating'
 import ReviewSummary from './ReviewSummary'
 
@@ -15,7 +14,6 @@ const ReviewFooter = () => (
       <ReviewRating />
     </View>
     <ReviewLikes />
-    <ReviewTitle />
     <ReviewSummary />
     <ReviewDate />
   </View>
