@@ -6,14 +6,19 @@ import {
 
 import { toQueryString } from '../utils/query'
 
-export const authorizeUrl = () => `${AUTH0_DOMAIN}/authorize` + toQueryString({
-  scope: 'openid offline_access',
-  audience: AUTH0_AUDIENCE,
-  client_id: AUTH0_CLIENT_ID,
-  response_type: 'code'
-})
+export const authorizeUrl = (redirectUri) => {
+  const query = toQueryString({
+    scope: 'openid profile email offline_access',
+    audience: AUTH0_AUDIENCE,
+    client_id: AUTH0_CLIENT_ID,
+    redirect_uri: redirectUri,
+    response_type: 'code'
+  })
 
-export async function getAccessToken (refreshToken) {
+  return `${AUTH0_DOMAIN}/authorize${query}`
+}
+
+export async function refreshAccess (refreshToken) {
   const response = await window.fetch(`${AUTH0_DOMAIN}/oauth/token`, {
     method: 'POST',
     headers: {
@@ -31,9 +36,7 @@ export async function getAccessToken (refreshToken) {
     throw new Error('Failed to refresh the token')
   }
 
-  const { access_token: accessToken } = await response.json()
-
-  return accessToken
+  return response.json()
 }
 
 export async function getUserInfo (accessToken) {

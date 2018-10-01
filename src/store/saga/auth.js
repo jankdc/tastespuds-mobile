@@ -1,4 +1,5 @@
 import { AuthSession, SecureStore } from 'expo'
+import jwtDecode from 'jwt-decode'
 
 import {
   call,
@@ -14,7 +15,8 @@ import * as platform from '../../clients/platform'
 import * as actions from '../actions'
 import * as auth0 from '../../clients/auth0'
 
-export function * getAccessToken () {
+export function * getCredentials () {
+  const idToken = yield call(SecureStore.getItemAsync, 'idToken')
   const expiresIn = yield call(SecureStore.getItemAsync, 'expiresIn')
   const accessToken = yield call(SecureStore.getItemAsync, 'accessToken')
   const refreshToken = yield call(SecureStore.getItemAsync, 'refreshToken')
@@ -29,17 +31,25 @@ export function * getAccessToken () {
 
   const accessExpiration = yield call(parseInt, expiresIn, 10)
 
-  if (accessExpiration > (Date.now() / 1000)) {
-    return accessToken
+  if (accessExpiration < (Date.now() / 1000)) {
+    return { idToken, accessToken }
   }
 
-  return yield call(auth0.getAccessToken, refreshToken)
+  const freshTokens = yield call(auth0.refreshAccess, refreshToken)
+  const currentTime = Date.now() / 1000
+  yield all([
+    call(SecureStore.setItemAsync, 'idToken', freshTokens.id_token),
+    call(SecureStore.setItemAsync, 'expiresIn', JSON.stringify(currentTime + freshTokens.expires_in)),
+    call(SecureStore.setItemAsync, 'accessToken', freshTokens.access_token)
+  ])
+
+  return { idToken: freshTokens.id_token, accessToken: freshTokens.access_token }
 }
 
 export function * startAuthFlow () {
   try {
     const result = yield call(AuthSession.startAsync, {
-      authUrl: auth0.authorizeUrl()
+      authUrl: auth0.authorizeUrl(AuthSession.getRedirectUrl())
     })
 
     if (result.type === 'error' || (result.params && result.params.error)) {
@@ -55,21 +65,18 @@ export function * startAuthFlow () {
     }
 
     const tokens = yield call(platform.login, result.params.code)
-    const user = yield call(auth0.getUserInfo, tokens.accessToken)
-
-    if (!user.user_metadata.username) {
-      yield call(navigate, 'CreateUsername')
-      const action = yield take(actions.CREATE_USERNAME)
-      yield call(createUsername, action.value)
-    }
+    const currentTime = Date.now() / 1000
 
     yield all([
-      call(SecureStore.setItemAsync, 'expiresIn', tokens.expiresIn),
+      call(SecureStore.setItemAsync, 'idToken', tokens.idToken),
+      call(SecureStore.setItemAsync, 'expiresIn', JSON.stringify(currentTime + tokens.expiresIn)),
       call(SecureStore.setItemAsync, 'accessToken', tokens.accessToken),
       call(SecureStore.setItemAsync, 'refreshToken', tokens.refreshToken)
     ])
 
+    const user = yield call(jwtDecode, tokens.idToken)
     yield put({ type: actions.LOGIN_PASSED, value: user })
+    yield call(navigate, 'App')
   } catch (error) {
     yield put({ type: actions.LOGIN_FAILED, error })
   } finally {
@@ -77,10 +84,6 @@ export function * startAuthFlow () {
       AuthSession.dismiss()
     }
   }
-}
-
-export function * createUsername () {
-  console.log('some user')
 }
 
 export default function * authSaga () {
