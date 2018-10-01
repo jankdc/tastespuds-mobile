@@ -1,29 +1,29 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 
-const ReviewSummary = () => (
+const ReviewContent = () => (
   <View style={styles.container}>
-    <Text style={styles.heading}>Review Summary</Text>
-    <Text style={styles.summary}>🎉🎉🎉 Really good quality for its price!</Text>
+    <Text style={styles.user}>jankdc</Text>
+    <Text style={styles.content}>🎉🎉🎉 Really good quality for its price!</Text>
   </View>
 )
 
 const styles = StyleSheet.create({
   container: {
     height: 50,
-    justifyContent: 'center',
+    marginTop: 10,
+    flexDirection: 'row',
     backgroundColor: 'white'
   },
-  heading: {
+  user: {
     marginLeft: 12,
     fontWeight: 'bold',
     fontSize: 12
   },
-  summary: {
-    marginLeft: 12,
-    marginTop: 5,
+  content: {
+    marginLeft: 5,
     fontSize: 12
   }
 })
 
-export default ReviewSummary
+export default ReviewContent

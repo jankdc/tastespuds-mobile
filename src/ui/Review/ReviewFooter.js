@@ -5,7 +5,7 @@ import ReviewMenu from './ReviewMenu'
 import ReviewDate from './ReviewDate'
 import ReviewLikes from './ReviewLikes'
 import ReviewRating from './ReviewRating'
-import ReviewSummary from './ReviewSummary'
+import ReviewContent from './ReviewContent'
 
 const ReviewFooter = () => (
   <View style={styles.container}>
@@ -14,7 +14,7 @@ const ReviewFooter = () => (
       <ReviewRating />
     </View>
     <ReviewLikes />
-    <ReviewSummary />
+    <ReviewContent />
     <ReviewDate />
   </View>
 )
