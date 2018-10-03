@@ -5,6 +5,12 @@ import { View, StyleSheet, StatusBar } from 'react-native'
 import CameraMenu from './CameraMenu'
 
 class Camera extends React.Component {
+  constructor (props) {
+    super(props)
+
+    this._onCancel = this._onCancel.bind(this)
+  }
+
   componentDidMount () {
     StatusBar.setHidden(true)
   }
@@ -13,11 +19,15 @@ class Camera extends React.Component {
     StatusBar.setHidden(false)
   }
 
+  _onCancel () {
+    this.props.navigation.navigate('AppTab')
+  }
+
   render () {
     return (
       <View style={styles.container}>
         <ExpoCamera style={styles.camera} type={ExpoCamera.Constants.Type.back}>
-          <CameraMenu />
+          <CameraMenu onCancel={this._onCancel} />
         </ExpoCamera>
       </View>
     )

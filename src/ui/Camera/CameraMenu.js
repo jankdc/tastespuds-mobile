@@ -3,26 +3,21 @@ import React from 'react'
 import {
   TouchableOpacity,
   StyleSheet,
-  View,
-  Text
+  View
 } from 'react-native'
 
 import { EvilIcons } from '@expo/vector-icons'
 
-const CameraMenu = () => (
+const CameraMenu = ({ onCancel }) => (
   <View style={styles.container}>
     <View style={styles.header}>
-      <TouchableOpacity style={styles.exitButton}>
+      <TouchableOpacity style={styles.exitButton} onPress={onCancel}>
         <EvilIcons name='close' size={30} color='black' />
       </TouchableOpacity>
     </View>
     <View style={styles.footer}>
       <TouchableOpacity style={styles.snapButton}>
-        <Text
-          style={{ fontSize: 18, marginBottom: 10, color: 'white' }}
-        >
-          {' '}Snap{' '}
-        </Text>
+        <View style={styles.snapButtonInner} />
       </TouchableOpacity>
     </View>
   </View>
@@ -30,24 +25,37 @@ const CameraMenu = () => (
 
 const styles = StyleSheet.create({
   container: {
-    height: 100,
-    backgroundColor: 'transparent',
-    flexDirection: 'row'
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    backgroundColor: 'transparent'
   },
   header: {
-    alignSelf: 'flex-start',
-    height: 200
+    justifyContent: 'center',
+    height: 100
   },
   footer: {
-    alignSelf: 'flex-end',
-    height: 300
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 120
   },
   exitButton: {
-    marginLeft: 15,
-    marginTop: 20
+    marginLeft: 15
   },
   snapButton: {
-    alignSelf: 'center'
+    backgroundColor: 'white',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 33,
+    height: 66,
+    width: 66
+  },
+  snapButtonInner: {
+    backgroundColor: 'white',
+    borderRadius: 30,
+    borderWidth: 3,
+    height: 60,
+    width: 60
   }
 })
 
