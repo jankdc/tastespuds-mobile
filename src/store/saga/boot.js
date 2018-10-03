@@ -1,6 +1,10 @@
 import jwtDecode from 'jwt-decode'
 import { SecureStore, Font } from 'expo'
-import { EvilIcons, Ionicons } from '@expo/vector-icons'
+import {
+  Ionicons,
+  EvilIcons,
+  MaterialCommunityIcons
+} from '@expo/vector-icons'
 
 import {
   call,
@@ -18,6 +22,7 @@ export function * loadAssets () {
   yield all([
     call(Font.loadAsync, Ionicons.font),
     call(Font.loadAsync, EvilIcons.font),
+    call(Font.loadAsync, MaterialCommunityIcons.font),
     call(Font.loadAsync, { baloo })
   ])
 }

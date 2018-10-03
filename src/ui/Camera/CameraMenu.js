@@ -6,13 +6,13 @@ import {
   View
 } from 'react-native'
 
-import { EvilIcons } from '@expo/vector-icons'
+import { MaterialCommunityIcons } from '@expo/vector-icons'
 
 const CameraMenu = ({ onCancel }) => (
   <View style={styles.container}>
     <View style={styles.header}>
       <TouchableOpacity style={styles.exitButton} onPress={onCancel}>
-        <EvilIcons name='close' size={30} color='black' />
+        <MaterialCommunityIcons name='close-circle-outline' size={28} color='black' />
       </TouchableOpacity>
     </View>
     <View style={styles.footer}>
@@ -31,8 +31,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent'
   },
   header: {
-    justifyContent: 'center',
-    height: 100
+    height: 80,
+    justifyContent: 'center'
   },
   footer: {
     justifyContent: 'center',
@@ -40,7 +40,15 @@ const styles = StyleSheet.create({
     height: 120
   },
   exitButton: {
-    marginLeft: 15
+    marginLeft: 15,
+    paddingTop: 2.2,
+    paddingLeft: 1,
+    alignItems: 'center',
+    borderRadius: 20,
+    justifyContent: 'center',
+    backgroundColor: 'white',
+    height: 32,
+    width: 32
   },
   snapButton: {
     backgroundColor: 'white',
