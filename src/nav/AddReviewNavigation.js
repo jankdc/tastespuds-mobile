@@ -1,10 +1,10 @@
 import { createStackNavigator } from 'react-navigation'
 
-import AddReview from '../ui/AddReview'
+import Camera from '../ui/Camera'
 
 const AddReviewNavigation = createStackNavigator({
-  AddReview: {
-    screen: AddReview
+  Camera: {
+    screen: Camera
   }
 })
 

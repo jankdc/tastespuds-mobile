@@ -1,6 +1,7 @@
 import React from 'react'
 import { View } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
+import { Permissions } from 'expo'
 
 import { createStackNavigator } from 'react-navigation'
 import { createBottomTabNavigator, BottomTabBar } from 'react-navigation-tabs'
@@ -26,9 +27,12 @@ const AppTabNavigation = createBottomTabNavigator(
     tabBarComponent: (props) => (
       <BottomTabBar
         {...props}
-        onTabPress={evt => {
+        onTabPress={async evt => {
           if (evt.route.routeName === 'Review') {
-            props.navigation.navigate('AddReview')
+            const { status } = await Permissions.askAsync(Permissions.CAMERA)
+            if (status === 'granted') {
+              props.navigation.navigate('AddReview')
+            }
           } else {
             props.onTabPress(evt)
           }
