@@ -8,7 +8,7 @@ import {
 
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 
-const CameraMenu = ({ onCancel }) => (
+const CameraMenu = ({ disableCapture, onCancel, onCapture }) => (
   <View style={styles.container}>
     <View style={styles.header}>
       <TouchableOpacity style={styles.exitButton} onPress={onCancel}>
@@ -16,8 +16,12 @@ const CameraMenu = ({ onCancel }) => (
       </TouchableOpacity>
     </View>
     <View style={styles.footer}>
-      <TouchableOpacity style={styles.snapButton}>
-        <View style={styles.snapButtonInner} />
+      <TouchableOpacity
+        style={styles.captureButton}
+        onPress={onCapture}
+        disabled={disableCapture}
+      >
+        <View style={styles.captureButtonInner} />
       </TouchableOpacity>
     </View>
   </View>
@@ -50,7 +54,7 @@ const styles = StyleSheet.create({
     height: 32,
     width: 32
   },
-  snapButton: {
+  captureButton: {
     backgroundColor: 'white',
     justifyContent: 'center',
     alignItems: 'center',
@@ -58,7 +62,7 @@ const styles = StyleSheet.create({
     height: 66,
     width: 66
   },
-  snapButtonInner: {
+  captureButtonInner: {
     backgroundColor: 'white',
     borderRadius: 30,
     borderColor: '#272d33',
