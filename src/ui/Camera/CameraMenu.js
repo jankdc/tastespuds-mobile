@@ -53,7 +53,8 @@ const styles = StyleSheet.create({
   snapButtonInner: {
     backgroundColor: 'white',
     borderRadius: 30,
-    borderWidth: 3,
+    borderColor: '#272d33',
+    borderWidth: 7,
     height: 60,
     width: 60
   }
