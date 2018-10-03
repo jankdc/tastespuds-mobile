@@ -8,6 +8,11 @@ class Camera extends React.Component {
   constructor (props) {
     super(props)
 
+    this.state = {
+      isCapturing: false
+    }
+
+    this._onCapture = this._onCapture.bind(this)
     this._onCancel = this._onCancel.bind(this)
   }
 
@@ -19,15 +24,35 @@ class Camera extends React.Component {
     StatusBar.setHidden(false)
   }
 
-  _onCancel () {
+  async _onCancel () {
     this.props.navigation.navigate('AppTab')
+  }
+
+  async _onCapture () {
+    this.setState({ isCapturing: true })
+    const imageData = await this.camera.takePictureAsync({
+      quality: 1.0
+    })
+
+    this.setState({ isCapturing: false })
+    this.props.navigation.navigate('EditImage', {
+      imageData
+    })
   }
 
   render () {
     return (
       <View style={styles.container}>
-        <ExpoCamera style={styles.camera} type={ExpoCamera.Constants.Type.back}>
-          <CameraMenu onCancel={this._onCancel} />
+        <ExpoCamera
+          ref={ref => { this.camera = ref }}
+          type={ExpoCamera.Constants.Type.back}
+          style={styles.camera}
+        >
+          <CameraMenu
+            onCancel={this._onCancel}
+            onCapture={this._onCapture}
+            disableCapture={this.state.isCapturing}
+          />
         </ExpoCamera>
       </View>
     )
