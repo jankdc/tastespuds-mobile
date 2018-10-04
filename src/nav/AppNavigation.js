@@ -5,6 +5,7 @@ import { Ionicons } from '@expo/vector-icons'
 import { createStackNavigator } from 'react-navigation'
 import { createBottomTabNavigator } from 'react-navigation-tabs'
 
+import AddReview from '../ui/AddReview'
 import BottomTabBar from './BottomTabBar'
 import HomeNavigation from './HomeNavigation'
 import UserProfileNavigation from './UserProfileNavigation'
@@ -34,17 +35,20 @@ const AppTabNavigation = createBottomTabNavigator(
   }
 )
 
+AppTabNavigation.navigationOptions = {
+  header: null
+}
+
 export default createStackNavigator(
   {
     AppTab: {
       screen: AppTabNavigation
     },
     AddReview: {
-      screen: View
+      screen: AddReview
     }
   },
   {
-    headerMode: 'none',
     mode: 'modal'
   }
 )
