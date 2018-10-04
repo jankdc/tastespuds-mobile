@@ -8,6 +8,8 @@ import {
 
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 
+import CaptureButton from './CaptureButton'
+
 const CameraMenu = ({ disableCapture, onCancel, onCapture }) => (
   <View style={styles.container}>
     <View style={styles.header}>
@@ -16,13 +18,10 @@ const CameraMenu = ({ disableCapture, onCancel, onCapture }) => (
       </TouchableOpacity>
     </View>
     <View style={styles.footer}>
-      <TouchableOpacity
-        style={styles.captureButton}
+      <CaptureButton
         onPress={onCapture}
         disabled={disableCapture}
-      >
-        <View style={styles.captureButtonInner} />
-      </TouchableOpacity>
+      />
     </View>
   </View>
 )
@@ -53,22 +52,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     height: 32,
     width: 32
-  },
-  captureButton: {
-    backgroundColor: 'white',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 33,
-    height: 66,
-    width: 66
-  },
-  captureButtonInner: {
-    backgroundColor: 'white',
-    borderRadius: 30,
-    borderColor: '#272d33',
-    borderWidth: 7,
-    height: 60,
-    width: 60
   }
 })
 
