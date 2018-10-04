@@ -1,27 +1,16 @@
 import React from 'react'
-
-import {
-  TouchableOpacity,
-  StyleSheet,
-  View
-} from 'react-native'
-
-import { MaterialCommunityIcons } from '@expo/vector-icons'
+import { StyleSheet, View } from 'react-native'
 
 import CaptureButton from './CaptureButton'
+import CameraExitButton from './CameraExitButton'
 
 const CameraMenu = ({ disableCapture, onCancel, onCapture }) => (
   <View style={styles.container}>
     <View style={styles.header}>
-      <TouchableOpacity style={styles.exitButton} onPress={onCancel}>
-        <MaterialCommunityIcons name='close-circle-outline' size={28} color='black' />
-      </TouchableOpacity>
+      <CameraExitButton onPress={onCancel} />
     </View>
     <View style={styles.footer}>
-      <CaptureButton
-        onPress={onCapture}
-        disabled={disableCapture}
-      />
+      <CaptureButton onPress={onCapture} disabled={disableCapture} />
     </View>
   </View>
 )
@@ -35,23 +24,13 @@ const styles = StyleSheet.create({
   },
   header: {
     height: 80,
+    paddingHorizontal: 15,
     justifyContent: 'center'
   },
   footer: {
     justifyContent: 'center',
     alignItems: 'center',
     height: 120
-  },
-  exitButton: {
-    marginLeft: 15,
-    paddingTop: 2.2,
-    paddingLeft: 1,
-    alignItems: 'center',
-    borderRadius: 20,
-    justifyContent: 'center',
-    backgroundColor: 'white',
-    height: 32,
-    width: 32
   }
 })
 
