@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavigationEvents } from 'react-navigation'
 import { Camera as ExpoCamera } from 'expo'
 import { View, StyleSheet, StatusBar } from 'react-native'
 
@@ -9,6 +10,7 @@ class Camera extends React.Component {
     super(props)
 
     this.state = {
+      showCamera: true,
       isCapturing: false
     }
 
@@ -40,20 +42,34 @@ class Camera extends React.Component {
     })
   }
 
+  _renderCamera () {
+    if (!this.state.showCamera) {
+      return null
+    }
+
+    return (
+      <ExpoCamera
+        ref={ref => { this.camera = ref }}
+        type={ExpoCamera.Constants.Type.back}
+        style={styles.camera}
+      >
+        <CameraMenu
+          onCancel={this._onCancel}
+          onCapture={this._onCapture}
+          disableCapture={this.state.isCapturing}
+        />
+      </ExpoCamera>
+    )
+  }
+
   render () {
     return (
       <View style={styles.container}>
-        <ExpoCamera
-          ref={ref => { this.camera = ref }}
-          type={ExpoCamera.Constants.Type.back}
-          style={styles.camera}
-        >
-          <CameraMenu
-            onCancel={this._onCancel}
-            onCapture={this._onCapture}
-            disableCapture={this.state.isCapturing}
-          />
-        </ExpoCamera>
+        <NavigationEvents
+          onDidBlur={() => this.setState({ showCamera: false })}
+          onWillFocus={() => this.setState({ showCamera: true })}
+        />
+        { this._renderCamera() }
       </View>
     )
   }
