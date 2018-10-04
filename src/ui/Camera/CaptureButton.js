@@ -3,7 +3,7 @@ import { View, TouchableOpacity, StyleSheet } from 'react-native'
 
 const CaptureButton = (buttonProps) => (
   <TouchableOpacity
-    style={styles.container}
+    style={[buttonProps.style, styles.container]}
     {...buttonProps}
   >
     <View style={styles.inner} />
