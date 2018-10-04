@@ -1,11 +1,11 @@
 import React from 'react'
 import { View } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
-import { ImagePicker, Permissions } from 'expo'
 
 import { createStackNavigator } from 'react-navigation'
-import { createBottomTabNavigator, BottomTabBar } from 'react-navigation-tabs'
+import { createBottomTabNavigator } from 'react-navigation-tabs'
 
+import BottomTabBar from './BottomTabBar'
 import HomeNavigation from './HomeNavigation'
 import UserProfileNavigation from './UserProfileNavigation'
 
@@ -23,32 +23,7 @@ const AppTabNavigation = createBottomTabNavigator(
       activeTintColor: 'tomato',
       inactiveTintColor: 'gray'
     },
-    tabBarComponent: (props) => (
-      <BottomTabBar
-        {...props}
-        onTabPress={async evt => {
-          if (evt.route.routeName !== 'Review') {
-            return props.onTabPress(evt)
-          }
-
-          const { status: cameraStatus } = await Permissions.askAsync(Permissions.CAMERA)
-          if (cameraStatus !== 'granted') {
-            return
-          }
-
-          const { status: cameraRollStatus } = await Permissions.askAsync(Permissions.CAMERA_ROLL)
-          if (cameraRollStatus !== 'granted') {
-            return
-          }
-
-          const imageData = await ImagePicker.launchCameraAsync()
-
-          if (!imageData.cancelled) {
-            props.navigation.navigate('AddReview', imageData)
-          }
-        }}
-      />
-    ),
+    tabBarComponent: BottomTabBar,
     navigationOptions: ({ navigation }) => ({
       tabBarIcon: ({ tintColor }) => {
         if (navigation.state.routeName === 'Review') {
