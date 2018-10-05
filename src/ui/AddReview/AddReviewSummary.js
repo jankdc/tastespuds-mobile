@@ -28,8 +28,11 @@ const styles = StyleSheet.create({
     borderBottomColor: '#d3d3d3'
   },
   label: {
-    padding: 10,
+    paddingTop: 10,
+    paddingLeft: 10,
+    paddingBottom: 10,
     color: 'grey',
+    fontSize: 12,
     fontWeight: 'bold'
   },
   inputContainer: {
