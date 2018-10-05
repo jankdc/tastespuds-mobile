@@ -69,7 +69,8 @@ AddReview.navigationOptions = ({ navigation }) => {
   if (isEditingReview) {
     return {
       headerLeft: null,
-      headerRight: <Button title='Done' onPress={Keyboard.dismiss} />
+      headerRight: <Button title='Done' onPress={Keyboard.dismiss} />,
+      title: '🍴 Write a review'
     }
   }
 
