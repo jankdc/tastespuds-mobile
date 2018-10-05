@@ -4,11 +4,11 @@ import {
   View,
   Button,
   Keyboard,
-  TextInput,
   StyleSheet
 } from 'react-native'
 
 import AddReviewButton from './AddReviewButton'
+import AddReviewSummary from './AddReviewSummary'
 
 class AddReview extends React.Component {
   constructor (props) {
@@ -54,15 +54,10 @@ class AddReview extends React.Component {
   render () {
     return (
       <View style={styles.container}>
-        <View style={styles.summaryContainer}>
-          <TextInput
-            style={styles.summaryInput}
-            onBlur={this._onSummaryBlur}
-            onFocus={this._onSummaryFocus}
-            multiline
-            placeholder='Write a review...'
-          />
-        </View>
+        <AddReviewSummary
+          onBlur={this._onSummaryBlur}
+          onFocus={this._onSummaryFocus}
+        />
         <View
           style={this.state.isEditingReview ? styles.shadowContainer : styles.subContainer}
           pointerEvents={this.state.isEditingReview ? 'none' : 'auto'}
