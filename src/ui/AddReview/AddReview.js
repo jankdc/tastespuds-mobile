@@ -14,10 +14,6 @@ class AddReview extends React.Component {
   constructor (props) {
     super(props)
 
-    this.state = {
-      isEditingReview: false
-    }
-
     this._onDone = this._onDone.bind(this)
     this._onSummaryBlur = this._onSummaryBlur.bind(this)
     this._onSummaryFocus = this._onSummaryFocus.bind(this)
@@ -34,24 +30,20 @@ class AddReview extends React.Component {
   }
 
   _onSummaryBlur () {
-    this.setState({
-      isEditingReview: false
-    })
     this.props.navigation.setParams({
       isEditingReview: false
     })
   }
 
   _onSummaryFocus () {
-    this.setState({
-      isEditingReview: true
-    })
     this.props.navigation.setParams({
       isEditingReview: true
     })
   }
 
   render () {
+    const isEditingReview = this.props.navigation.getParam('isEditingReview', false)
+
     return (
       <View style={styles.container}>
         <AddReviewSummary
@@ -59,11 +51,11 @@ class AddReview extends React.Component {
           onFocus={this._onSummaryFocus}
         />
         <View
-          style={this.state.isEditingReview ? styles.shadowContainer : styles.subContainer}
-          pointerEvents={this.state.isEditingReview ? 'none' : 'auto'}
+          style={isEditingReview ? styles.shadowContainer : styles.subContainer}
+          pointerEvents={isEditingReview ? 'none' : 'auto'}
         >
           <View style={styles.addReviewButtonContainer}>
-            <AddReviewButton disabled={this.state.isEditingReview} />
+            <AddReviewButton disabled={isEditingReview} />
           </View>
         </View>
       </View>
