@@ -52,9 +52,7 @@ class AddReview extends React.Component {
 
   render () {
     return (
-      <View
-        style={this.state.isEditingReview ? styles.hiddenContainer : styles.container}
-      >
+      <View style={styles.container}>
         <View style={styles.summaryContainer}>
           <TextInput
             style={styles.summaryInput}
@@ -64,6 +62,7 @@ class AddReview extends React.Component {
             placeholder='Write a review...'
           />
         </View>
+        <View style={this.state.isEditingReview ? styles.shadowContainer : styles.subContainer} />
       </View>
     )
   }
@@ -97,10 +96,12 @@ const textFieldConfig = (title) => ({
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    opacity: 0.6
+    flex: 1
   },
-  hiddenContainer: {
+  subContainer: {
+    flex: 1
+  },
+  shadowContainer: {
     flex: 1,
     opacity: 0.6,
     backgroundColor: 'black'
