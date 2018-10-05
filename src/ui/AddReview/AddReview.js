@@ -67,25 +67,17 @@ AddReview.navigationOptions = ({ navigation }) => {
   const isEditingReview = navigation.getParam('isEditingReview', false)
 
   if (isEditingReview) {
-    return textFieldConfig('Write Review')
+    return {
+      headerLeft: null,
+      headerRight: <Button title='Done' onPress={Keyboard.dismiss} />
+    }
   }
 
   return {
-    headerLeft: (props) => (
-      <Button
-        {...props}
-        title='Cancel'
-      />
-    ),
+    headerLeft: (props) => <Button {...props} title='Cancel' />,
     title: 'New Review'
   }
 }
-
-const textFieldConfig = (title) => ({
-  headerLeft: null,
-  headerRight: <Button title='OK' onPress={Keyboard.dismiss} />,
-  title
-})
 
 const styles = StyleSheet.create({
   container: {

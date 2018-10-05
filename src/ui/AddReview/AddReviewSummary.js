@@ -1,25 +1,41 @@
 import React from 'react'
-import { StyleSheet, View, TextInput } from 'react-native'
+
+import {
+  View,
+  Text,
+  TextInput,
+  StyleSheet
+} from 'react-native'
 
 const AddReviewSummary = ({ onBlur, onFocus }) => (
   <View style={styles.container}>
-    <TextInput
-      style={styles.input}
-      onBlur={onBlur}
-      onFocus={onFocus}
-      multiline
-      placeholder='Write a review...'
-    />
+    <Text style={styles.label}>Review Description</Text>
+    <View style={styles.inputContainer}>
+      <TextInput
+        style={styles.input}
+        onBlur={onBlur}
+        onFocus={onFocus}
+        multiline
+        placeholder='Write a review...'
+      />
+    </View>
   </View>
 )
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'white',
-    padding: 10,
-    height: 100,
     borderBottomWidth: 1,
     borderBottomColor: '#d3d3d3'
+  },
+  label: {
+    padding: 10,
+    color: 'grey',
+    fontWeight: 'bold'
+  },
+  inputContainer: {
+    padding: 10,
+    height: 100,
+    backgroundColor: 'white'
   },
   input: {
     flex: 1,
