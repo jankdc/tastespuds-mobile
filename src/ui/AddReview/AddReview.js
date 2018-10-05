@@ -8,6 +8,8 @@ import {
   StyleSheet
 } from 'react-native'
 
+import AddReviewButton from './AddReviewButton'
+
 class AddReview extends React.Component {
   constructor (props) {
     super(props)
@@ -23,7 +25,6 @@ class AddReview extends React.Component {
 
   componentDidMount () {
     this.props.navigation.setParams({
-      onDone: this._onDone,
       isEditingReview: false
     })
   }
@@ -62,7 +63,14 @@ class AddReview extends React.Component {
             placeholder='Write a review...'
           />
         </View>
-        <View style={this.state.isEditingReview ? styles.shadowContainer : styles.subContainer} />
+        <View
+          style={this.state.isEditingReview ? styles.shadowContainer : styles.subContainer}
+          pointerEvents={this.state.isEditingReview ? 'none' : 'auto'}
+        >
+          <View style={styles.addReviewButtonContainer}>
+            <AddReviewButton disabled={this.state.isEditingReview} />
+          </View>
+        </View>
       </View>
     )
   }
@@ -70,7 +78,6 @@ class AddReview extends React.Component {
 
 AddReview.navigationOptions = ({ navigation }) => {
   const isEditingReview = navigation.getParam('isEditingReview', false)
-  const onDone = navigation.getParam('onDone', () => {})
 
   if (isEditingReview) {
     return textFieldConfig('Write Review')
@@ -83,7 +90,6 @@ AddReview.navigationOptions = ({ navigation }) => {
         title='Cancel'
       />
     ),
-    headerRight: <Button title='Share' onPress={onDone} />,
     title: 'New Review'
   }
 }
@@ -116,6 +122,10 @@ const styles = StyleSheet.create({
   summaryInput: {
     flex: 1,
     fontSize: 16
+  },
+  addReviewButtonContainer: {
+    marginTop: 15,
+    paddingHorizontal: 15
   }
 })
 
