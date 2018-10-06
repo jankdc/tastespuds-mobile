@@ -9,7 +9,7 @@ import {
 
 const AddReviewSummary = ({ onBlur, onFocus }) => (
   <View style={styles.container}>
-    <Text style={styles.label}>🍴 Description</Text>
+    <Text style={styles.label}>🍴 Review</Text>
     <View style={styles.inputContainer}>
       <TextInput
         style={styles.input}
