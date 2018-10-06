@@ -7,11 +7,10 @@ import {
   StyleSheet
 } from 'react-native'
 
-import AddReviewItem from './AddReviewItem'
-import AddReviewPlace from './AddReviewPlace'
 import AddReviewButton from './AddReviewButton'
 import AddReviewRating from './AddReviewRating'
 import AddReviewSummary from './AddReviewSummary'
+import AddReviewFieldButton from './AddReviewFieldButton'
 
 class AddReview extends React.Component {
   constructor (props) {
@@ -70,12 +69,16 @@ class AddReview extends React.Component {
 
     return (
       <View style={styles.subContainer}>
-        <AddReviewPlace
-          onGetPlace={this._onGetPlace}
+        <AddReviewFieldButton
+          label='🏘️ Place'
+          onPress={this._onGetPlace}
+          placeholder="Enter the item's place..."
         />
 
-        <AddReviewItem
-          onGetItem={this._onGetItem}
+        <AddReviewFieldButton
+          label='🍔 Name'
+          onPress={this._onGetItem}
+          placeholder="Enter the item's name..."
         />
 
         <AddReviewRating
