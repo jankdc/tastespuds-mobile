@@ -109,17 +109,6 @@ const styles = StyleSheet.create({
     opacity: 0.6,
     backgroundColor: 'black'
   },
-  summaryContainer: {
-    backgroundColor: 'white',
-    padding: 10,
-    height: 100,
-    borderBottomWidth: 1,
-    borderBottomColor: '#d3d3d3'
-  },
-  summaryInput: {
-    flex: 1,
-    fontSize: 16
-  },
   addReviewButtonContainer: {
     marginTop: 15,
     paddingHorizontal: 15
