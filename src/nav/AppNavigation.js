@@ -6,6 +6,9 @@ import { createStackNavigator } from 'react-navigation'
 import { createBottomTabNavigator } from 'react-navigation-tabs'
 
 import AddReview from '../ui/AddReview'
+import AddReviewItem from '../ui/AddReviewItem'
+import AddReviewPlace from '../ui/AddReviewPlace'
+
 import BottomTabBar from './BottomTabBar'
 import HomeNavigation from './HomeNavigation'
 import UserProfileNavigation from './UserProfileNavigation'
@@ -46,6 +49,12 @@ export default createStackNavigator(
     },
     AddReview: {
       screen: AddReview
+    },
+    AddReviewItem: {
+      screen: AddReviewItem
+    },
+    AddReviewPlace: {
+      screen: AddReviewPlace
     }
   },
   {

@@ -16,6 +16,10 @@ class AddReview extends React.Component {
   constructor (props) {
     super(props)
 
+    this.state = {
+      place: null
+    }
+
     this._onDone = this._onDone.bind(this)
     this._onGetItem = this._onGetItem.bind(this)
     this._onGetPlace = this._onGetPlace.bind(this)
@@ -35,11 +39,11 @@ class AddReview extends React.Component {
   }
 
   _onGetItem () {
-
+    this.props.navigation.navigate('AddReviewItem')
   }
 
   _onGetPlace () {
-
+    this.props.navigation.navigate('AddReviewPlace')
   }
 
   _onSummaryBlur () {
