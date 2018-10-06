@@ -7,6 +7,8 @@ import {
   StyleSheet
 } from 'react-native'
 
+import AddReviewItem from './AddReviewItem'
+import AddReviewPlace from './AddReviewPlace'
 import AddReviewButton from './AddReviewButton'
 import AddReviewRating from './AddReviewRating'
 import AddReviewSummary from './AddReviewSummary'
@@ -16,6 +18,8 @@ class AddReview extends React.Component {
     super(props)
 
     this._onDone = this._onDone.bind(this)
+    this._onGetItem = this._onGetItem.bind(this)
+    this._onGetPlace = this._onGetPlace.bind(this)
     this._onSummaryBlur = this._onSummaryBlur.bind(this)
     this._onSummaryFocus = this._onSummaryFocus.bind(this)
     this._onRatingChange = this._onRatingChange.bind(this)
@@ -29,6 +33,14 @@ class AddReview extends React.Component {
 
   _onDone () {
     console.log('done')
+  }
+
+  _onGetItem () {
+
+  }
+
+  _onGetPlace () {
+
   }
 
   _onSummaryBlur () {
@@ -58,7 +70,18 @@ class AddReview extends React.Component {
 
     return (
       <View style={styles.subContainer}>
-        <AddReviewRating onRatingChange={this._onRatingChange} />
+        <AddReviewPlace
+          onGetPlace={this._onGetPlace}
+        />
+
+        <AddReviewItem
+          onGetItem={this._onGetItem}
+        />
+
+        <AddReviewRating
+          onRatingChange={this._onRatingChange}
+        />
+
         <View style={styles.addReviewButtonContainer}>
           <AddReviewButton disabled={isEditingReview} />
         </View>
