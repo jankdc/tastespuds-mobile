@@ -47,27 +47,34 @@ class AddReview extends React.Component {
 
   }
 
-  render () {
+  _renderOtherFields () {
     const isEditingReview = this.props.navigation.getParam('isEditingReview', false)
 
+    if (isEditingReview) {
+      return (
+        <View style={styles.shadowContainer} pointerEvents='none' />
+      )
+    }
+
+    return (
+      <View style={styles.subContainer}>
+        <AddReviewRating onRatingChange={this._onRatingChange} />
+        <View style={styles.addReviewButtonContainer}>
+          <AddReviewButton disabled={isEditingReview} />
+        </View>
+      </View>
+    )
+  }
+
+  render () {
     return (
       <View style={styles.container}>
         <AddReviewSummary
           onBlur={this._onSummaryBlur}
           onFocus={this._onSummaryFocus}
         />
-        <View
-          style={isEditingReview ? styles.shadowContainer : styles.subContainer}
-          pointerEvents={isEditingReview ? 'none' : 'auto'}
-        >
-          <AddReviewRating onRatingChange={this._onRatingChange} />
-          {
-            !isEditingReview &&
-            <View style={styles.addReviewButtonContainer}>
-              <AddReviewButton disabled={isEditingReview} />
-            </View>
-          }
-        </View>
+
+        { this._renderOtherFields() }
       </View>
     )
   }
