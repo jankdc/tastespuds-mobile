@@ -20,7 +20,7 @@ class AddReviewRating extends React.Component {
 
   render () {
     return (
-      <View>
+      <View style={styles.container}>
         <Text style={styles.label}>✨ Rating</Text>
         <View style={styles.ratingContainer}>
           <Text style={styles.ratingText}>
