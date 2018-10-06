@@ -22,7 +22,10 @@ class AddReviewRating extends React.Component {
     return (
       <View>
         <Text style={styles.label}>✨ Rating</Text>
-        <View style={styles.inputContainer}>
+        <View style={styles.ratingContainer}>
+          <Text style={styles.ratingText}>
+            Please pick a suitable rating for the item
+          </Text>
           <Rating
             disabled={false}
             maxStars={5}
@@ -51,9 +54,17 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: 'bold'
   },
-  inputContainer: {
+  ratingContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
     padding: 10,
     backgroundColor: 'white'
+  },
+  ratingText: {
+    paddingBottom: 10,
+    color: 'grey',
+    fontSize: 13,
+    fontWeight: 'bold'
   }
 })
 
