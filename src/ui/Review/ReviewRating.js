@@ -1,11 +1,11 @@
 import React from 'react'
-import { Ionicons } from '@expo/vector-icons'
+import { FontAwesome } from '@expo/vector-icons'
 import { View, Text, StyleSheet } from 'react-native'
 
 const ReviewRating = () => (
   <View style={styles.container}>
-    <Ionicons
-      name='ios-star'
+    <FontAwesome
+      name='star'
       size={28}
       color='#FFBF00'
     />
