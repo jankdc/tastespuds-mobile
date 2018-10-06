@@ -8,6 +8,7 @@ import {
 } from 'react-native'
 
 import AddReviewButton from './AddReviewButton'
+import AddReviewRating from './AddReviewRating'
 import AddReviewSummary from './AddReviewSummary'
 
 class AddReview extends React.Component {
@@ -17,6 +18,7 @@ class AddReview extends React.Component {
     this._onDone = this._onDone.bind(this)
     this._onSummaryBlur = this._onSummaryBlur.bind(this)
     this._onSummaryFocus = this._onSummaryFocus.bind(this)
+    this._onRatingChange = this._onRatingChange.bind(this)
   }
 
   componentDidMount () {
@@ -41,6 +43,10 @@ class AddReview extends React.Component {
     })
   }
 
+  _onRatingChange () {
+
+  }
+
   render () {
     const isEditingReview = this.props.navigation.getParam('isEditingReview', false)
 
@@ -54,9 +60,13 @@ class AddReview extends React.Component {
           style={isEditingReview ? styles.shadowContainer : styles.subContainer}
           pointerEvents={isEditingReview ? 'none' : 'auto'}
         >
-          <View style={styles.addReviewButtonContainer}>
-            <AddReviewButton disabled={isEditingReview} />
-          </View>
+          <AddReviewRating onRatingChange={this._onRatingChange} />
+          {
+            !isEditingReview &&
+            <View style={styles.addReviewButtonContainer}>
+              <AddReviewButton disabled={isEditingReview} />
+            </View>
+          }
         </View>
       </View>
     )
