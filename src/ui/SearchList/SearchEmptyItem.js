@@ -1,15 +1,15 @@
 import React from 'react'
 
 import {
+  View,
   Text,
-  StyleSheet,
-  TouchableOpacity
+  StyleSheet
 } from 'react-native'
 
-const SearchItem = ({ onPress }) => (
-  <TouchableOpacity style={styles.container} onPress={onPress}>
-    <Text style={styles.text}>Brighton</Text>
-  </TouchableOpacity>
+const SearchEmptyItem = () => (
+  <View style={styles.container}>
+    <Text style={styles.text}>No results</Text>
+  </View>
 )
 
 const styles = StyleSheet.create({
@@ -22,8 +22,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   text: {
-    fontSize: 15
+    fontSize: 15,
+    color: 'grey'
   }
 })
 
-export default SearchItem
+export default SearchEmptyItem

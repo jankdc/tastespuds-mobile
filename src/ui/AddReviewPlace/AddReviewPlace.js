@@ -7,12 +7,19 @@ import {
   View
 } from 'react-native'
 
+import SearchList from '../SearchList'
+
 class AddReviewPlace extends React.Component {
   constructor (props) {
     super(props)
 
     this.state = {
-      place: null
+      place: null,
+      searchResults: [
+        {
+          id: 'some-id'
+        }
+      ]
     }
 
     this._onBlur = this._onBlur.bind(this)
@@ -31,6 +38,23 @@ class AddReviewPlace extends React.Component {
 
   }
 
+  _renderSearch () {
+    if (this.state.searchResults === null) {
+      return null
+    }
+
+    return (
+      <View>
+        <Text style={styles.label}>
+          🔍 Results
+        </Text>
+        <SearchList
+          searchResults={this.state.searchResults}
+        />
+      </View>
+    )
+  }
+
   render () {
     return (
       <View style={styles.container}>
@@ -45,7 +69,7 @@ class AddReviewPlace extends React.Component {
             placeholder='Search the place here...'
           />
         </View>
-        <Text style={styles.label}>🔍 Results</Text>
+        { this._renderSearch() }
       </View>
     )
   }
