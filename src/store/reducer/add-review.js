@@ -1,7 +1,7 @@
 import * as actions from '../actions'
 
 const initialState = {
-  places: null,
+  searchedPlaces: null,
   isSearching: false
 }
 
@@ -21,7 +21,7 @@ export default function addReview (state = initialState, action = {}) {
       return {
         ...state,
         isSearching: false,
-        places: action.value
+        searchedPlaces: action.value
       }
     default:
       return state
