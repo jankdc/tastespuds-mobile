@@ -6,9 +6,9 @@ import {
   TouchableOpacity
 } from 'react-native'
 
-const SearchItem = ({ onPress }) => (
+const SearchItem = ({ item, onPress }) => (
   <TouchableOpacity style={styles.container} onPress={onPress}>
-    <Text style={styles.text}>Brighton</Text>
+    <Text style={styles.text}>{item.name}</Text>
   </TouchableOpacity>
 )
 
