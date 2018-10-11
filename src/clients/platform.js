@@ -43,11 +43,10 @@ export async function searchPlace (name, location) {
     location
   })
 
-  const response = await window.fetch(`${PLATFORM_DOMAIN}/place` + queryStr, {
+  const response = await window.fetch(`${PLATFORM_DOMAIN}/places` + queryStr, {
     method: 'GET',
     headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json'
+      Accept: 'application/json'
     }
   })
 
@@ -55,5 +54,7 @@ export async function searchPlace (name, location) {
     throw new Error('Failed to search any place')
   }
 
-  return response.json()
+  const result = await response.json()
+
+  return result.places
 }
