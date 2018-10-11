@@ -1,3 +1,3 @@
-import AddReviewPlace from './AddReviewPlace'
+import AddReviewPlaceContainer from './AddReviewPlaceContainer'
 
-export default AddReviewPlace
+export default AddReviewPlaceContainer

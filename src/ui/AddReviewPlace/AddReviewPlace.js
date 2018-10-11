@@ -1,5 +1,7 @@
 import React from 'react'
+
 import {
+  ActivityIndicator,
   StyleSheet,
   TextInput,
   Button,
@@ -14,44 +16,41 @@ class AddReviewPlace extends React.Component {
     super(props)
 
     this.state = {
-      place: null,
-      searchResults: [
-        {
-          id: 'some-id'
-        }
-      ]
+      search: null
     }
 
-    this._onBlur = this._onBlur.bind(this)
-    this._onFocus = this._onFocus.bind(this)
+    this._onSubmit = this._onSubmit.bind(this)
+    this._onChangeText = this._onChangeText.bind(this)
   }
 
-  componentDidMount () {
-
+  _onSubmit () {
+    this.props.onSearch(this.state.place)
   }
 
-  _onBlur () {
-
-  }
-
-  _onFocus () {
-
+  _onChangeText (text) {
+    this.setState({ place: text })
   }
 
   _renderSearch () {
-    if (this.state.searchResults === null) {
+    if (this.props.searchedPlaces === null) {
       return null
     }
 
     return (
       <View>
-        <Text style={styles.label}>
-          🔍 Results
-        </Text>
-        <SearchList
-          searchResults={this.state.searchResults}
-        />
+        <Text style={styles.label}>🔍 Results</Text>
+        <SearchList searchResults={this.props.searchedPlaces} />
       </View>
+    )
+  }
+
+  _renderLoading () {
+    if (!this.props.isSearching) {
+      return null
+    }
+
+    return (
+      <ActivityIndicator size='small' color='grey' />
     )
   }
 
@@ -63,11 +62,14 @@ class AddReviewPlace extends React.Component {
           <TextInput
             ref={ref => { this.input = ref }}
             style={styles.input}
-            onBlur={this._onBlur}
-            onFocus={this._onFocus}
             autoFocus
             placeholder='Search the place here...'
+            onChangeText={this._onChangeText}
+            returnKeyType='search'
+            onSubmitEditing={this._onSubmit}
           />
+
+          { this._renderLoading() }
         </View>
         { this._renderSearch() }
       </View>
@@ -88,6 +90,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   inputContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     borderBottomWidth: 1,
     borderBottomColor: '#d3d3d3',
     padding: 10,
