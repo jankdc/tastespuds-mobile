@@ -8,7 +8,20 @@ import {
 
 const SearchItem = ({ item, onPress }) => (
   <TouchableOpacity style={styles.container} onPress={onPress}>
-    <Text style={styles.text}>{item.name}</Text>
+    <Text
+      style={styles.text}
+      numberOfLines={1}
+      ellipsizeMode='middle'
+    >
+      {item.name}
+    </Text>
+    <Text
+      style={styles.address}
+      numberOfLines={1}
+      ellipsizeMode='middle'
+    >
+      {item.formatted_address}
+    </Text>
   </TouchableOpacity>
 )
 
@@ -17,12 +30,16 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#d3d3d3',
     paddingHorizontal: 10,
-    paddingVertical: 15,
+    paddingVertical: 10,
     backgroundColor: 'white',
     justifyContent: 'center'
   },
   text: {
-    fontSize: 15
+    fontSize: 16
+  },
+  address: {
+    fontSize: 14,
+    color: 'grey'
   }
 })
 
