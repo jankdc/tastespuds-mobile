@@ -9,7 +9,7 @@ import {
   View
 } from 'react-native'
 
-import SearchList from '../SearchList'
+import SearchPlaceList from '../SearchPlaceList'
 
 class AddReviewPlace extends React.Component {
   constructor (props) {
@@ -51,7 +51,7 @@ class AddReviewPlace extends React.Component {
       <View>
         <Text style={styles.label}>🔍 Results</Text>
 
-        <SearchList
+        <SearchPlaceList
           onSelect={this._onSelect}
           searchResults={this.props.searchedPlaces}
         />
