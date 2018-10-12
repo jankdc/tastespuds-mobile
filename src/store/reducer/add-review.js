@@ -12,6 +12,10 @@ export default function addReview (state = initialState, action = {}) {
         ...state,
         isSearching: true
       }
+    case actions.SEARCH_PLACE_CLEAR:
+      return {
+        ...initialState
+      }
     case actions.SEARCH_PLACE_FAILED:
       return {
         ...state,

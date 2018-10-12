@@ -20,15 +20,26 @@ class AddReviewPlace extends React.Component {
     }
 
     this._onSubmit = this._onSubmit.bind(this)
+    this._onSelect = this._onSelect.bind(this)
     this._onChangeText = this._onChangeText.bind(this)
   }
 
+  componentWillUnmount () {
+    this.props.onClear()
+  }
+
   _onSubmit () {
-    this.props.onSearch(this.state.place)
+    this.props.onSearch(this.state.search)
+  }
+
+  _onSelect (selectedPlace) {
+    this.props.navigation.navigate('AddReview', {
+      selectedPlace
+    })
   }
 
   _onChangeText (text) {
-    this.setState({ place: text })
+    this.setState({ search: text })
   }
 
   _renderSearch () {
@@ -39,7 +50,11 @@ class AddReviewPlace extends React.Component {
     return (
       <View>
         <Text style={styles.label}>🔍 Results</Text>
-        <SearchList searchResults={this.props.searchedPlaces} />
+
+        <SearchList
+          onSelect={this._onSelect}
+          searchResults={this.props.searchedPlaces}
+        />
       </View>
     )
   }
