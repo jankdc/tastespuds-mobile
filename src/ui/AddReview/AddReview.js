@@ -63,6 +63,7 @@ class AddReview extends React.Component {
   }
 
   _renderOtherFields () {
+    const selectedPlace = this.props.navigation.getParam('selectedPlace', null)
     const isEditingReview = this.props.navigation.getParam('isEditingReview', false)
 
     if (isEditingReview) {
@@ -75,6 +76,7 @@ class AddReview extends React.Component {
       <View style={styles.subContainer}>
         <AddReviewFieldButton
           label='🏘️ Place'
+          value={selectedPlace && selectedPlace.name}
           onPress={this._onGetPlace}
           placeholder="Enter the item's place..."
         />

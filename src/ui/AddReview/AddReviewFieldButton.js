@@ -7,11 +7,15 @@ import {
   TouchableOpacity
 } from 'react-native'
 
-const AddReviewFieldButton = ({ label, placeholder, onPress }) => (
+const AddReviewFieldButton = ({ label, value, placeholder, onPress }) => (
   <View style={styles.container}>
     <Text style={styles.label}>{label}</Text>
     <TouchableOpacity style={styles.inputContainer} onPress={onPress}>
-      <Text style={styles.placeholder}>{placeholder}</Text>
+      {
+        value
+          ? <Text style={styles.value}>{value}</Text>
+          : <Text style={styles.placeholder}>{placeholder}</Text>
+      }
     </TouchableOpacity>
   </View>
 )
@@ -37,6 +41,10 @@ const styles = StyleSheet.create({
   },
   placeholder: {
     color: 'lightgrey',
+    fontSize: 16
+  },
+  value: {
+    color: 'black',
     fontSize: 16
   }
 })
