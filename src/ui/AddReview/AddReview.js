@@ -39,7 +39,10 @@ class AddReview extends React.Component {
   }
 
   _onGetItem () {
-    this.props.navigation.navigate('AddReviewItem')
+    const selectedPlace = this.props.navigation.getParam('selectedPlace')
+    this.props.navigation.navigate('AddReviewName', {
+      selectedPlace
+    })
   }
 
   _onGetPlace () {
@@ -78,13 +81,13 @@ class AddReview extends React.Component {
           label='🏘️ Place'
           value={selectedPlace && selectedPlace.name}
           onPress={this._onGetPlace}
-          placeholder="Enter the item's place..."
+          placeholder="Enter the place..."
         />
 
         <AddReviewFieldButton
-          label='🍔 Name'
+          label='🍔 Item'
           onPress={this._onGetItem}
-          placeholder="Enter the item's name..."
+          placeholder="Enter the item..."
         />
 
         <AddReviewRating
