@@ -2,7 +2,9 @@ import * as actions from '../actions'
 
 const initialState = {
   searchedPlaces: null,
-  isSearching: false
+  isSearching: false,
+  isGetting: false,
+  items: null
 }
 
 export default function addReview (state = initialState, action = {}) {
@@ -26,6 +28,26 @@ export default function addReview (state = initialState, action = {}) {
         ...state,
         isSearching: false,
         searchedPlaces: action.value
+      }
+    case actions.GET_ITEMS:
+      return {
+        ...state,
+        isGetting: true
+      }
+    case actions.GET_ITEMS_CLEAR:
+      return {
+        ...initialState
+      }
+    case actions.GET_ITEMS_FAILED:
+      return {
+        ...state,
+        isGetting: false
+      }
+    case actions.GET_ITEMS_PASSED:
+      return {
+        ...state,
+        isGetting: false,
+        items: action.value
       }
     default:
       return state
