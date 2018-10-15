@@ -58,3 +58,24 @@ export async function searchPlace (name, location) {
 
   return result.places
 }
+
+export async function getItems (gplaceId) {
+  const queryStr = toQueryString({
+    gplaceId
+  })
+
+  const response = await window.fetch(`${PLATFORM_DOMAIN}/items` + queryStr, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json'
+    }
+  })
+
+  if (!response.ok) {
+    throw new Error('Failed to get any items')
+  }
+
+  const result = await response.json()
+
+  return result.items
+}
