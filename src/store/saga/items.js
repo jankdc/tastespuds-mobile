@@ -4,7 +4,6 @@ import * as actions from '../actions'
 
 export function * getItems ({ value }) {
   try {
-    console.log(value)
     const items = yield call(platform.getItems, {
       gplaceId: value.gplaceId
     })
