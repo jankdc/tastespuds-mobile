@@ -4,7 +4,11 @@ import { FlatList } from 'react-native'
 import SearchItem from './SearchItem'
 import SearchEmptyItem from './SearchEmptyItem'
 
-const SearchNameList = ({ searchResults, onSelect }) => (
+const SearchNameList = ({
+  searchResults,
+  onRegister,
+  onSelect
+}) => (
   <FlatList
     data={searchResults}
     renderItem={({ index, item }) =>
@@ -14,7 +18,9 @@ const SearchNameList = ({ searchResults, onSelect }) => (
       />
     }
     keyExtractor={item => item.id}
-    ListEmptyComponent={SearchEmptyItem}
+    ListEmptyComponent={() =>
+      <SearchEmptyItem onPress={onRegister} />
+    }
     alwaysBounceVertical={false}
   />
 )
