@@ -18,7 +18,7 @@ class AddReview extends React.Component {
     super(props)
 
     this.state = {
-      place: null
+      rating: 3
     }
 
     this._onDone = this._onDone.bind(this)
@@ -62,8 +62,8 @@ class AddReview extends React.Component {
     })
   }
 
-  _onRatingChange () {
-
+  _onRatingChange (rating) {
+    this.setState({ rating })
   }
 
   _renderOtherFields () {
