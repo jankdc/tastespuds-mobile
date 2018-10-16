@@ -90,6 +90,7 @@ class AddReview extends React.Component {
           label='🍔 Item'
           value={selectedItem && selectedItem.name}
           onPress={this._onGetItem}
+          disabled={selectedPlace === null}
           placeholder="Enter the item..."
         />
 

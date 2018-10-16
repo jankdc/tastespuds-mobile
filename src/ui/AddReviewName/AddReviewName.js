@@ -98,10 +98,13 @@ class AddReviewName extends React.Component {
             ref={ref => { this.input = ref }}
             style={styles.input}
             autoFocus
-            placeholder='Search an item here...'
+            autoCorrect
+            placeholder='Search the item here...'
             onChangeText={this._onChangeText}
             returnKeyType='search'
+            clearButtonMode='while-editing'
             onSubmitEditing={this._onSubmit}
+            contextMenuHidden
           />
 
           { this._renderLoading() }

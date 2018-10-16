@@ -91,10 +91,13 @@ class AddReviewPlace extends React.Component {
             ref={ref => { this.input = ref }}
             style={styles.input}
             autoFocus
+            autoCorrect
             placeholder='Filter the place here...'
             onChangeText={this._onChangeText}
             returnKeyType='done'
+            clearButtonMode='while-editing'
             onSubmitEditing={this._onSubmit}
+            contextMenuHidden
           />
 
           { this._renderLoading() }
