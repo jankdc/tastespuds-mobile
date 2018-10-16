@@ -37,13 +37,12 @@ export async function updateUser (id, body) {
   return response.json()
 }
 
-export async function searchPlace (name, location) {
+export async function searchPlaces (location) {
   const queryStr = toQueryString({
-    name,
     location
   })
 
-  const response = await window.fetch(`${PLATFORM_DOMAIN}/places` + queryStr, {
+  const response = await window.fetch(`${PLATFORM_DOMAIN}/search/places` + queryStr, {
     method: 'GET',
     headers: {
       Accept: 'application/json'
