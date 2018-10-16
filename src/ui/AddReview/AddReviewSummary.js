@@ -7,7 +7,7 @@ import {
   StyleSheet
 } from 'react-native'
 
-const AddReviewSummary = ({ onBlur, onFocus }) => (
+const AddReviewSummary = ({ onBlur, onChangeText, onFocus }) => (
   <View style={styles.container}>
     <Text style={styles.label}>🍴 Review</Text>
     <View style={styles.inputContainer}>
@@ -15,6 +15,7 @@ const AddReviewSummary = ({ onBlur, onFocus }) => (
         style={styles.input}
         onBlur={onBlur}
         onFocus={onFocus}
+        onChangeText={onChangeText}
         multiline
         placeholder='Write a review...'
       />

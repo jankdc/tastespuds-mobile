@@ -18,13 +18,15 @@ class AddReview extends React.Component {
     super(props)
 
     this.state = {
-      rating: 3
+      rating: 3,
+      summary: ''
     }
 
     this._onDone = this._onDone.bind(this)
     this._onGetItem = this._onGetItem.bind(this)
     this._onGetPlace = this._onGetPlace.bind(this)
     this._onSummaryBlur = this._onSummaryBlur.bind(this)
+    this._onSummaryText = this._onSummaryText.bind(this)
     this._onSummaryFocus = this._onSummaryFocus.bind(this)
     this._onRatingChange = this._onRatingChange.bind(this)
   }
@@ -48,6 +50,12 @@ class AddReview extends React.Component {
 
   _onGetPlace () {
     this.props.navigation.navigate('AddReviewPlace')
+  }
+
+  _onSummaryText (summary) {
+    this.setState({
+      summary
+    })
   }
 
   _onSummaryBlur () {
@@ -111,6 +119,7 @@ class AddReview extends React.Component {
         <AddReviewSummary
           onBlur={this._onSummaryBlur}
           onFocus={this._onSummaryFocus}
+          onChangeText={this._onSummaryText}
         />
 
         { this._renderOtherFields() }
