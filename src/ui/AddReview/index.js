@@ -1,3 +1,3 @@
-import AddReview from './AddReview'
+import AddReviewContainer from './AddReviewContainer'
 
-export default AddReview
+export default AddReviewContainer

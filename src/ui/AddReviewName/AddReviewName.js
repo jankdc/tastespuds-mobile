@@ -43,9 +43,11 @@ class AddReviewName extends React.Component {
   }
 
   _onRegister () {
+    const selectedPlace = this.props.navigation.getParam('selectedPlace')
     this.props.navigation.navigate('AddReview', {
       selectedItem: {
-        name: this.state.search
+        name: this.state.search,
+        place_id: selectedPlace.id
       }
     })
   }
