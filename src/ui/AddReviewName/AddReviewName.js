@@ -67,7 +67,7 @@ class AddReviewName extends React.Component {
     })
 
     return (
-      <View>
+      <View style={{ flex: 1 }}>
         <Text style={styles.label}>🔍 Results</Text>
 
         <SearchNameList
