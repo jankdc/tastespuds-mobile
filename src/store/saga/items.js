@@ -10,7 +10,6 @@ export function * getItems ({ value }) {
 
     yield put({ type: actions.GET_ITEMS_PASSED, value: items })
   } catch (error) {
-    console.log(error)
     yield put({ type: actions.GET_ITEMS_FAILED, error })
   }
 }
