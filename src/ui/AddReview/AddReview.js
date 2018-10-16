@@ -22,7 +22,6 @@ class AddReview extends React.Component {
       summary: ''
     }
 
-    this._onDone = this._onDone.bind(this)
     this._onGetItem = this._onGetItem.bind(this)
     this._onGetPlace = this._onGetPlace.bind(this)
     this._onSummaryBlur = this._onSummaryBlur.bind(this)
@@ -35,10 +34,6 @@ class AddReview extends React.Component {
     this.props.navigation.setParams({
       isEditingReview: false
     })
-  }
-
-  _onDone () {
-    console.log('done')
   }
 
   _onGetItem () {
