@@ -4,8 +4,8 @@ import AddReviewPlace from './AddReviewPlace'
 
 const mapDispatchToProps = dispatch => {
   return {
-    onSearch: (name) => dispatch({ type: actions.SEARCH_PLACE, value: { name } }),
-    onClear: () => dispatch({ type: actions.SEARCH_PLACE_CLEAR })
+    onFocus: () => dispatch({ type: actions.SEARCH_PLACES }),
+    onClear: () => dispatch({ type: actions.SEARCH_PLACES_CLEAR })
   }
 }
 

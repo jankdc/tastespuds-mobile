@@ -9,6 +9,8 @@ import {
   View
 } from 'react-native'
 
+import fuzzysort from 'fuzzysort'
+
 import SearchPlaceList from '../SearchPlaceList'
 
 class AddReviewPlace extends React.Component {
@@ -16,20 +18,19 @@ class AddReviewPlace extends React.Component {
     super(props)
 
     this.state = {
-      search: null
+      search: ''
     }
 
-    this._onSubmit = this._onSubmit.bind(this)
     this._onSelect = this._onSelect.bind(this)
     this._onChangeText = this._onChangeText.bind(this)
   }
 
-  componentWillUnmount () {
-    this.props.onClear()
+  componentDidMount() {
+    this.props.onFocus()
   }
 
-  _onSubmit () {
-    this.props.onSearch(this.state.search)
+  componentWillUnmount () {
+    this.props.onClear()
   }
 
   _onSelect (selectedPlace) {
@@ -42,18 +43,30 @@ class AddReviewPlace extends React.Component {
     this.setState({ search: text })
   }
 
+  _filterByName () {
+    return fuzzysort
+      .go(this.state.search, this.props.searchedPlaces, {
+        key: 'name',
+        allowTypo: true
+      })
+      .map(result => result.obj)
+  }
+
   _renderSearch () {
     if (this.props.searchedPlaces === null) {
       return null
     }
 
     return (
-      <View>
-        <Text style={styles.label}>🔍 Results</Text>
+      <View style={{ flex: 1 }}>
+        <Text style={styles.label}>🔍 Suggestions</Text>
 
         <SearchPlaceList
           onSelect={this._onSelect}
-          searchResults={this.props.searchedPlaces}
+          searchResults={this.state.search
+            ? this._filterByName()
+            : this.props.searchedPlaces
+          }
         />
       </View>
     )
@@ -78,9 +91,9 @@ class AddReviewPlace extends React.Component {
             ref={ref => { this.input = ref }}
             style={styles.input}
             autoFocus
-            placeholder='Search the place here...'
+            placeholder='Filter the place here...'
             onChangeText={this._onChangeText}
-            returnKeyType='search'
+            returnKeyType='done'
             onSubmitEditing={this._onSubmit}
           />
 
@@ -121,7 +134,7 @@ const styles = StyleSheet.create({
 
 AddReviewPlace.navigationOptions = {
   headerLeft: (props) => <Button {...props} title='Cancel' />,
-  title: 'Search Place'
+  title: 'Choose Place'
 }
 
 export default AddReviewPlace

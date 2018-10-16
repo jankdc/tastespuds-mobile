@@ -13,7 +13,7 @@ const SearchList = ({ searchResults, onSelect }) => (
         onPress={() => onSelect(item, index)}
       />
     }
-    keyExtractor={item => item.id}
+    keyExtractor={item => `${item.id}`}
     ListEmptyComponent={SearchEmptyItem}
     alwaysBounceVertical={false}
   />
