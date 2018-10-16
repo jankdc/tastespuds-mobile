@@ -23,6 +23,7 @@ class AddReviewName extends React.Component {
 
     this._onSubmit = this._onSubmit.bind(this)
     this._onSelect = this._onSelect.bind(this)
+    this._onRegister = this._onRegister.bind(this)
     this._onChangeText = this._onChangeText.bind(this)
   }
 
@@ -37,7 +38,15 @@ class AddReviewName extends React.Component {
 
   _onSelect (selectedItem) {
     this.props.navigation.navigate('AddReview', {
-      selectedName: selectedItem.name
+      selectedItem
+    })
+  }
+
+  _onRegister () {
+    this.props.navigation.navigate('AddReview', {
+      selectedItem: {
+        name: this.state.search
+      }
     })
   }
 
@@ -63,6 +72,7 @@ class AddReviewName extends React.Component {
 
         <SearchNameList
           onSelect={this._onSelect}
+          onRegister={this._onRegister}
           searchResults={filtered}
         />
       </View>

@@ -66,6 +66,7 @@ class AddReview extends React.Component {
   }
 
   _renderOtherFields () {
+    const selectedItem = this.props.navigation.getParam('selectedItem', null)
     const selectedPlace = this.props.navigation.getParam('selectedPlace', null)
     const isEditingReview = this.props.navigation.getParam('isEditingReview', false)
 
@@ -86,6 +87,7 @@ class AddReview extends React.Component {
 
         <AddReviewFieldButton
           label='🍔 Item'
+          value={selectedItem && selectedItem.name}
           onPress={this._onGetItem}
           placeholder="Enter the item..."
         />
