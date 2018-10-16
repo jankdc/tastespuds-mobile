@@ -22,6 +22,7 @@ class AddReview extends React.Component {
       summary: ''
     }
 
+    this._onShare = this._onShare.bind(this)
     this._onGetItem = this._onGetItem.bind(this)
     this._onGetPlace = this._onGetPlace.bind(this)
     this._onSummaryBlur = this._onSummaryBlur.bind(this)
@@ -33,6 +34,17 @@ class AddReview extends React.Component {
   componentDidMount () {
     this.props.navigation.setParams({
       isEditingReview: false
+    })
+  }
+
+  _onShare () {
+    const selectedItem = this.props.navigation.getParam('selectedItem')
+    const selectedPlace = this.props.navigation.getParam('selectedPlace')
+
+    this.props.onShare({
+      item: selectedItem,
+      rating: this.state.rating,
+      content: this.state.summary
     })
   }
 
@@ -69,6 +81,13 @@ class AddReview extends React.Component {
     this.setState({ rating })
   }
 
+  _isReadyToShare() {
+    const { rating, summary } = this.state
+    const selectedItem = this.props.navigation.getParam('selectedItem', null)
+    const selectedPlace = this.props.navigation.getParam('selectedPlace', null)
+    return !!rating && !!summary && !!selectedItem && !!selectedPlace
+  }
+
   _renderOtherFields () {
     const selectedItem = this.props.navigation.getParam('selectedItem', null)
     const selectedPlace = this.props.navigation.getParam('selectedPlace', null)
@@ -102,7 +121,10 @@ class AddReview extends React.Component {
         />
 
         <View style={styles.addReviewButtonContainer}>
-          <AddReviewButton disabled={isEditingReview} />
+          <AddReviewButton
+            onPress={this._onShare}
+            disabled={isEditingReview || !this._isReadyToShare()}
+          />
         </View>
       </View>
     )
