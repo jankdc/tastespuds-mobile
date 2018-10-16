@@ -4,6 +4,7 @@ import {
   View,
   Button,
   Keyboard,
+  ScrollView,
   StyleSheet
 } from 'react-native'
 
@@ -105,14 +106,14 @@ class AddReview extends React.Component {
 
   render () {
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <AddReviewSummary
           onBlur={this._onSummaryBlur}
           onFocus={this._onSummaryFocus}
         />
 
         { this._renderOtherFields() }
-      </View>
+      </ScrollView>
     )
   }
 }
@@ -139,7 +140,8 @@ const styles = StyleSheet.create({
     flex: 1
   },
   subContainer: {
-    flex: 1
+    flex: 1,
+    paddingBottom: 20
   },
   shadowContainer: {
     flex: 1,
