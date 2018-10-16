@@ -9,21 +9,21 @@ const initialState = {
 
 export default function addReview (state = initialState, action = {}) {
   switch (action.type) {
-    case actions.SEARCH_PLACE:
+    case actions.SEARCH_PLACES:
       return {
         ...state,
         isSearching: true
       }
-    case actions.SEARCH_PLACE_CLEAR:
+    case actions.SEARCH_PLACES_CLEAR:
       return {
         ...initialState
       }
-    case actions.SEARCH_PLACE_FAILED:
+    case actions.SEARCH_PLACES_FAILED:
       return {
         ...state,
         isSearching: false
       }
-    case actions.SEARCH_PLACE_PASSED:
+    case actions.SEARCH_PLACES_PASSED:
       return {
         ...state,
         isSearching: false,
