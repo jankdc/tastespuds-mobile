@@ -14,6 +14,14 @@ class BottomTabBar extends React.Component {
       return this.props.onTabPress(evt)
     }
 
+    const { status: locationStatus } = await Permissions.askAsync(
+      Permissions.LOCATION
+    )
+
+    if (locationStatus !== 'granted') {
+      return
+    }
+
     const { status: cameraStatus } = await Permissions.askAsync(
       Permissions.CAMERA
     )
@@ -33,7 +41,9 @@ class BottomTabBar extends React.Component {
     const imageData = await ImagePicker.launchCameraAsync()
 
     if (!imageData.cancelled) {
-      this.props.navigation.navigate('AddReview', imageData)
+      this.props.navigation.navigate('AddReview', {
+        imageData
+      })
     }
   }
 
