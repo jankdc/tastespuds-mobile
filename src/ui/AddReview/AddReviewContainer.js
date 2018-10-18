@@ -5,7 +5,7 @@ import AddReview from './AddReview'
 const mapDispatchToProps = dispatch => {
   return {
     onShare: (review) => dispatch({
-      type: actions.SHARE_REVIEW,
+      type: actions.ADD_REVIEW,
       value: review
     })
   }

@@ -47,7 +47,7 @@ class AddReviewName extends React.Component {
     this.props.navigation.navigate('AddReview', {
       selectedItem: {
         name: this.state.search,
-        place_id: selectedPlace.id
+        placeId: selectedPlace.id
       }
     })
   }
