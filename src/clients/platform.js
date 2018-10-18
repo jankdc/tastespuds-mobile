@@ -78,3 +78,60 @@ export async function getItems (gplaceId) {
 
   return result.items
 }
+
+export async function addReview (review) {
+  const response = await window.fetch(`${PLATFORM_DOMAIN}/reviews`, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      item: review.item,
+      assets: review.assets,
+      rating: review.rating,
+      userId: review.userId,
+      content: review.content
+    })
+  })
+
+  console.log(response.status)
+
+  if (!response.ok) {
+    throw new Error('Failed to add the review')
+  }
+
+  return response.json()
+}
+
+export async function addAsset (formData) {
+  const form = new FormData()
+  form.append('file', {
+    uri: formData.uri,
+    type: formData.type,
+    name: `${Date.now()}.jpg`
+  })
+
+  Object.keys(formData.options).forEach(key => {
+    if (typeof formData.options[key] !== 'string') {
+      throw new Error('Option values need to be stringy')
+    }
+
+    form.append(key, formData.options[key])
+  })
+
+  const response = await window.fetch(`${PLATFORM_DOMAIN}/assets`, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'multipart/form-data'
+    },
+    body: form
+  })
+
+  if (!response.ok) {
+    throw new Error('Failed to add the asset')
+  }
+
+  return response.json()
+}
