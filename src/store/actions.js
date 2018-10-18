@@ -21,3 +21,7 @@ export const SEARCH_PLACES = 'tastespuds/add-review/SEARCH_PLACES'
 export const SEARCH_PLACES_CLEAR = 'tastespuds/add-review/SEARCH_PLACES_CLEAR'
 export const SEARCH_PLACES_FAILED = 'tastespuds/add-review/SEARCH_PLACES_FAILED'
 export const SEARCH_PLACES_PASSED = 'tastespuds/add-review/SEARCH_PLACES_PASSED'
+
+export const ADD_REVIEW = 'tastespuds/add-review/ADD_REVIEW'
+export const ADD_REVIEW_FAILED = 'tastespuds/add-review/ADD_REVIEW_FAILED'
+export const ADD_REVIEW_PASSED = 'tastespuds/add-review/ADD_REVIEW_PASSED'
