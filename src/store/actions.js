@@ -25,3 +25,8 @@ export const SEARCH_PLACES_PASSED = 'tastespuds/add-review/SEARCH_PLACES_PASSED'
 export const ADD_REVIEW = 'tastespuds/add-review/ADD_REVIEW'
 export const ADD_REVIEW_FAILED = 'tastespuds/add-review/ADD_REVIEW_FAILED'
 export const ADD_REVIEW_PASSED = 'tastespuds/add-review/ADD_REVIEW_PASSED'
+
+// home
+export const SEARCH_REVIEWS = 'tastespuds/home/SEARCH_REVIEWS'
+export const SEARCH_REVIEWS_FAILED = 'tastespuds/home/SEARCH_REVIEWS_FAILED'
+export const SEARCH_REVIEWS_PASSED = 'tastespuds/home/SEARCH_REVIEWS_PASSED'

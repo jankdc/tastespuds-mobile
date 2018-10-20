@@ -79,6 +79,25 @@ export async function getItems (gplaceId) {
   return result.items
 }
 
+export async function searchReviews (location) {
+  const queryStr = toQueryString({
+    location
+  })
+
+  const response = await window.fetch(`${PLATFORM_DOMAIN}/reviews` + queryStr, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json'
+    }
+  })
+
+  if (!response.ok) {
+    throw new Error('Failed to search reviews')
+  }
+
+  return response.json()
+}
+
 export async function addReview (review) {
   const response = await window.fetch(`${PLATFORM_DOMAIN}/reviews`, {
     method: 'POST',

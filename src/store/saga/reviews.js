@@ -1,5 +1,5 @@
 import { put, call, takeLatest } from 'redux-saga/effects'
-import { SecureStore } from 'expo'
+import { Location, Permissions, SecureStore } from 'expo'
 import jwtDecode from 'jwt-decode'
 
 import { navigate } from '../../nav/NavigationService'
@@ -37,6 +37,26 @@ export function * addReview ({ value }) {
   }
 }
 
+export function * searchReviews () {
+  try {
+    const { status } = yield call(Permissions.askAsync, Permissions.LOCATION)
+
+    if (status !== 'granted') {
+      throw new Error('Needs permission to get current user location')
+    }
+
+    const { coords } = yield call(Location.getCurrentPositionAsync)
+    // NOTE: `coords` when we're ready
+    const location = `${50.8233783},${-0.147822}`
+    const result = yield call(platform.searchReviews, location)
+
+    yield put({ type: actions.SEARCH_REVIEWS_PASSED, value: result })
+  } catch (error) {
+    yield put({ type: actions.SEARCH_REVIEWS_FAILED, error })
+  }
+}
+
 export default function * reviewsSaga () {
   yield takeLatest(actions.ADD_REVIEW, addReview)
+  yield takeLatest(actions.SEARCH_REVIEWS, searchReviews)
 }

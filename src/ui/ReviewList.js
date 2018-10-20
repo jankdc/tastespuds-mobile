@@ -8,7 +8,7 @@ const ReviewList = ({ reviews }) => (
     <FlatList
       data={reviews}
       renderItem={({ item: review }) => <Review review={review} />}
-      keyExtractor={item => item.id}
+      keyExtractor={item => `${item.id}`}
     />
   </View>
 )
