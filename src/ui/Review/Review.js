@@ -5,11 +5,17 @@ import ReviewHeader from './ReviewHeader'
 import ReviewFooter from './ReviewFooter'
 import ReviewBody from './ReviewBody'
 
-const Review = () => (
+const Review = ({ review }) => (
   <View style={styles.container}>
-    <ReviewHeader />
-    <ReviewBody />
-    <ReviewFooter />
+    <ReviewHeader
+      review={review}
+    />
+    <ReviewBody
+      review={review}
+    />
+    <ReviewFooter
+      review={review}
+    />
   </View>
 )
 

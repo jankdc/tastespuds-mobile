@@ -1,10 +1,10 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 
-const ReviewContent = () => (
+const ReviewContent = ({ username, content }) => (
   <View style={styles.container}>
-    <Text style={styles.user}>jankdc</Text>
-    <Text style={styles.content}>🎉🎉🎉 Really good quality for its price!</Text>
+    <Text style={styles.user}>{username}</Text>
+    <Text style={styles.content}>{content}</Text>
   </View>
 )
 

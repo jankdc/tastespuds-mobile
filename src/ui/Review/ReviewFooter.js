@@ -7,14 +7,21 @@ import ReviewLikes from './ReviewLikes'
 import ReviewRating from './ReviewRating'
 import ReviewContent from './ReviewContent'
 
-const ReviewFooter = () => (
+const ReviewFooter = ({ review }) => (
   <View style={styles.container}>
     <View style={styles.mainActionsAndRating}>
       <ReviewMenu />
-      <ReviewRating />
+      <ReviewRating rating={review.rating} />
     </View>
-    <ReviewLikes />
-    <ReviewContent />
+
+    <ReviewLikes
+      likes={review.num_of_likes}
+    />
+
+    <ReviewContent
+      username={review.user.username}
+      content={review.content}
+    />
     <ReviewDate />
   </View>
 )

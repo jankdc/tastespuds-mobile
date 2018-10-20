@@ -2,16 +2,11 @@ import React from 'react'
 import Image from 'react-native-image-progress'
 import { StyleSheet, View, Text } from 'react-native'
 
-const ReviewHeader = ({ user }) => (
+const ReviewHeader = ({ review }) => (
   <View style={styles.container}>
-    <Image
-      style={styles.image}
-      source={{ uri: 'https://via.placeholder.com/150x150' }}
-      imageStyle={{ borderRadius: 15 }}
-    />
     <View style={{ flexDirection: 'column' }}>
-      <Text style={styles.name}>Margherita Pizza</Text>
-      <Text style={styles.place}>Franco Manca</Text>
+      <Text style={styles.name}>{review.item.name}</Text>
+      <Text style={styles.place}>{review.place.name}</Text>
     </View>
   </View>
 )

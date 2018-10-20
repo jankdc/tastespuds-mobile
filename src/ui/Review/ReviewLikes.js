@@ -1,9 +1,9 @@
 import React from 'react'
 import { Text, View, StyleSheet } from 'react-native'
 
-const ReviewLikes = () => (
+const ReviewLikes = ({ likes }) => (
   <View style={styles.container}>
-    <Text style={styles.text}>12,100 likes</Text>
+    <Text style={styles.text}>{likes} likes</Text>
   </View>
 )
 

@@ -1,8 +1,6 @@
 import * as actions from '../actions'
 
 const initialState = {
-  users: null,
-  places: null,
   reviews: null,
   isSearching: false
 }
@@ -23,9 +21,7 @@ export default function home (state = initialState, action = {}) {
       return {
         ...state,
         isSearching: false,
-        reviews: action.value.reviews,
-        places: action.value.places,
-        users: action.value.users
+        reviews: action.value.reviews
       }
     default:
       return state
