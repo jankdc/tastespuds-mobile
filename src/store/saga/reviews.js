@@ -33,7 +33,6 @@ export function * addReview ({ value }) {
     yield call(navigate, 'AppTab')
     yield put({ type: actions.ADD_REVIEW_PASSED, value: review })
   } catch (error) {
-    console.log(error)
     yield put({ type: actions.ADD_REVIEW_FAILED, error })
   }
 }
