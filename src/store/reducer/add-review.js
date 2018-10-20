@@ -2,6 +2,7 @@ import * as actions from '../actions'
 
 const initialState = {
   searchedPlaces: null,
+  isAddingReview: false,
   isSearching: false,
   isGetting: false,
   items: null
@@ -9,6 +10,21 @@ const initialState = {
 
 export default function addReview (state = initialState, action = {}) {
   switch (action.type) {
+    case actions.ADD_REVIEW:
+      return {
+        ...state,
+        isAddingReview: true
+      }
+    case actions.ADD_REVIEW_PASSED:
+      return {
+        ...state,
+        isAddingReview: false
+      }
+    case actions.ADD_REVIEW_FAILED:
+      return {
+        ...state,
+        isAddingReview: false
+      }
     case actions.SEARCH_PLACES:
       return {
         ...state,

@@ -3,7 +3,8 @@ import React from 'react'
 import {
   Text,
   StyleSheet,
-  TouchableOpacity
+  TouchableOpacity,
+  ActivityIndicator
 } from 'react-native'
 
 const applyStyleIfDisabled = (disabled) => {
@@ -23,21 +24,29 @@ const AddReviewButton = (props) => (
     style={[
       props.style,
       styles.container,
-      applyStyleIfDisabled(props.disabled)
+      applyStyleIfDisabled(props.disabled && !props.loading)
     ]}
   >
-    <Text style={styles.text}>Share</Text>
+    {
+      props.loading
+        ? <ActivityIndicator size='small' style={styles.loading} color='white' />
+        : <Text style={styles.text}>Share</Text>
+    }
   </TouchableOpacity>
 )
 
 const styles = StyleSheet.create({
   container: {
+    flexDirection: 'row',
     backgroundColor: 'tomato',
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 3,
     paddingVertical: 20,
     width: '100%'
+  },
+  loading: {
+    marginLeft: 5
   },
   text: {
     color: 'white',

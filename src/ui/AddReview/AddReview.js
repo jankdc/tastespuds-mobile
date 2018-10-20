@@ -125,7 +125,8 @@ class AddReview extends React.Component {
         <View style={styles.addReviewButtonContainer}>
           <AddReviewButton
             onPress={this._onShare}
-            disabled={isEditingReview || !this._isReadyToShare()}
+            loading={this.props.isAddingReview}
+            disabled={!this._isReadyToShare() || this.props.isAddingReview}
           />
         </View>
       </View>
