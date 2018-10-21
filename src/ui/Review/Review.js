@@ -21,8 +21,7 @@ const Review = ({ review }) => (
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
-    backgroundColor: 'red'
+    width: '100%'
   }
 })
 
