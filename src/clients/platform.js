@@ -114,8 +114,6 @@ export async function addReview (review) {
     })
   })
 
-  console.log(response.status)
-
   if (!response.ok) {
     throw new Error('Failed to add the review')
   }
