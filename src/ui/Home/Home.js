@@ -8,8 +8,18 @@ import {
 import ReviewList from '../ReviewList'
 
 class Home extends React.Component {
+  constructor (props) {
+    super(props)
+
+    this._onRefresh = this._onRefresh.bind(this)
+  }
+
   componentDidMount () {
     this.props.onFocus()
+  }
+
+  _onRefresh () {
+    this.props.onRefresh()
   }
 
   _renderLoading () {
@@ -21,7 +31,7 @@ class Home extends React.Component {
   }
 
   render () {
-    if (this.props.isSearching) {
+    if (this.props.isSearching && !this.props.hasSearchedBefore) {
       return this._renderLoading()
     }
 
@@ -29,6 +39,8 @@ class Home extends React.Component {
       <View style={styles.container}>
         <ReviewList
           reviews={this.props.reviews}
+          onRefresh={this._onRefresh}
+          refreshing={this.props.isSearching}
         />
       </View>
     )

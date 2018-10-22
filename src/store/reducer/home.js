@@ -2,7 +2,8 @@ import * as actions from '../actions'
 
 const initialState = {
   reviews: null,
-  isSearching: false
+  isSearching: false,
+  hasSearchedBefore: false
 }
 
 export default function home (state = initialState, action = {}) {
@@ -21,6 +22,7 @@ export default function home (state = initialState, action = {}) {
       return {
         ...state,
         isSearching: false,
+        hasSearchedBefore: true,
         reviews: action.value.reviews
       }
     default:
