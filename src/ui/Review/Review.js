@@ -5,7 +5,11 @@ import ReviewHeader from './ReviewHeader'
 import ReviewFooter from './ReviewFooter'
 import ReviewBody from './ReviewBody'
 
-const Review = ({ review }) => (
+const Review = ({
+  review,
+  onLike,
+  onComment
+}) => (
   <View style={styles.container}>
     <ReviewHeader
       review={review}
@@ -15,6 +19,8 @@ const Review = ({ review }) => (
     />
     <ReviewFooter
       review={review}
+      onLike={onLike}
+      onComment={onComment}
     />
   </View>
 )

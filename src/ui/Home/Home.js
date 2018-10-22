@@ -11,6 +11,8 @@ class Home extends React.Component {
   constructor (props) {
     super(props)
 
+    this._onLike = this._onLike.bind(this)
+    this._onComment = this._onComment.bind(this)
     this._onRefresh = this._onRefresh.bind(this)
   }
 
@@ -20,6 +22,14 @@ class Home extends React.Component {
 
   _onRefresh () {
     this.props.onRefresh()
+  }
+
+  _onComment (review) {
+
+  }
+
+  _onLike (review) {
+
   }
 
   _renderLoading () {
@@ -38,7 +48,9 @@ class Home extends React.Component {
     return (
       <View style={styles.container}>
         <ReviewList
+          onLike={this._onLike}
           reviews={this.props.reviews}
+          onComment={this._onComment}
           onRefresh={this._onRefresh}
           refreshing={this.props.isSearching}
         />

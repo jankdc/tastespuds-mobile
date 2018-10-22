@@ -2,16 +2,23 @@ import React from 'react'
 import { EvilIcons } from '@expo/vector-icons'
 import { View, TouchableOpacity, StyleSheet } from 'react-native'
 
-const ReviewMenu = () => (
+const ReviewMenu = ({ onLike, onComment }) => (
   <View style={styles.container}>
-    <TouchableOpacity style={{ marginLeft: 8 }}>
+    <TouchableOpacity
+      style={{ marginLeft: 8 }}
+      onPress={onLike}
+    >
       <EvilIcons
         name='heart'
         size={35}
         color='black'
       />
     </TouchableOpacity>
-    <TouchableOpacity style={{ marginLeft: 2 }}>
+
+    <TouchableOpacity
+      style={{ marginLeft: 2 }}
+      onPress={onComment}
+    >
       <EvilIcons
         name='comment'
         size={35}
