@@ -22,7 +22,10 @@ const ReviewFooter = ({ review }) => (
       username={review.user.username}
       content={review.content}
     />
-    <ReviewDate />
+
+    <ReviewDate
+      date={review.creation_date}
+    />
   </View>
 )
 
