@@ -47,8 +47,8 @@ export function * searchReviews () {
       throw new Error('Needs permission to get current user location')
     }
 
-    const { coords } = yield call(Location.getCurrentPositionAsync)
-    // NOTE: `coords` when we're ready
+    // const { coords } = yield call(Location.getCurrentPositionAsync)
+    // NOTE: Use `coords` when we're ready
     const location = `${50.8233783},${-0.147822}`
     const reviews = yield call(platform.getReviews, location)
 
