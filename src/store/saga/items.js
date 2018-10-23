@@ -2,10 +2,10 @@ import { put, call, takeLatest } from 'redux-saga/effects'
 import * as platform from '../../clients/platform'
 import * as actions from '../actions'
 
-export function * getItems ({ value }) {
+export function * getItems ({ value: place }) {
   try {
     const items = yield call(platform.getItems, {
-      gplaceId: value.gplaceId
+      placeId: place.id
     })
 
     yield put({ type: actions.GET_ITEMS_PASSED, value: items })

@@ -13,7 +13,7 @@ export function * searchPlaces ({ value }) {
 
     const { coords } = yield call(Location.getCurrentPositionAsync)
     const location = `${coords.latitude},${coords.longitude}`
-    const places = yield call(platform.searchPlaces, location)
+    const places = yield call(platform.getPlaces, location)
 
     yield put({ type: actions.SEARCH_PLACES_PASSED, value: places })
   } catch (error) {

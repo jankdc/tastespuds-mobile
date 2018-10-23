@@ -23,7 +23,7 @@ export default function home (state = initialState, action = {}) {
         ...state,
         isSearching: false,
         hasSearchedBefore: true,
-        reviews: action.value.reviews
+        reviews: action.value
       }
     default:
       return state

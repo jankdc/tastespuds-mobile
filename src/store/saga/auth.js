@@ -31,7 +31,7 @@ export function * getCredentials () {
 
   const accessExpiration = yield call(parseInt, expiresIn, 10)
 
-  if (accessExpiration < (Date.now() / 1000)) {
+  if (accessExpiration > (Date.now() / 1000)) {
     return { idToken, accessToken }
   }
 

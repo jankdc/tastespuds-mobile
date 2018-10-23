@@ -8,24 +8,26 @@ import * as actions from '../actions'
 
 export function * addReview ({ value }) {
   try {
+    const fileMeta = {
+      uri: value.imageData.uri,
+      type: 'image/jpeg',
+      name: `${Date.now()}.jpg`
+    }
+
     const idToken = yield call(SecureStore.getItemAsync, 'idToken')
     const profile = yield call(jwtDecode, idToken)
 
-    const asset = yield call(platform.addAsset, {
-      uri: value.imageData.uri,
-      type: 'image/jpg',
-      options: {
-        width: `${value.imageData.width}`,
-        height: `${value.imageData.height}`
-      }
+    const result = yield call(platform.makeAsset, fileMeta, {
+      width: `${value.imageData.width}`,
+      height: `${value.imageData.height}`
     })
 
-    const review = yield call(platform.addReview, {
+    const review = yield call(platform.makeReview, {
       item: value.item.id === undefined
         ? value.item
         : value.item.id,
       rating: value.rating,
-      assets: [asset.id],
+      assets: [result.id],
       userId: profile.sub,
       content: value.content
     })
@@ -48,9 +50,9 @@ export function * searchReviews () {
     const { coords } = yield call(Location.getCurrentPositionAsync)
     // NOTE: `coords` when we're ready
     const location = `${50.8233783},${-0.147822}`
-    const result = yield call(platform.searchReviews, location)
+    const reviews = yield call(platform.getReviews, location)
 
-    yield put({ type: actions.SEARCH_REVIEWS_PASSED, value: result })
+    yield put({ type: actions.SEARCH_REVIEWS_PASSED, value: reviews })
   } catch (error) {
     yield put({ type: actions.SEARCH_REVIEWS_FAILED, error })
   }
