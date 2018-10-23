@@ -152,3 +152,18 @@ export async function addAsset (formData) {
 
   return response.json()
 }
+
+export async function likeReview (reviewId) {
+  const response = await window.fetch(`${PLATFORM_DOMAIN}/reviews/${reviewId}/likes`, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json'
+    }
+  })
+
+  if (!response.ok) {
+    throw new Error('Failed to like the review')
+  }
+
+  return response.json()
+}
