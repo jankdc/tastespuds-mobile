@@ -4,9 +4,7 @@ import * as actions from '../actions'
 
 export function * getItems ({ value: place }) {
   try {
-    const items = yield call(platform.getItems, {
-      placeId: place.id
-    })
+    const items = yield call(platform.getItems, place.id)
 
     yield put({ type: actions.GET_ITEMS_PASSED, value: items })
   } catch (error) {
