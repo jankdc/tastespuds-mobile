@@ -8,6 +8,7 @@ import ReviewBody from './ReviewBody'
 const Review = ({
   review,
   onLike,
+  onUnlike,
   onComment
 }) => (
   <View style={styles.container}>
@@ -20,6 +21,7 @@ const Review = ({
     <ReviewFooter
       review={review}
       onLike={onLike}
+      onUnlike={onUnlike}
       onComment={onComment}
     />
   </View>

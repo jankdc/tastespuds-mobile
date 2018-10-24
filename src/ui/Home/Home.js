@@ -45,6 +45,7 @@ class Home extends React.Component {
         <ReviewList
           onLike={this.props.onLike}
           reviews={this.props.reviews}
+          onUnlike={this.props.onUnlike}
           onComment={this._onComment}
           onRefresh={this._onRefresh}
           refreshing={this.props.isSearching}

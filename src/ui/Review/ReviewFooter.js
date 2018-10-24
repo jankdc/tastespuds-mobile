@@ -7,12 +7,18 @@ import ReviewLikes from './ReviewLikes'
 import ReviewRating from './ReviewRating'
 import ReviewContent from './ReviewContent'
 
-const ReviewFooter = ({ review, onLike, onComment }) => (
+const ReviewFooter = ({
+  review,
+  onLike,
+  onUnlike,
+  onComment
+}) => (
   <View style={styles.container}>
     <View style={styles.mainActionsAndRating}>
       <ReviewMenu
-        liked={review.liked}
+        liked={!!review.context.caller_like_id}
         onLike={onLike}
+        onUnlike={onUnlike}
         onComment={onComment}
       />
 

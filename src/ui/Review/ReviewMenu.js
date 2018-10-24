@@ -1,18 +1,24 @@
 import React from 'react'
-import { AntDesign, EvilIcons } from '@expo/vector-icons'
+import { Entypo, EvilIcons } from '@expo/vector-icons'
 import { View, TouchableOpacity, StyleSheet } from 'react-native'
 
-const ReviewMenu = ({ liked, onLike, onComment }) => (
+const HeartIcon = (liked) => (liked
+  ? <Entypo name='heart' size={30} color='tomato' />
+  : <EvilIcons name='heart' size={35} color='black' />
+)
+
+const ReviewMenu = ({
+  liked,
+  onLike,
+  onUnlike,
+  onComment
+}) => (
   <View style={styles.container}>
     <TouchableOpacity
       style={{ marginLeft: 8 }}
-      onPress={onLike}
+      onPress={() => liked ? onUnlike() : onLike()}
     >
-      <AntDesign
-        name={liked ? 'heart' : 'hearto'}
-        size={35}
-        color='black'
-      />
+      <HeartIcon liked={liked} />
     </TouchableOpacity>
 
     <TouchableOpacity

@@ -4,6 +4,10 @@ import Home from './Home'
 
 const mapDispatchToProps = dispatch => {
   return {
+    onUnlike: (review) => dispatch({
+      type: actions.UNLIKE_REVIEW,
+      value: review
+    }),
     onLike: (review) => dispatch({
       type: actions.LIKE_REVIEW,
       value: review

@@ -8,6 +8,7 @@ const ReviewList = ({
   refreshing,
   onComment,
   onRefresh,
+  onUnlike,
   onLike
 }) => (
   <View style={styles.container}>
@@ -15,15 +16,14 @@ const ReviewList = ({
       data={reviews}
       onRefresh={onRefresh}
       refreshing={refreshing}
-      renderItem={({ item: review, index }) => {
-        return (
-          <Review
-            review={review}
-            onLike={() => onLike(review, index)}
-            onComment={() => onComment(review, index)}
-          />
-        )
-      }}
+      renderItem={({ item: review, index }) => (
+        <Review
+          review={review}
+          onLike={() => onLike(review, index)}
+          onUnlike={() => onUnlike(review, index)}
+          onComment={() => onComment(review, index)}
+        />
+      )}
       keyExtractor={item => `${item.id}`}
     />
   </View>

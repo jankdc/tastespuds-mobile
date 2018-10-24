@@ -1,5 +1,5 @@
 import { put, call, takeLatest } from 'redux-saga/effects'
-import { Permissions, SecureStore } from 'expo'
+import { Location, Permissions, SecureStore } from 'expo'
 import jwtDecode from 'jwt-decode'
 
 import { navigate } from '../../nav/NavigationService'
@@ -41,11 +41,26 @@ export function * addReview ({ value }) {
 
 export function * likeReview ({ value }) {
   try {
-    yield call(platform.likeReview, value.id)
+    const like = yield call(platform.likeReview, value.id)
 
-    yield put({ type: actions.LIKE_REVIEW_PASSED, value })
+    yield put({ type: actions.LIKE_REVIEW_PASSED, value: like })
   } catch (error) {
     yield put({ type: actions.LIKE_REVIEW_FAILED, error })
+  }
+}
+
+export function * unlikeReview ({ value }) {
+  try {
+    const { id: reviewId, context } = value
+
+    const like = yield call(platform.unlikeReview,
+      reviewId,
+      context.caller_like_id
+    )
+
+    yield put({ type: actions.UNLIKE_REVIEW_PASSED, value: like })
+  } catch (error) {
+    yield put({ type: actions.UNLIKE_REVIEW_FAILED, error })
   }
 }
 
@@ -57,9 +72,8 @@ export function * searchReviews () {
       throw new Error('Needs permission to get current user location')
     }
 
-    // const { coords } = yield call(Location.getCurrentPositionAsync)
-    // NOTE: Use `coords` when we're ready
-    const location = `${50.8233783},${-0.147822}`
+    const { coords } = yield call(Location.getCurrentPositionAsync)
+    const location = `${coords.latitude},${coords.longitude}`
     const reviews = yield call(platform.getReviews, location)
 
     yield put({ type: actions.SEARCH_REVIEWS_PASSED, value: reviews })
@@ -71,5 +85,6 @@ export function * searchReviews () {
 export default function * reviewsSaga () {
   yield takeLatest(actions.ADD_REVIEW, addReview)
   yield takeLatest(actions.LIKE_REVIEW, likeReview)
+  yield takeLatest(actions.UNLIKE_REVIEW, unlikeReview)
   yield takeLatest(actions.SEARCH_REVIEWS, searchReviews)
 }

@@ -13,11 +13,13 @@ export default function home (state = initialState, action = {}) {
         ...state,
         isSearching: true
       }
+
     case actions.SEARCH_REVIEWS_FAILED:
       return {
         ...state,
         isSearching: false
       }
+
     case actions.SEARCH_REVIEWS_PASSED:
       return {
         ...state,
@@ -25,24 +27,50 @@ export default function home (state = initialState, action = {}) {
         hasSearchedBefore: true,
         reviews: action.value
       }
+
     case actions.LIKE_REVIEW: {
-      const review = state.reviews.find(r => r.id === action.value.id)
-      const reviewIndex = state.reviews.indexOf(review)
+      const { id: likeId, review_id: reviewId } = action.value
 
       return {
         ...state,
-        reviews: [
-          ...state.reviews.slice(0, reviewIndex),
-          {
-            ...review,
-            liked: true,
-            num_of_likes: review.num_of_likes + 1
-          },
-          ...state.reviews.slice(reviewIndex + 1)
-        ]
+        reviews: updateReviewList(state.reviews, reviewId, {
+          context: { caller_like_id: likeId },
+          likeIncrement: 1
+        })
+      }
+    }
+
+    case actions.UNLIKE_REVIEW: {
+      const { review_id: reviewId } = action.value
+
+      return {
+        ...state,
+        reviews: updateReviewList(state.reviews, reviewId, {
+          context: { caller_like_id: undefined },
+          likeIncrement: -1
+        })
       }
     }
     default:
       return state
   }
+}
+
+function updateReviewList (reviews, reviewId, options) {
+  const review = reviews.find(r => r.id === reviewId)
+  const reviewIndex = reviews.indexOf(review)
+  const updatedReview = {
+    ...review,
+    context: {
+      ...review.context,
+      ...options.context
+    },
+    num_of_likes: review.num_of_likes + options.likeIncrement
+  }
+
+  return [
+    ...reviews.slice(0, reviewIndex),
+    updatedReview,
+    ...reviews.slice(reviewIndex + 1)
+  ]
 }

@@ -1,6 +1,7 @@
 import jwtDecode from 'jwt-decode'
 import { SecureStore, Font } from 'expo'
 import {
+  Entypo,
   Ionicons,
   EvilIcons,
   MaterialCommunityIcons
@@ -20,6 +21,7 @@ import { getCredentials } from './auth'
 
 export function * loadAssets () {
   yield all([
+    call(Font.loadAsync, Entypo.font),
     call(Font.loadAsync, Ionicons.font),
     call(Font.loadAsync, EvilIcons.font),
     call(Font.loadAsync, MaterialCommunityIcons.font),
