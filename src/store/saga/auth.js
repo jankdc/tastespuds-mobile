@@ -68,13 +68,13 @@ export function * startAuthFlow () {
     const currentTime = Date.now() / 1000
 
     yield all([
-      call(SecureStore.setItemAsync, 'idToken', tokens.idToken),
-      call(SecureStore.setItemAsync, 'expiresIn', JSON.stringify(currentTime + tokens.expiresIn)),
-      call(SecureStore.setItemAsync, 'accessToken', tokens.accessToken),
-      call(SecureStore.setItemAsync, 'refreshToken', tokens.refreshToken)
+      call(SecureStore.setItemAsync, 'idToken', tokens.id_token),
+      call(SecureStore.setItemAsync, 'expiresIn', JSON.stringify(currentTime + tokens.expires_in)),
+      call(SecureStore.setItemAsync, 'accessToken', tokens.access_token),
+      call(SecureStore.setItemAsync, 'refreshToken', tokens.refresh_token)
     ])
 
-    const user = yield call(jwtDecode, tokens.idToken)
+    const user = yield call(jwtDecode, tokens.id_token)
     yield put({ type: actions.LOGIN_PASSED, value: user })
     yield call(navigate, 'App')
   } catch (error) {

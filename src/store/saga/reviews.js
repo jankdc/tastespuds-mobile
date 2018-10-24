@@ -1,5 +1,5 @@
 import { put, call, takeLatest } from 'redux-saga/effects'
-import { Location, Permissions, SecureStore } from 'expo'
+import { Permissions, SecureStore } from 'expo'
 import jwtDecode from 'jwt-decode'
 
 import { navigate } from '../../nav/NavigationService'
@@ -28,7 +28,7 @@ export function * addReview ({ value }) {
         : value.item.id,
       rating: value.rating,
       assets: [result.id],
-      userId: profile.sub,
+      user_id: profile.sub,
       content: value.content
     })
 

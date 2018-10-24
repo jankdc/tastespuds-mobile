@@ -14,7 +14,7 @@ export async function makeReview (review) {
       item: review.item,
       assets: review.assets,
       rating: review.rating,
-      userId: review.userId,
+      user_id: review.user_id,
       content: review.content
     }
   })

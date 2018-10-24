@@ -25,7 +25,7 @@ class AddReviewPlace extends React.Component {
     this._onChangeText = this._onChangeText.bind(this)
   }
 
-  componentDidMount() {
+  componentDidMount () {
     this.props.onFocus()
   }
 
