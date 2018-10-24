@@ -25,6 +25,23 @@ export default function home (state = initialState, action = {}) {
         hasSearchedBefore: true,
         reviews: action.value
       }
+    case actions.LIKE_REVIEW: {
+      const review = state.reviews.find(r => r.id === action.value.id)
+      const reviewIndex = state.reviews.indexOf(review)
+
+      return {
+        ...state,
+        reviews: [
+          ...state.reviews.slice(0, reviewIndex),
+          {
+            ...review,
+            liked: true,
+            num_of_likes: review.num_of_likes + 1
+          },
+          ...state.reviews.slice(reviewIndex + 1)
+        ]
+      }
+    }
     default:
       return state
   }

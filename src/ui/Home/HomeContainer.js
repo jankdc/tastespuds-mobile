@@ -4,8 +4,16 @@ import Home from './Home'
 
 const mapDispatchToProps = dispatch => {
   return {
-    onFocus: () => dispatch({ type: actions.SEARCH_REVIEWS }),
-    onRefresh: () => dispatch({ type: actions.SEARCH_REVIEWS })
+    onLike: (review) => dispatch({
+      type: actions.LIKE_REVIEW,
+      value: review
+    }),
+    onFocus: () => dispatch({
+      type: actions.SEARCH_REVIEWS
+    }),
+    onRefresh: () => dispatch({
+      type: actions.SEARCH_REVIEWS
+    })
   }
 }
 

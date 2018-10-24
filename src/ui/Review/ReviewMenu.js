@@ -1,15 +1,15 @@
 import React from 'react'
-import { EvilIcons } from '@expo/vector-icons'
+import { AntDesign, EvilIcons } from '@expo/vector-icons'
 import { View, TouchableOpacity, StyleSheet } from 'react-native'
 
-const ReviewMenu = ({ onLike, onComment }) => (
+const ReviewMenu = ({ liked, onLike, onComment }) => (
   <View style={styles.container}>
     <TouchableOpacity
       style={{ marginLeft: 8 }}
       onPress={onLike}
     >
-      <EvilIcons
-        name='heart'
+      <AntDesign
+        name={liked ? 'heart' : 'hearto'}
         size={35}
         color='black'
       />

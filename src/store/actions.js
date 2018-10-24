@@ -30,3 +30,7 @@ export const ADD_REVIEW_PASSED = 'tastespuds/add-review/ADD_REVIEW_PASSED'
 export const SEARCH_REVIEWS = 'tastespuds/home/SEARCH_REVIEWS'
 export const SEARCH_REVIEWS_FAILED = 'tastespuds/home/SEARCH_REVIEWS_FAILED'
 export const SEARCH_REVIEWS_PASSED = 'tastespuds/home/SEARCH_REVIEWS_PASSED'
+
+export const LIKE_REVIEW = 'tastespuds/home/LIKE_REVIEW'
+export const LIKE_REVIEW_FAILED = 'tastespuds/home/LIKE_REVIEW_FAILED'
+export const LIKE_REVIEW_PASSED = 'tastespuds/home/LIKE_REVIEW_PASSED'

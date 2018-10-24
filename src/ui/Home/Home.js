@@ -3,7 +3,7 @@ import {
   View,
   StyleSheet,
   ActivityIndicator
-  } from 'react-native'
+} from 'react-native'
 
 import ReviewList from '../ReviewList'
 
@@ -11,7 +11,6 @@ class Home extends React.Component {
   constructor (props) {
     super(props)
 
-    this._onLike = this._onLike.bind(this)
     this._onComment = this._onComment.bind(this)
     this._onRefresh = this._onRefresh.bind(this)
   }
@@ -25,11 +24,7 @@ class Home extends React.Component {
   }
 
   _onComment (review) {
-
-  }
-
-  _onLike (review) {
-
+    this.props.onComment(review)
   }
 
   _renderLoading () {
@@ -48,7 +43,7 @@ class Home extends React.Component {
     return (
       <View style={styles.container}>
         <ReviewList
-          onLike={this._onLike}
+          onLike={this.props.onLike}
           reviews={this.props.reviews}
           onComment={this._onComment}
           onRefresh={this._onRefresh}

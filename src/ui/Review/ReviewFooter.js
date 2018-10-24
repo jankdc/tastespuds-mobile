@@ -11,6 +11,7 @@ const ReviewFooter = ({ review, onLike, onComment }) => (
   <View style={styles.container}>
     <View style={styles.mainActionsAndRating}>
       <ReviewMenu
+        liked={review.liked}
         onLike={onLike}
         onComment={onComment}
       />

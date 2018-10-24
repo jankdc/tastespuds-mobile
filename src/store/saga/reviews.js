@@ -39,6 +39,16 @@ export function * addReview ({ value }) {
   }
 }
 
+export function * likeReview ({ value }) {
+  try {
+    yield call(platform.likeReview, value.id)
+
+    yield put({ type: actions.LIKE_REVIEW_PASSED, value })
+  } catch (error) {
+    yield put({ type: actions.LIKE_REVIEW_FAILED, error })
+  }
+}
+
 export function * searchReviews () {
   try {
     const { status } = yield call(Permissions.askAsync, Permissions.LOCATION)
@@ -60,5 +70,6 @@ export function * searchReviews () {
 
 export default function * reviewsSaga () {
   yield takeLatest(actions.ADD_REVIEW, addReview)
+  yield takeLatest(actions.LIKE_REVIEW, likeReview)
   yield takeLatest(actions.SEARCH_REVIEWS, searchReviews)
 }
