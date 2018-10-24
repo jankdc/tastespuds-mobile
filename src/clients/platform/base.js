@@ -90,6 +90,15 @@ async function extractResponse (response) {
     return response.json()
   }
 
-  const { error: id, description } = await response.json()
-  throw new PlatformApiError(description, id)
+  let error = null
+
+  const errorText = await response.text()
+  try {
+    const { error: id, description } = JSON.parse(errorText)
+    error = new PlatformApiError(description, id)
+  } catch (parseError) {
+    error = new PlatformApiError(errorText)
+  }
+
+  throw error
 }
