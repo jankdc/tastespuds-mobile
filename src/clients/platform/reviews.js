@@ -1,4 +1,4 @@
-import { get, post } from './base'
+import { del, get, post } from './base'
 
 export async function getReviews (location) {
   return get('/reviews', {
@@ -20,6 +20,10 @@ export async function makeReview (review) {
   })
 }
 
-export async function likeReview (id) {
-  return post(`/review/${id}/likes`)
+export async function likeReview (reviewId) {
+  return post(`/reviews/${reviewId}/likes`)
+}
+
+export async function unlikeReview (reviewId, likeId) {
+  return del(`/reviews/${reviewId}/likes/${likeId}`)
 }
