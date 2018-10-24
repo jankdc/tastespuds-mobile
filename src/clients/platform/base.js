@@ -10,7 +10,7 @@ export class PlatformApiError extends Error {
   }
 }
 
-export async function get (path, options) {
+export async function get (path, options = {}) {
   const url = `${PLATFORM_DOMAIN}${path}`
   const query = options.query ? toQueryString(options.query) : ''
   const token = await SecureStore.getItemAsync('accessToken')
@@ -27,7 +27,7 @@ export async function get (path, options) {
   return extractResponse(response)
 }
 
-export async function del (path, options) {
+export async function del (path, options = {}) {
   const url = `${PLATFORM_DOMAIN}${path}`
   const token = await SecureStore.getItemAsync('accessToken')
 
@@ -43,7 +43,7 @@ export async function del (path, options) {
   return extractResponse(response)
 }
 
-export async function post (path, options) {
+export async function post (path, options = {}) {
   const url = `${PLATFORM_DOMAIN}${path}`
   const body = options.body || {}
   const token = await SecureStore.getItemAsync('accessToken')
@@ -62,7 +62,7 @@ export async function post (path, options) {
   return extractResponse(response)
 }
 
-export async function form (path, options) {
+export async function form (path, options = {}) {
   const url = `${PLATFORM_DOMAIN}${path}`
   const token = await SecureStore.getItemAsync('accessToken')
   const formData = new window.FormData()
