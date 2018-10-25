@@ -2,7 +2,7 @@ import React from 'react'
 import { Entypo, EvilIcons } from '@expo/vector-icons'
 import { View, TouchableOpacity, StyleSheet } from 'react-native'
 
-const HeartIcon = (liked) => (liked
+const HeartIcon = ({ liked }) => (liked
   ? <Entypo name='heart' size={30} color='tomato' />
   : <EvilIcons name='heart' size={35} color='black' />
 )
