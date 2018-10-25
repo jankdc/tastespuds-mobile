@@ -29,28 +29,27 @@ export default function home (state = initialState, action = {}) {
       }
 
     case actions.LIKE_REVIEW: {
-      const { id: likeId, review_id: reviewId } = action.value
+      const review = action.value
 
       return {
         ...state,
-        reviews: updateReviewList(state.reviews, reviewId, {
-          context: { caller_like_id: likeId },
+        reviews: updateReviewList(state.reviews, review.id, {
           likeIncrement: 1
         })
       }
     }
 
     case actions.UNLIKE_REVIEW: {
-      const { review_id: reviewId } = action.value
+      const review = action.value
 
       return {
         ...state,
-        reviews: updateReviewList(state.reviews, reviewId, {
-          context: { caller_like_id: undefined },
+        reviews: updateReviewList(state.reviews, review.id, {
           likeIncrement: -1
         })
       }
     }
+
     default:
       return state
   }
@@ -61,10 +60,6 @@ function updateReviewList (reviews, reviewId, options) {
   const reviewIndex = reviews.indexOf(review)
   const updatedReview = {
     ...review,
-    context: {
-      ...review.context,
-      ...options.context
-    },
     num_of_likes: review.num_of_likes + options.likeIncrement
   }
 
