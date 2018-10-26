@@ -11,12 +11,13 @@ import AddReviewPlace from '../ui/AddReviewPlace'
 
 import BottomTabBar from './BottomTabBar'
 import HomeNavigation from './HomeNavigation'
+import SearchNavigation from './SearchNavigation'
 import UserProfileNavigation from './UserProfileNavigation'
 
 const AppTabNavigation = createBottomTabNavigator(
   {
     Home: HomeNavigation,
-    Search: View,
+    Search: SearchNavigation,
     Review: View,
     Messages: View,
     UserProfile: UserProfileNavigation
