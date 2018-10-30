@@ -32,7 +32,14 @@ const AppTabNavigation = createBottomTabNavigator(
     navigationOptions: ({ navigation }) => ({
       tabBarIcon: ({ tintColor }) => {
         if (navigation.state.routeName === 'Review') {
-          return <Ionicons name='md-camera' size={30} color={tintColor} />
+          return (
+            <Ionicons
+              name='md-camera'
+              size={30}
+              style={{ marginTop: 3 }}
+              color={tintColor}
+            />
+          )
         }
       }
     })

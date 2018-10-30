@@ -12,7 +12,14 @@ const HomeNavigation = createStackNavigator({
 
 HomeNavigation.navigationOptions = {
   tabBarIcon: ({ tintColor }) => {
-    return <Ionicons name='md-home' size={30} color={tintColor} />
+    return (
+      <Ionicons
+        name='md-home'
+        size={32}
+        style={{ marginTop: 3 }}
+        color={tintColor}
+      />
+    )
   }
 }
 

@@ -12,7 +12,14 @@ const UserProfileNavigation = createStackNavigator({
 
 UserProfileNavigation.navigationOptions = {
   tabBarIcon: ({ tintColor }) => {
-    return <EvilIcons name='user' size={35} color={tintColor} />
+    return (
+      <EvilIcons
+        name='user'
+        size={38}
+        style={{ marginTop: 3 }}
+        color={tintColor}
+      />
+    )
   }
 }
 
