@@ -1,5 +1,4 @@
 import React from 'react'
-import Image from 'react-native-image-progress'
 import { StyleSheet, View, Text } from 'react-native'
 
 const ReviewHeader = ({ review }) => (

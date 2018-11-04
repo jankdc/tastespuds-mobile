@@ -20,7 +20,7 @@ const SearchItem = ({ item, onPress }) => (
       numberOfLines={1}
       ellipsizeMode='middle'
     >
-      {item.address}
+      {`${item.street}`}
     </Text>
   </TouchableOpacity>
 )
