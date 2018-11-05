@@ -5,11 +5,11 @@ import AddReviewName from './AddReviewName'
 const mapDispatchToProps = dispatch => {
   return {
     onSearch: (selectedPlace) => dispatch({
-      type: actions.GET_ITEMS,
+      type: actions.GET_ITEMS_IN_PLACE,
       value: selectedPlace
     }),
     onClear: () => dispatch({
-      type: actions.GET_ITEMS_CLEAR
+      type: actions.GET_ITEMS_IN_PLACE_CLEAR
     })
   }
 }

@@ -45,21 +45,21 @@ export default function addReview (state = initialState, action = {}) {
         isSearching: false,
         searchedPlaces: action.value
       }
-    case actions.GET_ITEMS:
+    case actions.GET_ITEMS_IN_PLACE:
       return {
         ...state,
         isGetting: true
       }
-    case actions.GET_ITEMS_CLEAR:
+    case actions.GET_ITEMS_IN_PLACE_CLEAR:
       return {
         ...initialState
       }
-    case actions.GET_ITEMS_FAILED:
+    case actions.GET_ITEMS_IN_PLACE_FAILED:
       return {
         ...state,
         isGetting: false
       }
-    case actions.GET_ITEMS_PASSED:
+    case actions.GET_ITEMS_IN_PLACE_PASSED:
       return {
         ...state,
         isGetting: false,

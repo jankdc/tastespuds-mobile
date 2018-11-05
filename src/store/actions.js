@@ -12,10 +12,10 @@ export const CREATE_USERNAME_PASSED = 'tastespuds/auth/CREATE_USERNAME_PASSED'
 export const CREATE_USERNAME_FAILED = 'tastespuds/auth/CREATE_USERNAME_FAILED'
 
 // add review
-export const GET_ITEMS = 'tastespuds/add-review/GET_ITEMS'
-export const GET_ITEMS_CLEAR = 'tastespuds/add-review/GET_ITEMS_CLEAR'
-export const GET_ITEMS_FAILED = 'tastespuds/add-review/GET_ITEMS_FAILED'
-export const GET_ITEMS_PASSED = 'tastespuds/add-review/GET_ITEMS_PASSED'
+export const GET_ITEMS_IN_PLACE = 'tastespuds/add-review/GET_ITEMS_IN_PLACE'
+export const GET_ITEMS_IN_PLACE_CLEAR = 'tastespuds/add-review/GET_ITEMS_IN_PLACE_CLEAR'
+export const GET_ITEMS_IN_PLACE_FAILED = 'tastespuds/add-review/GET_ITEMS_IN_PLACE_FAILED'
+export const GET_ITEMS_IN_PLACE_PASSED = 'tastespuds/add-review/GET_ITEMS_IN_PLACE_PASSED'
 
 export const SEARCH_PLACES = 'tastespuds/add-review/SEARCH_PLACES'
 export const SEARCH_PLACES_CLEAR = 'tastespuds/add-review/SEARCH_PLACES_CLEAR'
