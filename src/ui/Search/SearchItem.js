@@ -8,7 +8,7 @@ import SearchItemLikes from './SearchItemLikes'
 import SearchItemPrice from './SearchItemPrice'
 import SearchItemRating from './SearchItemRating'
 
-const SearchItem = ({ item }) => {
+const SearchItem = ({ item, ranking }) => {
   return (
     <View style={styles.container}>
       <View style={styles.image}>
@@ -24,7 +24,17 @@ const SearchItem = ({ item }) => {
         />
       </View>
       <View style={styles.content}>
-        <Text style={styles.name}>{item.name}</Text>
+        <View style={{
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'space-between'
+        }}>
+          <Text style={styles.name}>{item.name}</Text>
+          <View style={styles.rankingContainer}>
+            <Text style={styles.ranking}>{ranking + 1}.</Text>
+          </View>
+        </View>
+
         <Text style={styles.place}>{item.place && item.place.name}</Text>
 
         <View style={{ flexDirection: 'row', paddingVertical: 6 }}>
@@ -53,8 +63,6 @@ const SearchItem = ({ item }) => {
           />
         </View>
 
-        <Text style={styles.ranking}>#1 of 965 items in Brighton</Text>
-
         <View style={styles.rowContent}>
           <SearchItemRating rating={item.rating} />
           <SearchItemLikes likes={item.likes} />
@@ -69,7 +77,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     backgroundColor: 'white',
-    height: 135
+    height: 120
   },
   image: {
     justifyContent: 'center',
@@ -81,6 +89,13 @@ const styles = StyleSheet.create({
     paddingTop: 12,
     paddingLeft: 12
   },
+  rankingContainer: {
+    marginRight: 10
+  },
+  ranking: {
+    fontSize: 12,
+    fontWeight: 'bold'
+  },
   name: {
     fontSize: 16,
     fontWeight: 'bold'
@@ -89,10 +104,6 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: 'bold',
     color: 'tomato'
-  },
-  ranking: {
-    fontSize: 13,
-    color: 'black'
   },
   rowContent: {
     flex: 1,

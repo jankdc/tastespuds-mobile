@@ -41,8 +41,8 @@ class Search extends React.Component {
             `${item.id}`
           }
 
-          renderItem={({ item }) => (
-            <SearchItem item={item} />
+          renderItem={({ item, index }) => (
+            <SearchItem item={item} ranking={index} />
           )}
 
           style={styles.list}
