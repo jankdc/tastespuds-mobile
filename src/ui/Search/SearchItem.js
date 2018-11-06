@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PureComponent } from 'react'
 import { Badge } from 'react-native-elements'
 import { ASSETS_URL } from 'react-native-dotenv'
 import { StyleSheet, View, Text } from 'react-native'
@@ -9,38 +9,44 @@ import SearchItemPrice from './SearchItemPrice'
 import SearchItemHeader from './SearchItemHeader'
 import SearchItemRating from './SearchItemRating'
 
-const SearchItem = ({ item, ranking }) => {
-  return (
-    <View style={styles.container}>
-      <SearchItemImage uri={`${ASSETS_URL}/${item.asset}`} />
+class SearchItem extends PureComponent {
+  render () {
+    const { item, ranking } = this.props
 
-      <View style={styles.content}>
-        <SearchItemHeader name={item.name} ranking={ranking} />
+    return (
+      <View style={styles.container}>
+        <SearchItemImage uri={`${ASSETS_URL}/${item.asset}`} />
 
-        <Text style={styles.place}>{item.place && item.place.name}</Text>
+        <View style={styles.content}>
+          <SearchItemHeader name={item.name} ranking={ranking} />
 
-        <View style={{ flexDirection: 'row', paddingVertical: 6 }}>
-          <Badge
-            value={'0.6km'}
-            textStyle={{ color: 'white', fontSize: 10 }}
-            containerStyle={{ backgroundColor: 'grey', alignSelf: 'flex-start' }}
-          />
+          <Text style={styles.place}>
+            {item.place && item.place.name}
+          </Text>
 
-          <Badge
-            value={`${item.reviews} Review${item.reviews ? 's' : ''}`}
-            textStyle={{ color: 'white', fontSize: 10 }}
-            containerStyle={{ backgroundColor: 'grey', alignSelf: 'flex-start' }}
-          />
-        </View>
+          <View style={{ flexDirection: 'row', paddingVertical: 6 }}>
+            <Badge
+              value={'0.6km'}
+              textStyle={{ color: 'white', fontSize: 10 }}
+              containerStyle={{ backgroundColor: 'grey', alignSelf: 'flex-start' }}
+            />
 
-        <View style={styles.rowContent}>
-          <SearchItemRating rating={item.rating} />
-          <SearchItemLikes likes={item.likes} />
-          <SearchItemPrice />
+            <Badge
+              value={`${item.reviews} Review${item.reviews ? 's' : ''}`}
+              textStyle={{ color: 'white', fontSize: 10 }}
+              containerStyle={{ backgroundColor: 'grey', alignSelf: 'flex-start' }}
+            />
+          </View>
+
+          <View style={styles.rowContent}>
+            <SearchItemRating rating={item.rating} />
+            <SearchItemLikes likes={item.likes} />
+            <SearchItemPrice />
+          </View>
         </View>
       </View>
-    </View>
-  )
+    )
+  }
 }
 
 const styles = StyleSheet.create({
