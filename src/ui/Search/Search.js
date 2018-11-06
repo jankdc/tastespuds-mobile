@@ -42,7 +42,7 @@ class Search extends React.Component {
           }
 
           renderItem={({ item, index }) => (
-            <SearchItem item={item} ranking={index} />
+            <SearchItem item={item} ranking={index + 1} />
           )}
 
           style={styles.list}
