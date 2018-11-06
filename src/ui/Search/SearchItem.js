@@ -10,6 +10,16 @@ import SearchItemHeader from './SearchItemHeader'
 import SearchItemRating from './SearchItemRating'
 
 class SearchItem extends PureComponent {
+  _renderBadge (value) {
+    return (
+      <Badge
+        value={value}
+        textStyle={{ color: 'white', fontSize: 10 }}
+        containerStyle={{ backgroundColor: 'grey', alignSelf: 'flex-start' }}
+      />
+    )
+  }
+
   render () {
     const { item, ranking } = this.props
 
@@ -25,17 +35,8 @@ class SearchItem extends PureComponent {
           </Text>
 
           <View style={{ flexDirection: 'row', paddingVertical: 6 }}>
-            <Badge
-              value={'0.6km'}
-              textStyle={{ color: 'white', fontSize: 10 }}
-              containerStyle={{ backgroundColor: 'grey', alignSelf: 'flex-start' }}
-            />
-
-            <Badge
-              value={`${item.reviews} Review${item.reviews ? 's' : ''}`}
-              textStyle={{ color: 'white', fontSize: 10 }}
-              containerStyle={{ backgroundColor: 'grey', alignSelf: 'flex-start' }}
-            />
+            { this._renderBadge('0.6km') }
+            { this._renderBadge(`${item.reviews} Review${item.reviews ? 's' : ''}`) }
           </View>
 
           <View style={styles.rowContent}>
