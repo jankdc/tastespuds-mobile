@@ -14,8 +14,16 @@ class SearchItem extends PureComponent {
     return (
       <Badge
         value={value}
-        textStyle={{ color: 'white', fontSize: 10 }}
-        containerStyle={{ backgroundColor: 'grey', alignSelf: 'flex-start' }}
+        textStyle={{
+          color: 'tomato',
+          fontSize: 10
+        }}
+        containerStyle={{
+          borderColor: 'tomato',
+          borderWidth: 1,
+          alignSelf: 'flex-start',
+          backgroundColor: 'white'
+        }}
       />
     )
   }
@@ -64,7 +72,7 @@ const styles = StyleSheet.create({
   place: {
     fontSize: 12,
     fontWeight: 'bold',
-    color: 'tomato'
+    color: 'black'
   },
   rowContent: {
     flex: 1,
