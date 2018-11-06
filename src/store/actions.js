@@ -38,3 +38,9 @@ export const LIKE_REVIEW_PASSED = 'tastespuds/home/LIKE_REVIEW_PASSED'
 export const UNLIKE_REVIEW = 'tastespuds/home/UNLIKE_REVIEW'
 export const UNLIKE_REVIEW_FAILED = 'tastespuds/home/UNLIKE_REVIEW_FAILED'
 export const UNLIKE_REVIEW_PASSED = 'tastespuds/home/UNLIKE_REVIEW_PASSED'
+
+// search
+export const GET_ITEMS = 'tastespuds/search/GET_ITEMS'
+export const GET_ITEMS_CLEAR = 'tastespuds/search/GET_ITEMS_CLEAR'
+export const GET_ITEMS_FAILED = 'tastespuds/search/GET_ITEMS_FAILED'
+export const GET_ITEMS_PASSED = 'tastespuds/search/GET_ITEMS_PASSED'

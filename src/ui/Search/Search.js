@@ -9,34 +9,26 @@ import {
 import SearchMenu from './SearchMenu'
 import SearchItem from './SearchItem'
 
-const data = [
-  {
-    id: '123',
-    name: 'Content'
-  },
-  {
-    id: '124',
-    name: 'Content'
-  },
-  {
-    id: '125',
-    name: 'Content'
-  },
-  {
-    id: '126',
-    name: 'Content'
-  },
-  {
-    id: '127',
-    name: 'Content'
-  }
-]
-
 const ItemSeparator = () => (
   <View style={styles.separator} />
 )
 
 class Search extends React.Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      query: {
+        sort: 'top',
+        city: 'Brighton'
+      }
+    }
+  }
+
+  componentDidMount () {
+    this.props.onFocus(this.state.query)
+  }
+
   render () {
     return (
       <View style={styles.container}>
@@ -46,7 +38,7 @@ class Search extends React.Component {
           ItemSeparatorComponent={ItemSeparator}
 
           keyExtractor={(item) =>
-            item.id
+            `${item.id}`
           }
 
           renderItem={({ item }) => (
@@ -55,7 +47,7 @@ class Search extends React.Component {
 
           style={styles.list}
 
-          data={data}
+          data={this.props.items}
         />
       </View>
     )

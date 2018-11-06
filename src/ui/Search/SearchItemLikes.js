@@ -2,10 +2,10 @@ import React from 'react'
 import { Text, View, StyleSheet } from 'react-native'
 import { Entypo } from '@expo/vector-icons'
 
-const SearchItemLikes = () => (
+const SearchItemLikes = ({ likes }) => (
   <View style={styles.container}>
     <Entypo name='heart' size={20} color='tomato' />
-    <Text style={styles.number}>12</Text>
+    <Text style={styles.number}>{likes}</Text>
   </View>
 )
 

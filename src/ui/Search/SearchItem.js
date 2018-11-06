@@ -14,7 +14,7 @@ const SearchItem = ({ item }) => {
       <View style={styles.image}>
         <Image
           source={{
-            uri: `${ASSETS_URL}/2a593015-4ba7-472a-84b2-1479db3587b3`
+            uri: `${ASSETS_URL}/${item.asset}`
           }}
 
           style={{
@@ -24,8 +24,8 @@ const SearchItem = ({ item }) => {
         />
       </View>
       <View style={styles.content}>
-        <Text style={styles.name}>Ramen Noodles</Text>
-        <Text style={styles.place}>Wagamama</Text>
+        <Text style={styles.name}>{item.name}</Text>
+        <Text style={styles.place}>{item.place && item.place.name}</Text>
 
         <View style={{ flexDirection: 'row', paddingVertical: 6 }}>
           <Badge
@@ -41,7 +41,7 @@ const SearchItem = ({ item }) => {
           />
 
           <Badge
-            value={'116 Reviews'}
+            value={`${item.reviews} Review${item.reviews.length > 1 ? 's' : ''}`}
             textStyle={{
               color: 'white',
               fontSize: 10
@@ -56,8 +56,8 @@ const SearchItem = ({ item }) => {
         <Text style={styles.ranking}>#1 of 965 items in Brighton</Text>
 
         <View style={styles.rowContent}>
-          <SearchItemRating />
-          <SearchItemLikes />
+          <SearchItemRating rating={item.rating} />
+          <SearchItemLikes likes={item.likes} />
           <SearchItemPrice />
         </View>
       </View>
