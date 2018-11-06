@@ -21,19 +21,20 @@ class AddReviewName extends React.Component {
       search: null
     }
 
-    this._onSubmit = this._onSubmit.bind(this)
     this._onSelect = this._onSelect.bind(this)
     this._onRegister = this._onRegister.bind(this)
     this._onChangeText = this._onChangeText.bind(this)
   }
 
-  componentWillUnmount () {
-    this.props.onClear()
+  componentDidMount () {
+    const selectedPlace = this.props.navigation.getParam('selectedPlace')
+    if (selectedPlace) {
+      this.props.onFocus(selectedPlace)
+    }
   }
 
-  _onSubmit () {
-    const selectedPlace = this.props.navigation.getParam('selectedPlace')
-    this.props.onSearch(selectedPlace)
+  componentWillUnmount () {
+    this.props.onClear()
   }
 
   _onSelect (selectedItem) {
@@ -56,26 +57,31 @@ class AddReviewName extends React.Component {
     this.setState({ search: text })
   }
 
+  _filterByName () {
+    return fuzzysort
+      .go(this.state.search, this.props.items, {
+        key: 'name',
+        allowTypo: true
+      })
+      .map(result => result.obj)
+  }
+
   _renderSearch () {
-    if (this.props.items === null || this.state.search === null) {
+    if (this.props.items === null) {
       return null
     }
 
-    const filtered = fuzzysort.go(this.state.search, this.props.items, {
-      key: 'name',
-      limit: 5,
-      allowTypo: true,
-      threshold: -10000 // don't return bad results
-    })
-
     return (
       <View style={{ flex: 1 }}>
-        <Text style={styles.label}>🔍 Results</Text>
+        <Text style={styles.label}>🔍 Suggestions</Text>
 
         <SearchNameList
           onSelect={this._onSelect}
           onRegister={this._onRegister}
-          searchResults={filtered}
+          searchResults={this.state.search
+            ? this._filterByName()
+            : this.props.items
+          }
         />
       </View>
     )
@@ -103,9 +109,8 @@ class AddReviewName extends React.Component {
             autoCorrect
             placeholder='Search the item here...'
             onChangeText={this._onChangeText}
-            returnKeyType='search'
+            returnKeyType='done'
             clearButtonMode='while-editing'
-            onSubmitEditing={this._onSubmit}
             contextMenuHidden
           />
 

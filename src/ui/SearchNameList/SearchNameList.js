@@ -17,7 +17,7 @@ const SearchNameList = ({
         onPress={() => onSelect(item, index)}
       />
     }
-    keyExtractor={item => item.id}
+    keyExtractor={item => `${item.id}`}
     ListEmptyComponent={() =>
       <SearchEmptyItem onPress={onRegister} />
     }

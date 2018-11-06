@@ -4,7 +4,7 @@ import AddReviewName from './AddReviewName'
 
 const mapDispatchToProps = dispatch => {
   return {
-    onSearch: (selectedPlace) => dispatch({
+    onFocus: (selectedPlace) => dispatch({
       type: actions.GET_ITEMS_IN_PLACE,
       value: selectedPlace
     }),
