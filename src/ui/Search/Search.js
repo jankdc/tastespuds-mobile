@@ -11,6 +11,7 @@ import { Permissions, Location } from 'expo'
 
 import SearchMenu from './SearchMenu'
 import SearchItem from './SearchItem'
+import SearchBarHeader from '../SearchBarHeader'
 
 const ItemSeparator = () => (
   <View style={styles.separator} />
@@ -120,5 +121,9 @@ const styles = StyleSheet.create({
     marginVertical: 5
   }
 })
+
+Search.navigationOptions = {
+  header: () => <SearchBarHeader />
+}
 
 export default Search
