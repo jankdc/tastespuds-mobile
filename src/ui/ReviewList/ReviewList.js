@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, StyleSheet, FlatList } from 'react-native'
 
-import Review from './Review'
+import Review from '../Review'
 
 const ReviewList = ({
   reviews,
