@@ -27,7 +27,7 @@ const SearchNavigation = createStackNavigator({
 SearchNavigation.navigationOptions = {
   tabBarIcon: ({ tintColor }) => {
     return <Feather name='search' size={26} color={tintColor} />
-  },
+  }
 }
 
 const styles = StyleSheet.create({
