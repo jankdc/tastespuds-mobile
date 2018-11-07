@@ -1,6 +1,7 @@
 import React from 'react'
 
 import {
+  ActivityIndicator,
   StyleSheet,
   FlatList,
   View
@@ -21,6 +22,7 @@ class Search extends React.Component {
 
     this.state = {
       location: null,
+      isReady: false,
       level: 'city',
       city: 'Brighton',
       sort: 'top'
@@ -35,7 +37,7 @@ class Search extends React.Component {
     const { status } = await Permissions.askAsync(Permissions.LOCATION)
 
     if (status !== 'granted') {
-      return this._updateSearch()
+      return this._updateSearch({ isReady: true })
     }
 
     const { coords } = await Location.getCurrentPositionAsync()
@@ -46,6 +48,7 @@ class Search extends React.Component {
 
     this._updateSearch({
       location: `${coords.latitude},${coords.longitude}`,
+      isReady: true,
       city
     })
   }
@@ -58,6 +61,34 @@ class Search extends React.Component {
     })
   }
 
+  _renderSearchList () {
+    if (!this.state.isReady) {
+      return (
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+          <ActivityIndicator />
+        </View>
+      )
+    }
+
+    return (
+      <FlatList
+        ItemSeparatorComponent={ItemSeparator}
+
+        keyExtractor={(item) =>
+          `${item.id}`
+        }
+
+        renderItem={({ item, index }) => (
+          <SearchItem item={item} ranking={index + 1} />
+        )}
+
+        style={styles.list}
+
+        data={this.props.items}
+      />
+    )
+  }
+
   render () {
     return (
       <View style={styles.container}>
@@ -67,21 +98,7 @@ class Search extends React.Component {
           city={this.state.city}
         />
 
-        <FlatList
-          ItemSeparatorComponent={ItemSeparator}
-
-          keyExtractor={(item) =>
-            `${item.id}`
-          }
-
-          renderItem={({ item, index }) => (
-            <SearchItem item={item} ranking={index + 1} />
-          )}
-
-          style={styles.list}
-
-          data={this.props.items}
-        />
+        { this._renderSearchList() }
       </View>
     )
   }
