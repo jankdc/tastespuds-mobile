@@ -9,6 +9,8 @@ import SearchItemPrice from './SearchItemPrice'
 import SearchItemHeader from './SearchItemHeader'
 import SearchItemRating from './SearchItemRating'
 
+import { distDiffInKm } from '../../utils/math'
+
 class SearchItem extends PureComponent {
   _renderBadge (value) {
     return (
@@ -28,6 +30,27 @@ class SearchItem extends PureComponent {
     )
   }
 
+  _renderDistanceBadge () {
+    if (!this.props.location) {
+      return null
+    }
+
+    const distDiffUser = this.props.location && distDiffInKm(
+      this.props.location.latitude,
+      this.props.location.longitude,
+      this.props.item.place.location[0],
+      this.props.item.place.location[1]
+    )
+
+    const simplerValue = Math.round(distDiffUser.toFixed(2))
+
+    if (simplerValue === 0) {
+      return this._renderBadge('0.1km')
+    }
+
+    return this._renderBadge(`${simplerValue}km`)
+  }
+
   render () {
     const { item, ranking } = this.props
 
@@ -43,7 +66,7 @@ class SearchItem extends PureComponent {
           </Text>
 
           <View style={{ flexDirection: 'row', paddingVertical: 6 }}>
-            { this._renderBadge('0.6km') }
+            { this._renderDistanceBadge() }
             { this._renderBadge(`${item.reviews} Review${item.reviews ? 's' : ''}`) }
           </View>
 

@@ -47,7 +47,10 @@ class Search extends React.Component {
     })
 
     this._updateSearch({
-      location: `${coords.latitude},${coords.longitude}`,
+      location: {
+        latitude: coords.latitude,
+        longitude: coords.longitude
+      },
       isReady: true,
       city
     })
@@ -79,7 +82,11 @@ class Search extends React.Component {
         }
 
         renderItem={({ item, index }) => (
-          <SearchItem item={item} ranking={index + 1} />
+          <SearchItem
+            item={item}
+            ranking={index + 1}
+            location={this.state.location}
+          />
         )}
 
         style={styles.list}
