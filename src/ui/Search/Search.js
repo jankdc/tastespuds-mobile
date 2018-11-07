@@ -6,6 +6,8 @@ import {
   View
 } from 'react-native'
 
+import { Permissions, Location } from 'expo'
+
 import SearchMenu from './SearchMenu'
 import SearchItem from './SearchItem'
 
@@ -18,21 +20,52 @@ class Search extends React.Component {
     super(props)
 
     this.state = {
-      query: {
-        sort: 'top',
-        city: 'Brighton'
-      }
+      location: null,
+      level: 'city',
+      city: 'Brighton',
+      sort: 'top'
     }
   }
 
   componentDidMount () {
-    this.props.onFocus(this.state.query)
+    this._onFocus()
+  }
+
+  async _onFocus () {
+    const { status } = await Permissions.askAsync(Permissions.LOCATION)
+
+    if (status !== 'granted') {
+      return this._updateSearch()
+    }
+
+    const { coords } = await Location.getCurrentPositionAsync()
+    const [{ city }] = await Location.reverseGeocodeAsync({
+      latitude: coords.latitude,
+      longitude: coords.longitude
+    })
+
+    this._updateSearch({
+      location: `${coords.latitude},${coords.longitude}`,
+      city
+    })
+  }
+
+  _updateSearch (state = {}) {
+    this.setState(state)
+    this.props.onFocus({
+      city: this.state.city,
+      sort: this.state.sort
+    })
   }
 
   render () {
     return (
       <View style={styles.container}>
-        <SearchMenu />
+        <SearchMenu
+          level={this.state.level}
+          sort={this.state.sort}
+          city={this.state.city}
+        />
 
         <FlatList
           ItemSeparatorComponent={ItemSeparator}

@@ -4,10 +4,10 @@ import { StyleSheet, View } from 'react-native'
 import SearchSort from './SearchSort'
 import SearchWithinLocation from './SearchWithinLocation'
 
-const SearchMenu = () => (
+const SearchMenu = ({ city, level, sort }) => (
   <View style={styles.container}>
-    <SearchSort sortBy='top' />
-    <SearchWithinLocation />
+    <SearchSort sortBy={sort} />
+    <SearchWithinLocation city={city} level={level} />
   </View>
 )
 

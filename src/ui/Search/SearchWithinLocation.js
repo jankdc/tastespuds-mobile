@@ -2,7 +2,7 @@ import React from 'react'
 import { MaterialIcons } from '@expo/vector-icons'
 import { StyleSheet, View, Text } from 'react-native'
 
-const SearchWithinLocation = () => {
+const SearchWithinLocation = ({ level, city }) => {
   return (
     <View style={styles.container}>
       <MaterialIcons
@@ -13,7 +13,7 @@ const SearchWithinLocation = () => {
       />
 
       <Text style={styles.text}>
-        LONDON
+        { level === 'city' ? city.toUpperCase() : 'NEARBY' }
       </Text>
     </View>
   )
