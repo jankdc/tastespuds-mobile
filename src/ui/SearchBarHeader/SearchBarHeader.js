@@ -12,6 +12,7 @@ class SearchBarHeader extends PureComponent {
     }
 
     this._onCancel = this._onCancel.bind(this)
+    this._onSubmit = this._onSubmit.bind(this)
     this._onChangeText = this._onChangeText.bind(this)
   }
 
@@ -19,6 +20,11 @@ class SearchBarHeader extends PureComponent {
     this.setState({
       search: ''
     })
+  }
+
+  _onSubmit () {
+    const onSearch = this.props.navigation.getParam('onSearch')
+    onSearch(this.state.search)
   }
 
   _onChangeText (search) {
@@ -37,6 +43,8 @@ class SearchBarHeader extends PureComponent {
           onCancel={this._onCancel}
           onChangeText={this._onChangeText}
           containerStyle={styles.searchBar}
+          returnKeyType='search'
+          onSubmitEditing={this._onSubmit}
           cancelButtonTitle='Cancel'
         />
       </SafeAreaView>

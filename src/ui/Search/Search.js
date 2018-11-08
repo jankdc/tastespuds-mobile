@@ -28,10 +28,20 @@ class Search extends React.Component {
       city: 'Brighton',
       sort: 'top'
     }
+
+    this._onSearch = this._onSearch.bind(this)
   }
 
   componentDidMount () {
+    this.props.navigation.setParams({
+      onSearch: this._onSearch
+    })
+
     this._onFocus()
+  }
+
+  _onSearch (searchText) {
+    console.log(searchText)
   }
 
   async _onFocus () {
@@ -122,8 +132,10 @@ const styles = StyleSheet.create({
   }
 })
 
-Search.navigationOptions = {
-  header: () => <SearchBarHeader />
+Search.navigationOptions = ({ navigation }) => {
+  return {
+    header: () => <SearchBarHeader navigation={navigation} />
+  }
 }
 
 export default Search
