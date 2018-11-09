@@ -8,23 +8,34 @@ class SearchBarHeader extends PureComponent {
     super(props)
 
     this.state = {
-      search: ''
+      search: '',
+      searchedText: ''
     }
 
+    this._onClear = this._onClear.bind(this)
     this._onCancel = this._onCancel.bind(this)
     this._onSubmit = this._onSubmit.bind(this)
     this._onChangeText = this._onChangeText.bind(this)
   }
 
+  _onClear () {
+    const onClear = this.props.navigation.getParam('onClear')
+    onClear()
+  }
+
   _onCancel () {
     this.setState({
-      search: ''
+      search: this.state.searchedText
     })
   }
 
   _onSubmit () {
     const onSearch = this.props.navigation.getParam('onSearch')
     onSearch(this.state.search)
+
+    this.setState({
+      searchedText: this.state.search
+    })
   }
 
   _onChangeText (search) {
@@ -41,6 +52,7 @@ class SearchBarHeader extends PureComponent {
           platform={Platform.OS}
           placeholder='Search'
           onCancel={this._onCancel}
+          onClear={this._onClear}
           onChangeText={this._onChangeText}
           containerStyle={styles.searchBar}
           returnKeyType='search'

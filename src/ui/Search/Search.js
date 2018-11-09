@@ -29,15 +29,23 @@ class Search extends React.Component {
       sort: 'top'
     }
 
+    this._onClear = this._onClear.bind(this)
     this._onSearch = this._onSearch.bind(this)
   }
 
   componentDidMount () {
     this.props.navigation.setParams({
+      onClear: this._onClear,
       onSearch: this._onSearch
     })
 
     this._onFocus()
+  }
+
+  _onClear () {
+    this._updateSearch({
+      keyword: null
+    })
   }
 
   _onSearch (searchText) {
