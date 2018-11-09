@@ -41,7 +41,9 @@ class Search extends React.Component {
   }
 
   _onSearch (searchText) {
-    console.log(searchText)
+    this._updateSearch({
+      keyword: searchText
+    })
   }
 
   async _onFocus () {
@@ -68,15 +70,34 @@ class Search extends React.Component {
   }
 
   _updateSearch (state = {}) {
-    this.setState(state)
-    this.props.onFocus({
-      city: this.state.city,
-      sort: this.state.sort
-    })
+    const newState = {
+      ...this.state,
+      ...state
+    }
+
+    const query = {
+      sort: newState.sort
+    }
+
+    if (newState.level === 'city') {
+      query.city = newState.city
+    }
+
+    if (newState.keyword) {
+      query.keyword = newState.keyword
+    }
+
+    if (newState.level === 'nearby') {
+      query.location = `${newState.location.latitude},${newState.location.longitude}`
+    }
+
+    this.props.onSearch(query)
+
+    this.setState(newState)
   }
 
   _renderSearchList () {
-    if (!this.state.isReady) {
+    if (!this.state.isReady || this.props.isSearching) {
       return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
           <ActivityIndicator />

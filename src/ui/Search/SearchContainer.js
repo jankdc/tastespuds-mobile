@@ -8,6 +8,10 @@ const mapDispatchToProps = dispatch => {
       type: actions.GET_ITEMS,
       value: query
     }),
+    onSearch: (query) => dispatch({
+      type: actions.GET_ITEMS,
+      value: query
+    }),
     onRefresh: (query) => dispatch({
       type: actions.GET_ITEMS,
       value: query
