@@ -7,13 +7,31 @@ import {
   TouchableOpacity
 } from 'react-native'
 
-const SearchEmptyItem = ({ onPress }) => (
+const applyStyleIfDisabled = (disabled) => {
+  if (!disabled) {
+    return {}
+  }
+
+  return {
+    backgroundColor: 'grey',
+    opacity: 0.8
+  }
+}
+
+const SearchEmptyItem = ({ disabled, onPress }) => (
   <View>
     <View style={styles.placeholder}>
       <Text style={styles.placeholderText}>No results</Text>
     </View>
 
-    <TouchableOpacity style={styles.registerItemButton} onPress={onPress}>
+    <TouchableOpacity
+      style={[
+        styles.registerItemButton,
+        applyStyleIfDisabled(disabled)
+      ]}
+      disabled={disabled}
+      onPress={onPress}
+    >
       <Text style={styles.registerItemText}>Add New Item</Text>
     </TouchableOpacity>
   </View>

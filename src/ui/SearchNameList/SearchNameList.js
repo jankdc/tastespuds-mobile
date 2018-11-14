@@ -5,6 +5,7 @@ import SearchItem from './SearchItem'
 import SearchEmptyItem from './SearchEmptyItem'
 
 const SearchNameList = ({
+  disableRegister,
   searchResults,
   onRegister,
   onSelect
@@ -19,7 +20,10 @@ const SearchNameList = ({
     }
     keyExtractor={item => `${item.id}`}
     ListEmptyComponent={() =>
-      <SearchEmptyItem onPress={onRegister} />
+      <SearchEmptyItem
+        onPress={onRegister}
+        disabled={disableRegister}
+      />
     }
     alwaysBounceVertical={false}
   />

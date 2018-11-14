@@ -78,6 +78,7 @@ class AddReviewName extends React.Component {
         <SearchNameList
           onSelect={this._onSelect}
           onRegister={this._onRegister}
+          disableRegister={!this.state.search}
           searchResults={this.state.search
             ? this._filterByName()
             : this.props.items
