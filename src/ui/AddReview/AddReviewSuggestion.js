@@ -9,13 +9,13 @@ import {
 
 const AddReviewSuggestion = ({ onChangeText }) => (
   <View style={styles.container}>
-    <Text style={styles.label}>🆕 Suggestion (max. 50 characters)</Text>
+    <Text style={styles.label}>🆕 Suggestion (optional)</Text>
     <View style={styles.inputContainer}>
       <TextInput
         style={styles.input}
         maxLength={50}
         onChangeText={onChangeText}
-        placeholder='What needs work (this is optional)...'
+        placeholder='What needs work (max. 50 characters)...'
       />
     </View>
   </View>

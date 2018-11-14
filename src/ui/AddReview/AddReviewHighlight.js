@@ -9,13 +9,13 @@ import {
 
 const AddReviewHighlight = ({ onChangeText }) => (
   <View style={styles.container}>
-    <Text style={styles.label}>😄 Highlight (max. 50 characters)</Text>
+    <Text style={styles.label}>😄 Highlight</Text>
     <View style={styles.inputContainer}>
       <TextInput
         style={styles.input}
         maxLength={50}
         onChangeText={onChangeText}
-        placeholder='What is so great about it...'
+        placeholder='What is so great about it (max. 50 characters)...'
       />
     </View>
   </View>
