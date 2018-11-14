@@ -46,15 +46,6 @@ class AddReview extends React.Component {
     const imageData = this.props.navigation.getParam('imageData')
     const selectedItem = this.props.navigation.getParam('selectedItem')
 
-    console.log({
-      item: selectedItem,
-      rating: this.state.rating,
-      content: this.state.summary,
-      highlight: this.state.highlight,
-      suggestion: this.state.suggestion,
-      imageData
-    })
-
     this.props.onShare({
       item: selectedItem,
       rating: this.state.rating,
