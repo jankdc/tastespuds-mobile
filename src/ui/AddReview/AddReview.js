@@ -11,6 +11,8 @@ import {
 import AddReviewButton from './AddReviewButton'
 import AddReviewRating from './AddReviewRating'
 import AddReviewSummary from './AddReviewSummary'
+import AddReviewHighlight from './AddReviewHighlight'
+import AddReviewSuggestion from './AddReviewSuggestion'
 import AddReviewFieldButton from './AddReviewFieldButton'
 
 class AddReview extends React.Component {
@@ -19,7 +21,8 @@ class AddReview extends React.Component {
 
     this.state = {
       rating: 3,
-      summary: ''
+      summary: '',
+      highlight: ''
     }
 
     this._onShare = this._onShare.bind(this)
@@ -29,6 +32,8 @@ class AddReview extends React.Component {
     this._onSummaryText = this._onSummaryText.bind(this)
     this._onSummaryFocus = this._onSummaryFocus.bind(this)
     this._onRatingChange = this._onRatingChange.bind(this)
+    this._onHighlightText = this._onHighlightText.bind(this)
+    this._onSuggestionText = this._onSuggestionText.bind(this)
   }
 
   componentDidMount () {
@@ -40,12 +45,22 @@ class AddReview extends React.Component {
   _onShare () {
     const imageData = this.props.navigation.getParam('imageData')
     const selectedItem = this.props.navigation.getParam('selectedItem')
-    const selectedPlace = this.props.navigation.getParam('selectedPlace')
+
+    console.log({
+      item: selectedItem,
+      rating: this.state.rating,
+      content: this.state.summary,
+      highlight: this.state.highlight,
+      suggestion: this.state.suggestion,
+      imageData
+    })
 
     this.props.onShare({
       item: selectedItem,
       rating: this.state.rating,
       content: this.state.summary,
+      highlight: this.state.highlight,
+      suggestion: this.state.suggestion,
       imageData
     })
   }
@@ -59,6 +74,18 @@ class AddReview extends React.Component {
 
   _onGetPlace () {
     this.props.navigation.navigate('AddReviewPlace')
+  }
+
+  _onHighlightText (highlight) {
+    this.setState({
+      highlight
+    })
+  }
+
+  _onSuggestionText (suggestion) {
+    this.setState({
+      suggestion: suggestion === '' ? undefined : suggestion
+    })
   }
 
   _onSummaryText (summary) {
@@ -83,11 +110,11 @@ class AddReview extends React.Component {
     this.setState({ rating })
   }
 
-  _isReadyToShare() {
-    const { rating, summary } = this.state
+  _isReadyToShare () {
+    const { rating, summary, highlight } = this.state
     const selectedItem = this.props.navigation.getParam('selectedItem', null)
     const selectedPlace = this.props.navigation.getParam('selectedPlace', null)
-    return !!rating && !!summary && !!selectedItem && !!selectedPlace
+    return !!rating && !!summary && !!selectedItem && !!selectedPlace && !!highlight
   }
 
   _renderOtherFields () {
@@ -103,11 +130,19 @@ class AddReview extends React.Component {
 
     return (
       <View style={styles.subContainer}>
+        <AddReviewHighlight
+          onChangeText={this._onHighlightText}
+        />
+
+        <AddReviewSuggestion
+          onChangeText={this._onSuggestionText}
+        />
+
         <AddReviewFieldButton
           label='🏘️ Place'
           value={selectedPlace && selectedPlace.name}
           onPress={this._onGetPlace}
-          placeholder="Enter the place..."
+          placeholder='Enter the place...'
         />
 
         <AddReviewFieldButton
@@ -115,7 +150,7 @@ class AddReview extends React.Component {
           value={selectedItem && selectedItem.name}
           onPress={this._onGetItem}
           disabled={selectedPlace === null}
-          placeholder="Enter the item..."
+          placeholder='Enter the item...'
         />
 
         <AddReviewRating

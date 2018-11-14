@@ -29,7 +29,9 @@ export function * addReview ({ value }) {
       rating: value.rating,
       assets: [result.id],
       user_id: profile.sub,
-      content: value.content
+      content: value.content,
+      highlight: value.highlight,
+      suggestion: value.suggestion
     })
 
     yield call(navigate, 'AppTab')

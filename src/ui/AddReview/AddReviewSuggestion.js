@@ -7,17 +7,15 @@ import {
   StyleSheet
 } from 'react-native'
 
-const AddReviewSummary = ({ onBlur, onChangeText, onFocus }) => (
+const AddReviewSuggestion = ({ onChangeText }) => (
   <View style={styles.container}>
-    <Text style={styles.label}>🍴 Item Description</Text>
+    <Text style={styles.label}>🆕 Suggestion (max. 50 characters)</Text>
     <View style={styles.inputContainer}>
       <TextInput
         style={styles.input}
-        onBlur={onBlur}
-        onFocus={onFocus}
+        maxLength={50}
         onChangeText={onChangeText}
-        multiline
-        placeholder='Write a description...'
+        placeholder='What needs work (this is optional)...'
       />
     </View>
   </View>
@@ -38,7 +36,7 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     padding: 10,
-    height: 100,
+    height: 50,
     backgroundColor: 'white'
   },
   input: {
@@ -47,4 +45,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default AddReviewSummary
+export default AddReviewSuggestion
