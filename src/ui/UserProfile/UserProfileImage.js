@@ -4,10 +4,10 @@ import { StyleSheet } from 'react-native'
 
 const IMAGE_SIZE = 100
 
-const UserProfileImage = () => (
+const UserProfileImage = ({ uri }) => (
   <Image
     style={styles.image}
-    source={{ uri: 'https://via.placeholder.com/150x150' }}
+    source={{ uri }}
     imageStyle={{ borderRadius: IMAGE_SIZE / 2 }}
   />
 )

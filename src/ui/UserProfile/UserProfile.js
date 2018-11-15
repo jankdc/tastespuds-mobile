@@ -1,17 +1,26 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import UserProfileStats from './UserProfileStats'
 import UserProfileImage from './UserProfileImage'
 
-const UserProfile = () => (
-  <View style={styles.container}>
-    <View style={styles.header}>
-      <UserProfileImage />
-      <UserProfileStats />
-    </View>
-    <Text style={styles.name}>Jan Karlo Dela Cruz</Text>
-  </View>
-)
+class UserProfile extends Component {
+  render () {
+    const { user } = this.props
+
+    return (
+      <View style={styles.container}>
+        <View style={styles.header}>
+          <UserProfileImage uri={user.picture} />
+          <UserProfileStats />
+        </View>
+        <View style={styles.userInfo}>
+          <Text style={styles.email}>{user.email}</Text>
+          <Text style={styles.username}>@{user.nickname}</Text>
+        </View>
+      </View>
+    )
+  }
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -21,18 +30,22 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row'
   },
-  name: {
-    marginVertical: 15,
+  email: {
+    marginVertical: 10,
     fontWeight: '600',
     fontSize: 16
+  },
+  username: {
+    fontSize: 12,
+    fontWeight: '600',
+    marginBottom: 10,
+    color: 'grey'
   }
 })
 
-UserProfile.navigationOptions = {
-  title: 'Tastespuds',
-  headerTitleStyle: {
-    fontFamily: 'baloo',
-    fontSize: 28
+UserProfile.navigationOptions = ({ navigation }) => {
+  return {
+    title: 'User Profile'
   }
 }
 

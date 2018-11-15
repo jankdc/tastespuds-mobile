@@ -18,6 +18,7 @@ export default function user (state = initialState, action = {}) {
     case actions.LOGIN_PASSED:
       return {
         ...state,
+        info: action.value,
         isLoggingIn: false
       }
     case actions.LOGIN_FAILED:
