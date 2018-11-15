@@ -15,6 +15,13 @@ class UserProfile extends Component {
     this.props.onFocus()
   }
 
+  _numberOfLikes () {
+    return this.props.user.reviews.reduce(
+      (num, review) => num + parseInt(review.likes, 10),
+      0
+    )
+  }
+
   render () {
     if (this.props.isLoading || !this.props.user) {
       return (
@@ -30,7 +37,11 @@ class UserProfile extends Component {
       <View style={styles.container}>
         <View style={styles.header}>
           <UserProfileImage uri={user.picture} />
-          <UserProfileStats />
+
+          <UserProfileStats
+            reviews={user.reviews.length}
+            likes={this._numberOfLikes()}
+          />
         </View>
         <View style={styles.userInfo}>
           <Text style={styles.email}>{user.email}</Text>

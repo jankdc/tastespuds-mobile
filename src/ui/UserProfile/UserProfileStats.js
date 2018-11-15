@@ -2,12 +2,11 @@ import React from 'react'
 import { View, StyleSheet } from 'react-native'
 import UserProfileStatsItem from './UserProfileStatsItem'
 
-const UserProfileStats = () => (
+const UserProfileStats = ({ reviews, likes }) => (
   <View style={styles.container}>
     <View style={styles.stats}>
-      <UserProfileStatsItem label='reviews' value='0' />
-      <UserProfileStatsItem label='followers' value='0' />
-      <UserProfileStatsItem label='likes' value='0' />
+      <UserProfileStatsItem label='reviews' value={reviews || 0} />
+      <UserProfileStatsItem label='likes' value={likes || 0} />
     </View>
   </View>
 )
