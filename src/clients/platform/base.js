@@ -3,10 +3,14 @@ import { toQueryString } from '../../utils/query'
 import { SecureStore } from 'expo'
 
 export class PlatformApiError extends Error {
-  constructor (message, id) {
+  constructor (message, id, options = {}) {
     super(message)
     this.id = id
     this.name = 'PlatformApiError'
+
+    if (options.params) {
+      this.params = options.params
+    }
   }
 }
 
@@ -94,8 +98,10 @@ async function extractResponse (response) {
 
   const errorText = await response.text()
   try {
-    const { error: id, description } = JSON.parse(errorText)
-    error = new PlatformApiError(description, id)
+    const { error: id, description, params } = JSON.parse(errorText)
+    error = new PlatformApiError(description, id, {
+      params
+    })
   } catch (parseError) {
     error = new PlatformApiError(errorText)
   }

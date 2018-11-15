@@ -43,8 +43,8 @@ export default function * bootSaga () {
 
   try {
     const { idToken } = yield call(getCredentials)
-    const user = yield call(jwtDecode, idToken)
-    yield put({ type: actions.LOGIN_PASSED, value: user })
+    yield call(jwtDecode, idToken)
+    yield put({ type: actions.LOGIN_PASSED })
     yield call(navigate, 'App')
   } catch (error) {
     yield all([

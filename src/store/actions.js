@@ -44,3 +44,8 @@ export const GET_ITEMS = 'tastespuds/search/GET_ITEMS'
 export const GET_ITEMS_CLEAR = 'tastespuds/search/GET_ITEMS_CLEAR'
 export const GET_ITEMS_FAILED = 'tastespuds/search/GET_ITEMS_FAILED'
 export const GET_ITEMS_PASSED = 'tastespuds/search/GET_ITEMS_PASSED'
+
+// user profile
+export const GET_ME = 'tastespuds/profile/GET_ME'
+export const GET_ME_FAILED = 'tastespuds/profile/GET_ME_FAILED'
+export const GET_ME_PASSED = 'tastespuds/profile/GET_ME_PASSED'

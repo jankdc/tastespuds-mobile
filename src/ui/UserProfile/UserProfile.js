@@ -1,10 +1,29 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+
+import {
+  ActivityIndicator,
+  View,
+  Text,
+  StyleSheet
+} from 'react-native'
+
 import UserProfileStats from './UserProfileStats'
 import UserProfileImage from './UserProfileImage'
 
 class UserProfile extends Component {
+  componentDidMount () {
+    this.props.onFocus()
+  }
+
   render () {
+    if (this.props.isLoading || !this.props.user) {
+      return (
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+          <ActivityIndicator />
+        </View>
+      )
+    }
+
     const { user } = this.props
 
     return (
@@ -15,7 +34,7 @@ class UserProfile extends Component {
         </View>
         <View style={styles.userInfo}>
           <Text style={styles.email}>{user.email}</Text>
-          <Text style={styles.username}>@{user.nickname}</Text>
+          <Text style={styles.username}>@{user.username}</Text>
         </View>
       </View>
     )
