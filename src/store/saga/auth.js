@@ -7,7 +7,8 @@ import {
   fork,
   put,
   all,
-  cancelled
+  cancelled,
+  cancel
 } from 'redux-saga/effects'
 
 import { navigate } from '../../nav/NavigationService'
@@ -89,8 +90,9 @@ export function * startAuthFlow () {
 export default function * authSaga () {
   while (true) {
     yield take(actions.LOGIN)
-    yield fork(startAuthFlow)
+    const task = yield fork(startAuthFlow)
     yield take([actions.LOGOUT, actions.LOGIN_FAILED, actions.LOGIN_CANCELLED])
+    yield cancel(task)
     yield all([
       call(SecureStore.deleteItemAsync, 'expiresIn'),
       call(SecureStore.deleteItemAsync, 'accessToken'),
