@@ -1,10 +1,9 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 
-const ReviewContent = ({ username, content }) => (
+const ReviewSuggestion = ({ suggestion }) => (
   <View style={styles.container}>
-    <Text style={styles.user}>{username}</Text>
-    <Text style={styles.content}>{content}</Text>
+    <Text style={styles.content}>😞 {suggestion}</Text>
   </View>
 )
 
@@ -14,15 +13,16 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: 'white'
   },
-  user: {
+  label: {
     marginLeft: 12,
     fontWeight: 'bold',
     fontSize: 12
   },
   content: {
-    marginLeft: 5,
+    marginLeft: 12,
+    fontStyle: 'italic',
     fontSize: 12
   }
 })
 
-export default ReviewContent
+export default ReviewSuggestion

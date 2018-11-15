@@ -6,6 +6,8 @@ import ReviewDate from './ReviewDate'
 import ReviewLikes from './ReviewLikes'
 import ReviewRating from './ReviewRating'
 import ReviewContent from './ReviewContent'
+import ReviewHighlight from './ReviewHighlight'
+import ReviewSuggestion from './ReviewSuggestion'
 
 class ReviewFooter extends React.Component {
   constructor (props) {
@@ -54,6 +56,14 @@ class ReviewFooter extends React.Component {
         <ReviewContent
           username={review.user.username}
           content={review.content}
+        />
+
+        <ReviewHighlight
+          highlight={review.highlight}
+        />
+
+        <ReviewSuggestion
+          suggestion={review.suggestion}
         />
 
         <ReviewDate

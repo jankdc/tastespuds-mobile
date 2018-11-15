@@ -9,7 +9,7 @@ import {
 
 const AddReviewSuggestion = ({ onChangeText }) => (
   <View style={styles.container}>
-    <Text style={styles.label}>🆕 Suggestion (optional)</Text>
+    <Text style={styles.label}>😞 Suggestion (optional)</Text>
     <View style={styles.inputContainer}>
       <TextInput
         style={styles.input}
