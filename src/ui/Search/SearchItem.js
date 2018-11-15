@@ -69,6 +69,8 @@ class SearchItem extends PureComponent {
             { this._renderBadge(`${item.reviews} Review${item.reviews ? 's' : ''}`) }
           </View>
 
+          <Text style={styles.highlight} numberOfLines={1}>💬 "{item.highlight}"</Text>
+
           <View style={styles.rowContent}>
             <SearchItemRating rating={item.rating} />
             <SearchItemLikes likes={item.likes} />
@@ -82,8 +84,7 @@ class SearchItem extends PureComponent {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    backgroundColor: 'white',
-    height: 120
+    backgroundColor: 'white'
   },
   content: {
     flex: 1,
@@ -98,7 +99,15 @@ const styles = StyleSheet.create({
   rowContent: {
     flex: 1,
     flexDirection: 'row',
+    paddingTop: 12,
+    paddingBottom: 10,
     justifyContent: 'space-between'
+  },
+  highlight: {
+    paddingTop: 8,
+    fontSize: 10,
+    fontStyle: 'italic',
+    textAlign: 'center'
   }
 })
 
