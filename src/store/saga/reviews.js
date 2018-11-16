@@ -84,7 +84,18 @@ export function * searchReviews () {
   }
 }
 
+export function * getReview ({ value: id }) {
+  try {
+    const review = yield call(platform.getReview, id)
+
+    yield put({ type: actions.GET_REVIEW_PASSED, value: review })
+  } catch (error) {
+    yield put({ type: actions.GET_REVIEW_FAILED, error })
+  }
+}
+
 export default function * reviewsSaga () {
+  yield takeLatest(actions.GET_REVIEW, getReview)
   yield takeLatest(actions.ADD_REVIEW, addReview)
   yield takeLatest(actions.LIKE_REVIEW, likeReview)
   yield takeLatest(actions.UNLIKE_REVIEW, unlikeReview)

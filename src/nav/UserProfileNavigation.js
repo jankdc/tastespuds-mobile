@@ -3,10 +3,14 @@ import { EvilIcons } from '@expo/vector-icons'
 import { createStackNavigator } from 'react-navigation'
 
 import UserProfile from '../ui/UserProfile'
+import SingleReview from '../ui/SingleReview'
 
 const UserProfileNavigation = createStackNavigator({
   UserProfile: {
     screen: UserProfile
+  },
+  SingleReview: {
+    screen: SingleReview
   }
 })
 

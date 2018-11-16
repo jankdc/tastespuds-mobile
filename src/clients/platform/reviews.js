@@ -8,6 +8,10 @@ export async function getReviews (location) {
   })
 }
 
+export async function getReview (id) {
+  return get(`/reviews/${id}`)
+}
+
 export async function makeReview (review) {
   return post('/reviews', {
     body: {

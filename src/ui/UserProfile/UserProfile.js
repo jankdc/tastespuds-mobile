@@ -22,6 +22,8 @@ class UserProfile extends Component {
     this.state = {
       hasMounted: false
     }
+
+    this._onPress = this._onPress.bind(this)
   }
 
   componentDidMount () {
@@ -34,6 +36,12 @@ class UserProfile extends Component {
       (num, review) => num + parseInt(review.likes, 10),
       0
     )
+  }
+
+  _onPress (review) {
+    this.props.navigation.navigate('SingleReview', {
+      reviewId: review.id
+    })
   }
 
   render () {
@@ -73,7 +81,10 @@ class UserProfile extends Component {
 
         <Divider />
 
-        <UserProfileGallery reviews={user.reviews} />
+        <UserProfileGallery
+          reviews={user.reviews}
+          onPress={this._onPress}
+        />
       </ScrollView>
     )
   }

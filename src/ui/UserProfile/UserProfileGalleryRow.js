@@ -1,6 +1,12 @@
 import React, { PureComponent } from 'react'
 import Image from 'react-native-image-progress'
-import { StyleSheet, View } from 'react-native'
+
+import {
+  View,
+  StyleSheet,
+  TouchableOpacity
+} from 'react-native'
+
 import { ASSETS_URL } from 'react-native-dotenv'
 
 class UserProfileGalleryRow extends PureComponent {
@@ -10,9 +16,9 @@ class UserProfileGalleryRow extends PureComponent {
     return (
       <View style={styles.container}>
         {
-          columns.map((c, index) =>
-            <View
-              key={c.id}
+          columns.map((review, index) =>
+            <TouchableOpacity
+              key={review.id}
               style={{
                 paddingRight: index !== columns.length - 1 ? 1 : 0,
                 width: size,
@@ -20,16 +26,17 @@ class UserProfileGalleryRow extends PureComponent {
                 alignItems: 'center',
                 justifyContent: 'center'
               }}
+              onPress={() => this.props.onPress(review)}
             >
               <Image
-                source={{ uri: `${ASSETS_URL}/${c.assets[0]}` }}
+                source={{ uri: `${ASSETS_URL}/${review.assets[0]}` }}
                 resizeMode='cover'
                 style={{
                   width: '100%',
                   height: '100%'
                 }}
               />
-            </View>
+            </TouchableOpacity>
           )
         }
       </View>

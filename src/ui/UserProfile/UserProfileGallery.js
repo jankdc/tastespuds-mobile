@@ -43,6 +43,7 @@ class UserProfileGallery extends Component {
 
     return rows.map((columns, index) =>
       <UserProfileGalleryRow
+        onPress={this.props.onPress}
         columns={columns}
         size={rowHeight}
         key={index}
