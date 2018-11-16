@@ -14,6 +14,7 @@ import { Divider } from 'react-native-elements'
 import UserProfileStats from './UserProfileStats'
 import UserProfileImage from './UserProfileImage'
 import UserProfileGallery from './UserProfileGallery'
+import UserProfileOptions from './UserProfileOptions'
 
 class UserProfile extends Component {
   constructor (props) {
@@ -117,7 +118,8 @@ const styles = StyleSheet.create({
 
 UserProfile.navigationOptions = ({ navigation }) => {
   return {
-    title: 'User Profile'
+    title: 'User Profile',
+    headerRight: <UserProfileOptions />
   }
 }
 
