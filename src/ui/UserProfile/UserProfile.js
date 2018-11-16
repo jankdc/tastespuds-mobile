@@ -7,8 +7,11 @@ import {
   StyleSheet
 } from 'react-native'
 
+import { Divider } from 'react-native-elements'
+
 import UserProfileStats from './UserProfileStats'
 import UserProfileImage from './UserProfileImage'
+import UserProfileGallery from './UserProfileGallery'
 
 class UserProfile extends Component {
   componentDidMount () {
@@ -35,18 +38,24 @@ class UserProfile extends Component {
 
     return (
       <View style={styles.container}>
-        <View style={styles.header}>
-          <UserProfileImage uri={user.picture} />
+        <View style={styles.headerContainer}>
+          <View style={styles.header}>
+            <UserProfileImage uri={user.picture} />
 
-          <UserProfileStats
-            reviews={user.reviews.length}
-            likes={this._numberOfLikes()}
-          />
+            <UserProfileStats
+              reviews={user.reviews.length}
+              likes={this._numberOfLikes()}
+            />
+          </View>
+          <View style={styles.userInfo}>
+            <Text style={styles.email}>{user.email}</Text>
+            <Text style={styles.username}>@{user.username}</Text>
+          </View>
         </View>
-        <View style={styles.userInfo}>
-          <Text style={styles.email}>{user.email}</Text>
-          <Text style={styles.username}>@{user.username}</Text>
-        </View>
+
+        <Divider />
+
+        <UserProfileGallery reviews={user.reviews} />
       </View>
     )
   }
@@ -54,6 +63,9 @@ class UserProfile extends Component {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1
+  },
+  headerContainer: {
     padding: 10,
     backgroundColor: 'white'
   },
