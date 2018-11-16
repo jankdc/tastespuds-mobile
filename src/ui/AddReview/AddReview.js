@@ -4,6 +4,7 @@ import {
   View,
   Button,
   Keyboard,
+  Platform,
   ScrollView,
   StyleSheet
 } from 'react-native'
@@ -186,7 +187,10 @@ AddReview.navigationOptions = ({ navigation }) => {
   }
 
   return {
-    headerLeft: (props) => <Button {...props} title='Cancel' />,
+    headerLeft: Platform.select({
+      ios: (props) => <Button {...props} title='Cancel' />,
+      android: null
+    }),
     title: 'New Review'
   }
 }

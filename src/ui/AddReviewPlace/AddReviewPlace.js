@@ -4,6 +4,7 @@ import {
   ActivityIndicator,
   StyleSheet,
   TextInput,
+  Platform,
   Button,
   Text,
   View
@@ -137,7 +138,10 @@ const styles = StyleSheet.create({
 })
 
 AddReviewPlace.navigationOptions = {
-  headerLeft: (props) => <Button {...props} title='Cancel' />,
+  headerLeft: Platform.select({
+    ios: (props) => <Button {...props} title='Cancel' />,
+    android: null
+  }),
   title: 'Choose Place'
 }
 
