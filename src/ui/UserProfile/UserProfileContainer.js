@@ -5,7 +5,8 @@ import * as actions from '../../store/actions'
 
 const mapDispatchToProps = dispatch => {
   return {
-    onFocus: () => dispatch({ type: actions.GET_ME })
+    onFocus: () => dispatch({ type: actions.GET_ME }),
+    onRefresh: () => dispatch({ type: actions.GET_ME })
   }
 }
 
