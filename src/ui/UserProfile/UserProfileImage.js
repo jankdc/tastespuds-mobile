@@ -2,7 +2,7 @@ import React from 'react'
 import Image from 'react-native-image-progress'
 import { StyleSheet } from 'react-native'
 
-const IMAGE_SIZE = 100
+const IMAGE_SIZE = 95
 
 const UserProfileImage = ({ uri }) => (
   <Image
