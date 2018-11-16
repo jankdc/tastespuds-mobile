@@ -84,7 +84,8 @@ class SearchItem extends PureComponent {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    backgroundColor: 'white'
+    backgroundColor: 'white',
+    height: 140
   },
   content: {
     flex: 1,
