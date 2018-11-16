@@ -97,6 +97,7 @@ class AddReviewPlace extends React.Component {
             returnKeyType='done'
             clearButtonMode='while-editing'
             onSubmitEditing={this._onSubmit}
+            underlineColorAndroid='transparent'
             contextMenuHidden
           />
 

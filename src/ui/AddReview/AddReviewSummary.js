@@ -18,6 +18,7 @@ const AddReviewSummary = ({ onBlur, onChangeText, onFocus }) => (
         onChangeText={onChangeText}
         multiline
         placeholder='Write a description...'
+        underlineColorAndroid='transparent'
       />
     </View>
   </View>

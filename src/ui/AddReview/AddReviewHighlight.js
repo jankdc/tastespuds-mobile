@@ -16,6 +16,7 @@ const AddReviewHighlight = ({ onChangeText }) => (
         maxLength={50}
         onChangeText={onChangeText}
         placeholder='What is so great about it (max. 50 characters)...'
+        underlineColorAndroid='transparent'
       />
     </View>
   </View>

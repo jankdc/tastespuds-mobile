@@ -16,6 +16,7 @@ const AddReviewSuggestion = ({ onChangeText }) => (
         maxLength={50}
         onChangeText={onChangeText}
         placeholder='What needs work (max. 50 characters)...'
+        underlineColorAndroid='transparent'
       />
     </View>
   </View>

@@ -112,6 +112,7 @@ class AddReviewName extends React.Component {
             onChangeText={this._onChangeText}
             returnKeyType='done'
             clearButtonMode='while-editing'
+            underlineColorAndroid='transparent'
             contextMenuHidden
           />
 
