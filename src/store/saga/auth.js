@@ -94,6 +94,7 @@ export default function * authSaga () {
     yield take([actions.LOGOUT, actions.LOGIN_FAILED, actions.LOGIN_CANCELLED])
     yield cancel(task)
     yield all([
+      call(SecureStore.deleteItemAsync, 'idToken'),
       call(SecureStore.deleteItemAsync, 'expiresIn'),
       call(SecureStore.deleteItemAsync, 'accessToken'),
       call(SecureStore.deleteItemAsync, 'refreshToken')
