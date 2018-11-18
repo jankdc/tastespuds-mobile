@@ -54,3 +54,8 @@ export const GET_ME_PASSED = 'tastespuds/profile/GET_ME_PASSED'
 export const GET_REVIEW = 'tastespuds/single-review/GET_REVIEW'
 export const GET_REVIEW_FAILED = 'tastespuds/single-review/GET_REVIEW_FAILED'
 export const GET_REVIEW_PASSED = 'tastespuds/single-review/GET_REVIEW_PASSED'
+
+// comments
+export const GET_COMMENTS = 'tastespuds/comments/GET_COMMENTS'
+export const GET_COMMENTS_FAILED = 'tastespuds/comments/GET_COMMENTS_FAILED'
+export const GET_COMMENTS_PASSED = 'tastespuds/comments/GET_COMMENTS_PASSED'

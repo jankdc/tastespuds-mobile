@@ -3,10 +3,14 @@ import { Ionicons } from '@expo/vector-icons'
 import { createStackNavigator } from 'react-navigation'
 
 import Home from '../ui/Home'
+import Comments from '../ui/Comments'
 
 const HomeNavigation = createStackNavigator({
   Home: {
     screen: Home
+  },
+  Comments: {
+    screen: Comments
   }
 })
 

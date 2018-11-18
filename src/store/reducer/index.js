@@ -1,6 +1,7 @@
 import home from './home'
 import search from './search'
 import profile from './profile'
+import comments from './comments'
 import addReview from './add-review'
 import singleReview from './single-review'
 
@@ -10,6 +11,7 @@ const rootReducer = combineReducers({
   home,
   search,
   profile,
+  comments,
   addReview,
   singleReview
 })

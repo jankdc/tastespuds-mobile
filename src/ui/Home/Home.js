@@ -24,7 +24,9 @@ class Home extends React.Component {
   }
 
   _onComment (review) {
-    this.props.onComment(review)
+    this.props.navigation.navigate('Comments', {
+      review
+    })
   }
 
   _renderLoading () {

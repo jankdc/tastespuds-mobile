@@ -6,6 +6,7 @@ import usersSaga from './users'
 import itemsSaga from './items'
 import placesSaga from './places'
 import reviewsSaga from './reviews'
+import commentsSaga from './comments'
 
 export default function * rootSaga () {
   yield all([
@@ -14,6 +15,7 @@ export default function * rootSaga () {
     call(itemsSaga),
     call(usersSaga),
     call(placesSaga),
-    call(reviewsSaga)
+    call(reviewsSaga),
+    call(commentsSaga)
   ])
 }
