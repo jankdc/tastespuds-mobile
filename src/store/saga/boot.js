@@ -46,14 +46,16 @@ export default function * bootSaga () {
     yield call(jwtDecode, idToken)
     yield put({ type: actions.LOGIN_PASSED })
     yield call(navigate, 'App')
+    yield take([actions.LOGOUT])
   } catch (error) {
+    console.log(error)
+  } finally {
     yield all([
       call(SecureStore.deleteItemAsync, 'idToken'),
       call(SecureStore.deleteItemAsync, 'expiresIn'),
       call(SecureStore.deleteItemAsync, 'accessToken'),
       call(SecureStore.deleteItemAsync, 'refreshToken')
     ])
-
     yield call(navigate, 'Login')
   }
 }
