@@ -4,9 +4,9 @@ import * as actions from '../actions'
 
 export function * getComments ({ value: reviewId }) {
   try {
-    const comments = yield call(platform.getComments, reviewId)
+    const response = yield call(platform.getComments, reviewId)
 
-    yield put({ type: actions.GET_COMMENTS_PASSED, value: comments })
+    yield put({ type: actions.GET_COMMENTS_PASSED, value: response })
   } catch (error) {
     yield put({ type: actions.GET_COMMENTS_FAILED, error })
   }

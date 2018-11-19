@@ -2,6 +2,7 @@ import * as actions from '../actions'
 
 const initialState = {
   comments: null,
+  metadata: {},
   isLoading: false
 }
 
@@ -15,7 +16,8 @@ export default function comments (state = initialState, action = {}) {
     case actions.GET_COMMENTS_PASSED:
       return {
         ...state,
-        comments: action.value,
+        comments: action.value.comments,
+        metadata: action.value.response_metadata,
         isLoading: false
       }
     case actions.GET_COMMENTS_FAILED:
