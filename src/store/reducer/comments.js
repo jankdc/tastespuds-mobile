@@ -8,6 +8,10 @@ const initialState = {
 
 export default function comments (state = initialState, action = {}) {
   switch (action.type) {
+    case actions.CLEAR_COMMENTS:
+      return {
+        ...initialState
+      }
     case actions.GET_COMMENTS:
       return {
         ...state,

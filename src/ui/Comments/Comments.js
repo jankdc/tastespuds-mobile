@@ -15,6 +15,10 @@ class Comments extends Component {
     this.props.onFocus(review.id)
   }
 
+  componentWillUnmount () {
+    this.props.onClear()
+  }
+
   _renderLoading () {
     return (
       <View style={{

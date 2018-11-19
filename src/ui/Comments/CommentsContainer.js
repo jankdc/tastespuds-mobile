@@ -8,6 +8,9 @@ const mapDispatchToProps = dispatch => {
     onFocus: (reviewId) => dispatch({
       type: actions.GET_COMMENTS,
       value: reviewId
+    }),
+    onClear: () => dispatch({
+      type: actions.CLEAR_COMMENTS
     })
   }
 }
