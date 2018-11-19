@@ -11,17 +11,19 @@ import Comment from './Comment'
 
 class Comments extends Component {
   componentDidMount () {
-    const review = this.props.navigation.getParam('reviewId')
+    const review = this.props.navigation.getParam('review')
     this.props.onFocus(review.id)
   }
 
   _renderLoading () {
     return (
-      <ActivityIndicator
-        style={{
-          alignSelf: 'center'
-        }}
-      />
+      <View style={{
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center'
+      }}>
+        <ActivityIndicator />
+      </View>
     )
   }
 
