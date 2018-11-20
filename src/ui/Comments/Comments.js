@@ -4,10 +4,12 @@ import {
   ActivityIndicator,
   StyleSheet,
   FlatList,
-  View
+  View,
+  KeyboardAvoidingView
 } from 'react-native'
 
 import Comment from './Comment'
+import CommentsInput from './CommentsInput'
 
 class Comments extends Component {
   componentDidMount () {
@@ -39,15 +41,17 @@ class Comments extends Component {
     }
 
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView behavior='padding' style={styles.container}>
         <FlatList
           data={comments}
+          style={styles.commentsList}
           renderItem={({ item: comment }) => (
             <Comment comment={comment} />
           )}
           keyExtractor={({ id }) => id}
         />
-      </View>
+        <CommentsInput />
+      </KeyboardAvoidingView>
     )
   }
 }
@@ -58,6 +62,9 @@ Comments.navigationOptions = {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1
+  },
+  commentsList: {
     flex: 1
   }
 })
