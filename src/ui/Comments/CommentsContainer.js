@@ -11,6 +11,10 @@ const mapDispatchToProps = dispatch => {
     }),
     onClear: () => dispatch({
       type: actions.CLEAR_COMMENTS
+    }),
+    onSend: (commentData) => dispatch({
+      type: actions.ADD_COMMENT,
+      value: commentData
     })
   }
 }

@@ -60,4 +60,8 @@ export const GET_COMMENTS = 'tastespuds/comments/GET_COMMENTS'
 export const GET_COMMENTS_FAILED = 'tastespuds/comments/GET_COMMENTS_FAILED'
 export const GET_COMMENTS_PASSED = 'tastespuds/comments/GET_COMMENTS_PASSED'
 
+export const ADD_COMMENT = 'tastespuds/comments/ADD_COMMENT'
+export const ADD_COMMENT_FAILED = 'tastespuds/comments/ADD_COMMENT_FAILED'
+export const ADD_COMMENT_PASSED = 'tastespuds/comments/ADD_COMMENT_PASSED'
+
 export const CLEAR_COMMENTS = 'tastespuds/comments/CLEAR_COMMENTS'

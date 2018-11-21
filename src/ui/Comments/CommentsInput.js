@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import {
   View,
+  Text,
   StyleSheet,
   TextInput,
   TouchableOpacity,
-  Text
+  ActivityIndicator
 } from 'react-native'
 
 function applyDisabled (disabled) {
@@ -26,6 +27,7 @@ class CommentsInput extends Component {
       commentText: ''
     }
 
+    this._onSend = this._onSend.bind(this)
     this._onBlur = this._onBlur.bind(this)
     this._onFocus = this._onFocus.bind(this)
     this._onChangeText = this._onChangeText.bind(this)
@@ -49,31 +51,52 @@ class CommentsInput extends Component {
     })
   }
 
-  render () {
+  _onSend () {
+    this.props.onSend(this.state.commentText)
+  }
+
+  _renderPostButton () {
     const disabled = this.state.commentText === ''
 
+    if (this.props.isSending) {
+      return (
+        <View style={styles.postButtonContainer}>
+          <ActivityIndicator />
+        </View>
+      )
+    }
+
+    if (this.state.isFocused) {
+      return (
+        <TouchableOpacity
+          style={styles.postButtonContainer}
+          onPress={this._onSend}
+          disabled={disabled}
+        >
+          <Text style={[styles.postButtonTitle, applyDisabled(disabled)]}>
+            Post
+          </Text>
+        </TouchableOpacity>
+      )
+    }
+  }
+
+  render () {
     return (
       <View style={styles.container}>
         <View style={styles.inputContainer}>
           <TextInput
+            multiline
+            selectTextOnFocus
             onChangeText={this._onChangeText}
             placeholder='Add a comment...'
             onFocus={this._onFocus}
+            enablesReturnKeyAutomatically
             onBlur={this._onBlur}
             style={styles.input}
           />
 
-          {
-            this.state.isFocused &&
-            <TouchableOpacity
-              style={styles.postButtonContainer}
-              disabled={disabled}
-            >
-              <Text style={[styles.postButtonTitle, applyDisabled(disabled)]}>
-                Post
-              </Text>
-            </TouchableOpacity>
-          }
+          { this._renderPostButton() }
         </View>
       </View>
     )
@@ -82,7 +105,7 @@ class CommentsInput extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    height: 60,
+    height: 80,
     justifyContent: 'center',
     backgroundColor: 'white',
     paddingHorizontal: 5,

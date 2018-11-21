@@ -3,7 +3,8 @@ import * as actions from '../actions'
 const initialState = {
   comments: null,
   metadata: {},
-  isLoading: false
+  isLoading: false,
+  isSending: false
 }
 
 export default function comments (state = initialState, action = {}) {
@@ -28,6 +29,22 @@ export default function comments (state = initialState, action = {}) {
       return {
         ...state,
         isLoading: false
+      }
+    case actions.ADD_COMMENT:
+      return {
+        ...state,
+        isSending: true
+      }
+    case actions.ADD_COMMENT_PASSED:
+      return {
+        ...state,
+        comments: (state.comments && [action.value].concat(state.comments)) || null,
+        isSending: false
+      }
+    case actions.ADD_COMMENT_FAILED:
+      return {
+        ...state,
+        isSending: false
       }
     default:
       return state
