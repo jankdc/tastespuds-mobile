@@ -12,8 +12,8 @@ import Image from 'react-native-image-progress'
 import { Entypo, EvilIcons } from '@expo/vector-icons'
 
 const HeartIcon = ({ liked }) => (liked
-  ? <Entypo name='heart' size={30} color='tomato' />
-  : <EvilIcons name='heart' size={35} color='black' />
+  ? <Entypo name='heart' size={20} color='tomato' />
+  : <EvilIcons name='heart' size={25} color='lightgrey' />
 )
 
 const Comment = ({ comment }) => (
@@ -24,7 +24,7 @@ const Comment = ({ comment }) => (
           style={styles.userIcon}
           resizeMode='cover'
           source={{ uri: comment.user.picture }}
-          imageStyle={{ borderRadius: 10 }}
+          imageStyle={{ borderRadius: 15 }}
         />
       </View>
       <View style={styles.commentColumn}>
@@ -50,20 +50,35 @@ const Comment = ({ comment }) => (
 
 const styles = StyleSheet.create({
   container: {
-    padding: 10
+    padding: 10,
+    width: '100%'
   },
   mainContent: {
     flexDirection: 'row'
   },
+  commentColumn: {
+    flex: 1
+  },
   commentContent: {
-    flexDirection: 'row'
+    flexDirection: 'row',
+    flexWrap: 'wrap'
   },
   statsContent: {
-    flexDirection: 'row'
+    flexDirection: 'row',
+    flex: 1
+  },
+  userIconColumn: {
+    padding: 5,
+    paddingRight: 8
   },
   userIcon: {
-    height: 20,
-    width: 20
+    height: 30,
+    width: 30
+  },
+  username: {
+    fontWeight: 'bold',
+    marginRight: 5,
+    fontSize: 14
   }
 })
 
