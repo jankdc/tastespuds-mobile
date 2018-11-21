@@ -22,7 +22,9 @@ const Comment = ({ comment }) => (
       <View style={styles.userIconColumn}>
         <Image
           style={styles.userIcon}
+          resizeMode='cover'
           source={{ uri: comment.user.picture }}
+          imageStyle={{ borderRadius: 10 }}
         />
       </View>
       <View style={styles.commentColumn}>
@@ -58,6 +60,10 @@ const styles = StyleSheet.create({
   },
   statsContent: {
     flexDirection: 'row'
+  },
+  userIcon: {
+    height: 20,
+    width: 20
   }
 })
 

@@ -62,7 +62,7 @@ class Comments extends Component {
           renderItem={({ item: comment }) => (
             <Comment comment={comment} />
           )}
-          keyExtractor={({ id }) => id}
+          keyExtractor={({ id }) => `${id}`}
         />
 
         <CommentsInput onSend={this._onSend} isSending={isSending} />

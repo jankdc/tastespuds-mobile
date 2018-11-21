@@ -53,6 +53,7 @@ class CommentsInput extends Component {
 
   _onSend () {
     this.props.onSend(this.state.commentText)
+    this.setState({ commentText: '' })
   }
 
   _renderPostButton () {
@@ -86,6 +87,7 @@ class CommentsInput extends Component {
       <View style={styles.container}>
         <View style={styles.inputContainer}>
           <TextInput
+            value={this.state.commentText}
             multiline
             selectTextOnFocus
             onChangeText={this._onChangeText}
