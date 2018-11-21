@@ -45,7 +45,7 @@ const Comment = ({ comment }) => (
         </View>
       </View>
       <View style={styles.likeCommentColumn}>
-        <HeartIcon liked={!!comment.context.caller_like_id} />
+        {/* <HeartIcon liked={!!comment.context.caller_like_id} /> */}
       </View>
     </View>
   </View>
