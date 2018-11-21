@@ -7,6 +7,7 @@ import {
   Text
 } from 'react-native'
 
+import ago from 's-ago'
 import Image from 'react-native-image-progress'
 
 import { Entypo, EvilIcons } from '@expo/vector-icons'
@@ -33,12 +34,15 @@ const Comment = ({ comment }) => (
           <Text style={styles.comment}>{ comment.content }</Text>
         </View>
         <View style={styles.statsContent}>
-          <Text style={styles.age}>{ comment.creation_date }</Text>
-          <Text style={styles.likes}>{ comment.num_of_likes }</Text>
+          <Text style={styles.age}>{ ago(new Date(comment.creation_date)) }</Text>
 
-          <TouchableOpacity>
-            <Text style={styles.replyButton}>Reply</Text>
-          </TouchableOpacity>
+          {
+            comment.num_of_likes > 0 &&
+            <Text style={styles.likes}>
+              { comment.num_of_likes } like{ comment.num_of_likes === 1 ? '' : 's'}
+            </Text>
+          }
+
         </View>
       </View>
       <View style={styles.likeCommentColumn}>
@@ -65,7 +69,8 @@ const styles = StyleSheet.create({
   },
   statsContent: {
     flexDirection: 'row',
-    flex: 1
+    flex: 1,
+    paddingTop: 10
   },
   userIconColumn: {
     padding: 5,
@@ -79,6 +84,13 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginRight: 5,
     fontSize: 14
+  },
+  age: {
+    fontSize: 12
+  },
+  likes: {
+    fontSize: 12,
+    paddingLeft: 10
   }
 })
 
