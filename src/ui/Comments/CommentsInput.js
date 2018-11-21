@@ -23,6 +23,7 @@ class CommentsInput extends Component {
     super(props)
 
     this.state = {
+      height: 50,
       isFocused: false,
       commentText: ''
     }
@@ -31,11 +32,18 @@ class CommentsInput extends Component {
     this._onBlur = this._onBlur.bind(this)
     this._onFocus = this._onFocus.bind(this)
     this._onChangeText = this._onChangeText.bind(this)
+    this._onContentSizeChange = this._onContentSizeChange.bind(this)
   }
 
   _onChangeText (commentText) {
     this.setState({
       commentText
+    })
+  }
+
+  _onContentSizeChange (event) {
+    this.setState({
+      height: event.nativeEvent.contentSize.height
     })
   }
 
@@ -85,12 +93,13 @@ class CommentsInput extends Component {
   render () {
     return (
       <View style={styles.container}>
-        <View style={styles.inputContainer}>
+        <View style={[styles.inputContainer, { height: Math.max(50, this.state.height) }]}>
           <TextInput
             value={this.state.commentText}
             multiline
             selectTextOnFocus
             onChangeText={this._onChangeText}
+            onContentSizeChange={this._onContentSizeChange}
             placeholder='Add a comment...'
             onFocus={this._onFocus}
             enablesReturnKeyAutomatically
@@ -107,14 +116,13 @@ class CommentsInput extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    height: 80,
     justifyContent: 'center',
     backgroundColor: 'white',
     paddingHorizontal: 5,
     paddingVertical: 10
   },
   inputContainer: {
-    height: '100%',
+    height: 50,
     borderRadius: 15,
     borderWidth: 1,
     borderColor: 'lightgrey',
