@@ -105,6 +105,7 @@ class CommentsInput extends Component {
             enablesReturnKeyAutomatically
             onBlur={this._onBlur}
             style={styles.input}
+            underlineColorAndroid='transparent'
           />
 
           { this._renderPostButton() }
