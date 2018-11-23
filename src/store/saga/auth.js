@@ -72,7 +72,8 @@ export function * startAuthFlow () {
       call(SecureStore.setItemAsync, 'idToken', tokens.id_token),
       call(SecureStore.setItemAsync, 'expiresIn', JSON.stringify(currentTime + tokens.expires_in)),
       call(SecureStore.setItemAsync, 'accessToken', tokens.access_token),
-      call(SecureStore.setItemAsync, 'refreshToken', tokens.refresh_token)
+      call(SecureStore.setItemAsync, 'refreshToken', tokens.refresh_token),
+      call(SecureStore.setItemAsync, 'notificationToken', tokens.notification_token)
     ])
 
     const user = yield call(jwtDecode, tokens.id_token)
@@ -97,7 +98,8 @@ export default function * authSaga () {
       call(SecureStore.deleteItemAsync, 'idToken'),
       call(SecureStore.deleteItemAsync, 'expiresIn'),
       call(SecureStore.deleteItemAsync, 'accessToken'),
-      call(SecureStore.deleteItemAsync, 'refreshToken')
+      call(SecureStore.deleteItemAsync, 'refreshToken'),
+      call(SecureStore.deleteItemAsync, 'notificationToken')
     ])
     yield call(navigate, 'Login')
   }

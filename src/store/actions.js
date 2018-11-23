@@ -65,3 +65,8 @@ export const ADD_COMMENT_FAILED = 'tastespuds/comments/ADD_COMMENT_FAILED'
 export const ADD_COMMENT_PASSED = 'tastespuds/comments/ADD_COMMENT_PASSED'
 
 export const CLEAR_COMMENTS = 'tastespuds/comments/CLEAR_COMMENTS'
+
+// notifications
+export const GET_NOTIFICATIONS = 'tastespuds/notification/GET_NOTIFICATIONS'
+export const GET_NOTIFICATIONS_PASSED = 'tastespuds/notification/GET_NOTIFICATIONS_PASSEDS'
+export const GET_NOTIFICATIONS_FAILED = 'tastespuds/notification/GET_NOTIFICATIONS_FAILED'

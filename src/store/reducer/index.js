@@ -4,6 +4,7 @@ import profile from './profile'
 import comments from './comments'
 import addReview from './add-review'
 import singleReview from './single-review'
+import notifications from './notifications'
 
 import { combineReducers } from 'redux'
 
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
   profile,
   comments,
   addReview,
-  singleReview
+  singleReview,
+  notifications
 })
 
 export default rootReducer
