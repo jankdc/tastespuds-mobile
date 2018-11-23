@@ -11,8 +11,8 @@
   },
   "dependencies": {
     "expo": "^27.0.1",
-    "expo-activity-feed": "~0.6.8",
     "fuzzysort": "^1.1.4",
+    "getstream": "^3.23.1",
     "jwt-decode": "^2.2.0",
     "react": "16.3.1",
     "react-native": "~0.55.2",
@@ -27,7 +27,7 @@
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",
     "redux-saga": "^0.16.0",
-    "s-ago": "2.0.1"
+    "s-ago": "^2.0.1"
   },
   "devDependencies": {
     "jest-expo": "~27.0.0",
