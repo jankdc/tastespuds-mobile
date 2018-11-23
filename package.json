@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "expo": "^27.0.1",
+    "expo-activity-feed": "~0.6.8",
     "fuzzysort": "^1.1.4",
     "jwt-decode": "^2.2.0",
     "react": "16.3.1",
