@@ -4,16 +4,22 @@ import * as actions from '../actions'
 import streamjs from '../../clients/stream-js'
 import jwtDecode from 'jwt-decode'
 
+async function getNotificationsAsync (streamId) {
+  const notificationToken = await SecureStore.getItemAsync('notificationToken')
+  const notificationFeed = streamjs.feed('notification', streamId, notificationToken)
+
+  const notifications = await notificationFeed.get({
+    limit: 10
+  })
+
+  return notifications
+}
+
 export function * getNotifications ({ value }) {
   try {
     const idStr = yield call(SecureStore.getItemAsync, 'idToken')
     const idToken = yield call(jwtDecode, idStr)
-
-    const notificationToken = yield call(SecureStore.getItemAsync, 'notificationToken')
-    const notificationFeed = yield call(streamjs.feed, 'notification', idToken.sub, notificationToken)
-    const notifications = yield call(notificationFeed.get, {
-      limit: 10
-    })
+    const notifications = yield call(getNotificationsAsync, idToken.sub.replace('|', '_'))
 
     yield put({ type: actions.GET_NOTIFICATIONS_PASSED, value: notifications.results })
   } catch (error) {

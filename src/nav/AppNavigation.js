@@ -13,13 +13,14 @@ import BottomTabBar from './BottomTabBar'
 import HomeNavigation from './HomeNavigation'
 import SearchNavigation from './SearchNavigation'
 import UserProfileNavigation from './UserProfileNavigation'
+import NotificationsNavigation from './NotificationsNavigation'
 
 const AppTabNavigation = createBottomTabNavigator(
   {
     Home: HomeNavigation,
     Search: SearchNavigation,
     Review: View,
-    Messages: View,
+    Notification: NotificationsNavigation,
     UserProfile: UserProfileNavigation
   },
   {

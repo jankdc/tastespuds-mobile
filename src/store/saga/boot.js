@@ -38,7 +38,7 @@ export default function * bootSaga () {
   //   call(SecureStore.deleteItemAsync, 'idToken'),
   //   call(SecureStore.deleteItemAsync, 'expiresIn'),
   //   call(SecureStore.deleteItemAsync, 'accessToken'),
-  //   call(SecureStore.deleteItemAsync, 'refreshToken')
+  //   call(SecureStore.deleteItemAsync, 'refreshToken'),
   //   call(SecureStore.deleteItemAsync, 'notificationToken')
   // ])
 
