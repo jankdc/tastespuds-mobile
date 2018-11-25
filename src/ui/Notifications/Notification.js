@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import Image from 'react-native-image-progress'
+import ago from 's-ago'
 
 class Notification extends Component {
   _renderActors () {
@@ -11,20 +12,20 @@ class Notification extends Component {
     }
 
     if (actors.length === 1) {
-      return <Text style={styles.actors}>@{ actors[0] }</Text>
+      return <Text style={styles.actors}>{ actors[0] }</Text>
     }
 
     if (actors.length === 2) {
-      return <Text style={styles.actors}>@{ actors[0] } and {actors.length - 1} other</Text>
+      return <Text style={styles.actors}>{ actors[0] } and {actors.length - 1} other</Text>
     }
 
     if (actors.length > 2) {
-      return <Text style={styles.actors}>@{ actors[0] } and {actors.length - 1} others</Text>
+      return <Text style={styles.actors}>{ actors[0] } and {actors.length - 1} others</Text>
     }
   }
 
   render () {
-    const { iconUrl, verb, object } = this.props
+    const { iconUrl, verb, object, date } = this.props
 
     return (
       <View style={styles.container}>
@@ -38,7 +39,12 @@ class Notification extends Component {
         <View style={styles.contentContainer}>
           <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
             { this._renderActors() }
-            <Text style={styles.verbObject}> { verb }s your { object }</Text>
+            <Text style={styles.verbObject}> { verb }s your { object.toLowerCase() }</Text>
+          </View>
+          <View style={styles.dateContainer}>
+            <Text style={styles.date}>
+              { ago(new Date(date)) }
+            </Text>
           </View>
         </View>
       </View>
@@ -65,12 +71,23 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flexWrap: 'wrap'
   },
+  dateContainer: {
+    marginTop: 5
+  },
+  date: {
+    fontSize: 12,
+    color: 'grey'
+  },
   actors: {
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    fontSize: 14
   },
   icon: {
     height: 40,
     width: 40
+  },
+  verbObject: {
+    fontSize: 14
   }
 })
 

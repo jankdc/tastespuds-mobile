@@ -38,6 +38,7 @@ class Notifications extends Component {
               object={item.activities[0].object}
               actors={item.activities.map(a => a.actor)}
               verb={item.verb}
+              date={item.updated_at}
             />
           )}
         />
@@ -53,6 +54,11 @@ Notifications.navigationOptions = {
 const styles = StyleSheet.create({
   container: {
     flex: 1
+  },
+  loadingContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 })
 
