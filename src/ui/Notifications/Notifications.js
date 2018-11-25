@@ -56,7 +56,7 @@ class Notifications extends Component {
               actors={item.activities.map(a => a.actor)}
               verb={item.verb}
               date={item.updated_at}
-              id={item.object_id}
+              id={item.activities[0].object_id}
             />
           )}
         />
