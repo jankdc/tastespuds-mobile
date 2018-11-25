@@ -30,13 +30,25 @@ class Notification extends Component {
     }
   }
 
+  _renderVerb () {
+    const { verb } = this.props
+
+    if (verb === 'like') {
+      return 'liked'
+    }
+
+    if (verb === 'comment') {
+      return 'commented on'
+    }
+  }
+
   _onPress () {
     const { object, id } = this.props
     this.props.onPress(object, id)
   }
 
   render () {
-    const { iconUrl, verb, object, date } = this.props
+    const { iconUrl, object, date } = this.props
 
     return (
       <TouchableOpacity
@@ -53,7 +65,7 @@ class Notification extends Component {
         <View style={styles.contentContainer}>
           <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
             { this._renderActors() }
-            <Text style={styles.verbObject}> { verb }s your { object.toLowerCase() }</Text>
+            <Text style={styles.verbObject}> { this._renderVerb() } your { object.toLowerCase() }</Text>
           </View>
           <View style={styles.dateContainer}>
             <Text style={styles.date}>
