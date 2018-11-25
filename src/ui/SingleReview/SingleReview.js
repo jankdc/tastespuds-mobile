@@ -10,9 +10,31 @@ import {
 import Review from '../Review'
 
 class SingleReview extends Component {
+  constructor (props) {
+    super(props)
+
+    this._onLike = this._onLike.bind(this)
+    this._onUnlike = this._onUnlike.bind(this)
+    this._onComment = this._onComment.bind(this)
+  }
+
   componentDidMount () {
     const reviewId = this.props.navigation.getParam('reviewId')
     this.props.onFocus(reviewId)
+  }
+
+  _onLike () {
+    this.props.onLike(this.props.review)
+  }
+
+  _onUnlike () {
+    this.props.onUnlike(this.props.review)
+  }
+
+  _onComment () {
+    this.props.navigation.navigate('Comments', {
+      review: this.props.review
+    })
   }
 
   render () {
@@ -28,7 +50,12 @@ class SingleReview extends Component {
 
     return (
       <ScrollView style={styles.container}>
-        <Review review={review} />
+        <Review
+          review={review}
+          onLike={this._onLike}
+          onUnlike={this._onUnlike}
+          onComment={this._onComment}
+        />
       </ScrollView>
     )
   }

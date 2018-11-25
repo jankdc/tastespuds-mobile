@@ -2,6 +2,7 @@ import React from 'react'
 import { EvilIcons } from '@expo/vector-icons'
 import { createStackNavigator } from 'react-navigation'
 
+import Comments from '../ui/Comments'
 import UserProfile from '../ui/UserProfile'
 import SingleReview from '../ui/SingleReview'
 
@@ -11,6 +12,9 @@ const UserProfileNavigation = createStackNavigator({
   },
   SingleReview: {
     screen: SingleReview
+  },
+  Comments: {
+    screen: Comments
   }
 })
 

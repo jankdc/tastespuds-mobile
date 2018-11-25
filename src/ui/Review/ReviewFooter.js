@@ -13,21 +13,15 @@ class ReviewFooter extends React.Component {
   constructor (props) {
     super(props)
 
-    this.state = {
-      liked: !!props.review.context.caller_like_id
-    }
-
     this._onLike = this._onLike.bind(this)
     this._onUnlike = this._onUnlike.bind(this)
   }
 
   _onLike () {
-    this.setState({ liked: true })
     this.props.onLike()
   }
 
   _onUnlike () {
-    this.setState({ liked: false })
     this.props.onUnlike()
   }
 
@@ -38,7 +32,7 @@ class ReviewFooter extends React.Component {
       <View style={styles.container}>
         <View style={styles.mainActionsAndRating}>
           <ReviewMenu
-            liked={this.state.liked}
+            liked={!!review.context.caller_like_id}
             onLike={this._onLike}
             onUnlike={this._onUnlike}
             onComment={onComment}

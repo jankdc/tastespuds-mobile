@@ -23,6 +23,58 @@ export default function singleReview (state = initialState, action = {}) {
         ...state,
         isLoading: false
       }
+    case actions.LIKE_REVIEW: {
+      if (!state.review) {
+        return state
+      }
+
+      return {
+        ...state,
+        review: {
+          ...state.review,
+          num_of_likes: state.review.num_of_likes + 1,
+          context: {
+            ...state.review.context,
+            caller_like_id: true
+          }
+        }
+      }
+    }
+    case actions.LIKE_REVIEW_PASSED: {
+      if (!state.review) {
+        return state
+      }
+
+      const like = action.value
+
+      return {
+        ...state,
+        review: {
+          ...state.review,
+          context: {
+            ...state.review.context,
+            caller_like_id: like.id
+          }
+        }
+      }
+    }
+    case actions.UNLIKE_REVIEW: {
+      if (!state.review) {
+        return state
+      }
+
+      return {
+        ...state,
+        review: {
+          ...state.review,
+          num_of_likes: state.review.num_of_likes - 1,
+          context: {
+            ...state.review.context,
+            caller_like_id: false
+          }
+        }
+      }
+    }
     default:
       return state
   }

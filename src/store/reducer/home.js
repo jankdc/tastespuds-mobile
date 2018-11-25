@@ -34,7 +34,20 @@ export default function home (state = initialState, action = {}) {
       return {
         ...state,
         reviews: updateReviewList(state.reviews, review.id, {
-          likeIncrement: 1
+          likeIncrement: 1,
+          caller_like_id: true
+        })
+      }
+    }
+
+    case actions.LIKE_REVIEW_PASSED: {
+      const like = action.value
+
+      return {
+        ...state,
+        reviews: updateReviewList(state.reviews, like.review_id, {
+          likeIncrement: 0,
+          caller_like_id: like.id
         })
       }
     }
@@ -45,7 +58,8 @@ export default function home (state = initialState, action = {}) {
       return {
         ...state,
         reviews: updateReviewList(state.reviews, review.id, {
-          likeIncrement: -1
+          likeIncrement: -1,
+          caller_like_id: false
         })
       }
     }
@@ -60,7 +74,11 @@ function updateReviewList (reviews, reviewId, options) {
   const reviewIndex = reviews.indexOf(review)
   const updatedReview = {
     ...review,
-    num_of_likes: review.num_of_likes + options.likeIncrement
+    num_of_likes: review.num_of_likes + options.likeIncrement,
+    context: {
+      ...review.context,
+      caller_like_id: options.caller_like_id
+    }
   }
 
   return [

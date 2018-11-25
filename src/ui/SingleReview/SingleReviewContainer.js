@@ -5,7 +5,17 @@ import * as actions from '../../store/actions'
 
 const mapDispatchToProps = dispatch => {
   return {
-    onFocus: (id) => dispatch({ type: actions.GET_REVIEW, value: id })
+    onFocus: (id) => dispatch({
+      type: actions.GET_REVIEW, value: id
+    }),
+    onUnlike: (review) => dispatch({
+      type: actions.UNLIKE_REVIEW,
+      value: review
+    }),
+    onLike: (review) => dispatch({
+      type: actions.LIKE_REVIEW,
+      value: review
+    })
   }
 }
 
