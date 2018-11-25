@@ -18,7 +18,7 @@ class Notifications extends Component {
   render () {
     const { isLoading, notifications } = this.props
 
-    if (isLoading || notifications === null) {
+    if (isLoading && notifications === null) {
       return (
         <View style={styles.loadingContainer}>
           <ActivityIndicator />
@@ -31,6 +31,8 @@ class Notifications extends Component {
         <FlatList
           ItemSeparatorComponent={Divider}
           data={notifications}
+          onRefresh={this.props.onRefresh}
+          refreshing={isLoading}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
             <Notification

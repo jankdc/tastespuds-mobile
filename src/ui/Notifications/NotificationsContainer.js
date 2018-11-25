@@ -4,7 +4,8 @@ import Notifications from './Notifications'
 
 const mapDispatchToProps = dispatch => {
   return {
-    onFocus: () => dispatch({ type: actions.GET_NOTIFICATIONS })
+    onFocus: () => dispatch({ type: actions.GET_NOTIFICATIONS }),
+    onRefresh: () => dispatch({ type: actions.GET_NOTIFICATIONS })
   }
 }
 
