@@ -1,9 +1,15 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import Image from 'react-native-image-progress'
 import ago from 's-ago'
 
 class Notification extends Component {
+  constructor (props) {
+    super(props)
+
+    this._onPress = this._onPress.bind(this)
+  }
+
   _renderActors () {
     const { actors } = this.props
 
@@ -24,11 +30,19 @@ class Notification extends Component {
     }
   }
 
+  _onPress () {
+    const { object, id } = this.props
+    this.props.onPress(object, id)
+  }
+
   render () {
     const { iconUrl, verb, object, date } = this.props
 
     return (
-      <View style={styles.container}>
+      <TouchableOpacity
+        style={styles.container}
+        onPress={this._onPress}
+      >
         <View style={styles.iconContainer}>
           <Image
             style={styles.icon}
@@ -47,7 +61,7 @@ class Notification extends Component {
             </Text>
           </View>
         </View>
-      </View>
+      </TouchableOpacity>
     )
   }
 }

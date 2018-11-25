@@ -11,8 +11,22 @@ import { Divider } from 'react-native-elements'
 import Notification from './Notification'
 
 class Notifications extends Component {
+  constructor (props) {
+    super(props)
+
+    this._onPress = this._onPress.bind(this)
+  }
+
   componentDidMount () {
     this.props.onFocus()
+  }
+
+  _onPress (type, id) {
+    if (type === 'Review') {
+      this.props.navigation.navigate('SingleReview', {
+        reviewId: id
+      })
+    }
   }
 
   render () {
@@ -36,11 +50,13 @@ class Notifications extends Component {
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
             <Notification
+              onPress={this._onPress}
               iconUrl={item.activities[0].icon_url}
               object={item.activities[0].object}
               actors={item.activities.map(a => a.actor)}
               verb={item.verb}
               date={item.updated_at}
+              id={item.object_id}
             />
           )}
         />

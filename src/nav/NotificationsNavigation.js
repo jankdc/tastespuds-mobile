@@ -3,10 +3,14 @@ import { Ionicons } from '@expo/vector-icons'
 import { createStackNavigator } from 'react-navigation'
 
 import Notifications from '../ui/Notifications'
+import SingleReview from '../ui/SingleReview'
 
 const NotificationsNavigation = createStackNavigator({
   Notifications: {
     screen: Notifications
+  },
+  SingleReview: {
+    screen: SingleReview
   }
 })
 
