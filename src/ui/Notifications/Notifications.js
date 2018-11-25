@@ -53,7 +53,7 @@ class Notifications extends Component {
               onPress={this._onPress}
               iconUrl={item.activities[0].icon_url}
               object={item.activities[0].object}
-              actors={item.activities.map(a => a.actor)}
+              actors={[...new Set(item.activities.map(a => a.actor))]}
               verb={item.verb}
               date={item.updated_at}
               id={item.activities[0].object_id}
