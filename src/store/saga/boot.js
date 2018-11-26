@@ -1,5 +1,5 @@
 import jwtDecode from 'jwt-decode'
-import { SecureStore, Font } from 'expo'
+import { SecureStore, Font, Image, Asset } from 'expo'
 import {
   Entypo,
   Ionicons,
@@ -20,6 +20,10 @@ import * as actions from '../actions'
 import { getCredentials } from './auth'
 
 export function * loadAssets () {
+  yield call(cacheImages, [
+    require('../../../assets/breakfast-bg.jpg')
+  ])
+
   yield all([
     call(Font.loadAsync, Entypo.font),
     call(Font.loadAsync, Ionicons.font),
@@ -27,6 +31,16 @@ export function * loadAssets () {
     call(Font.loadAsync, MaterialCommunityIcons.font),
     call(Font.loadAsync, { baloo })
   ])
+}
+
+async function cacheImages (images) {
+  return images.map(image => {
+    if (typeof image === 'string') {
+      return Image.prefetch(image)
+    } else {
+      return Asset.fromModule(image).downloadAsync()
+    }
+  })
 }
 
 export default function * bootSaga () {
