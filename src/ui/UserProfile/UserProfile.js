@@ -85,6 +85,8 @@ class UserProfile extends Component {
         <UserProfileGallery
           reviews={user.reviews}
           onPress={this._onPress}
+          onRefresh={this.props.onRefresh}
+          refreshing={this.props.isLoading}
         />
       </ScrollView>
     )

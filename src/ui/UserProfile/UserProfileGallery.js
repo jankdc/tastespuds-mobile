@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { View, StyleSheet } from 'react-native'
 
 import UserProfileGalleryRow from './UserProfileGalleryRow'
+import UserProfileGalleryEmpty from './UserProfileGalleryEmpty'
 
 function sliceArrayToPieces (array, numOfColumns) {
   const numOfRows = Math.ceil(array.length / numOfColumns)
@@ -36,6 +37,17 @@ class UserProfileGallery extends Component {
   _renderGallery () {
     if (!this.state.width) {
       return null
+    }
+
+    if (this.props.reviews && this.props.reviews.length === 0) {
+      return (
+        <View style={{ marginTop: 50 }}>
+          <UserProfileGalleryEmpty
+            onRefresh={this.props.onRefresh}
+            refreshing={this.props.refreshing}
+          />
+        </View>
+      )
     }
 
     const rows = sliceArrayToPieces(this.props.reviews, NUM_COLUMNS)
