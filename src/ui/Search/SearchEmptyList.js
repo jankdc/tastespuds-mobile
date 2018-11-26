@@ -16,7 +16,7 @@ const SearchEmptyList = () => (
       color='#C0C0C0'
     />
     <Text style={styles.message}>
-      No Results
+      No results
     </Text>
   </View>
 )
