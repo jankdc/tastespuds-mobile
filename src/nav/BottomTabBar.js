@@ -1,17 +1,27 @@
 import React from 'react'
+import { View } from 'react-native'
+import ActionSheet from 'react-native-actionsheet'
 import ReactNavigationTabs from 'react-navigation-tabs'
 import { Permissions, ImagePicker } from 'expo'
+
+const OPTIONS = [
+  'Load Existing Image',
+  'Open Camera',
+  'Cancel'
+]
 
 class BottomTabBar extends React.Component {
   constructor (props) {
     super(props)
 
+    this._onOption = this._onOption.bind(this)
     this._onTabPress = this._onTabPress.bind(this)
   }
 
-  async _onTabPress (evt) {
-    if (evt.route.routeName !== 'Review') {
-      return this.props.onTabPress(evt)
+  async _onOption (index) {
+    const option = OPTIONS[index]
+    if (option === 'Cancel') {
+      return
     }
 
     const { status: locationStatus } = await Permissions.askAsync(
@@ -38,7 +48,19 @@ class BottomTabBar extends React.Component {
       return
     }
 
-    const imageData = await ImagePicker.launchCameraAsync()
+    let imageData = null
+    if (option === 'Load Existing Image') {
+      imageData = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: 'Images',
+        allowsEditing: true
+      })
+    }
+
+    if (option === 'Open Camera') {
+      imageData = await ImagePicker.launchCameraAsync({
+        mediaTypes: 'Images'
+      })
+    }
 
     if (!imageData.cancelled) {
       this.props.navigation.navigate('AddReview', {
@@ -47,12 +69,29 @@ class BottomTabBar extends React.Component {
     }
   }
 
+  _onTabPress (evt) {
+    if (evt.route.routeName !== 'Review') {
+      return this.props.onTabPress(evt)
+    }
+
+    this.ActionSheet.show()
+  }
+
   render () {
     return (
-      <ReactNavigationTabs.BottomTabBar
-        {...this.props}
-        onTabPress={this._onTabPress}
-      />
+      <View>
+        <ActionSheet
+          ref={(o) => { this.ActionSheet = o }}
+          options={OPTIONS}
+          cancelButtonIndex={2}
+          onPress={this._onOption}
+        />
+
+        <ReactNavigationTabs.BottomTabBar
+          {...this.props}
+          onTabPress={this._onTabPress}
+        />
+      </View>
     )
   }
 }
