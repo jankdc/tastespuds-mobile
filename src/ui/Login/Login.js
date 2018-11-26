@@ -3,6 +3,7 @@ import {
   View,
   Text,
   TouchableOpacity,
+  ImageBackground,
   StyleSheet
 } from 'react-native'
 
@@ -11,16 +12,20 @@ class Login extends React.Component {
     const { onLoginPress } = this.props
 
     return (
-      <View style={styles.container}>
+      <ImageBackground
+        source={require('../../../assets/breakfast-bg.jpg')}
+        resizeMode='cover'
+        style={styles.container}
+      >
         <View style={styles.titleContainer}>
           <Text style={styles.title}>Tastespuds</Text>
         </View>
         <View style={styles.formContainer}>
           <TouchableOpacity style={styles.loginButton} onPress={onLoginPress}>
-            <Text>Sign In</Text>
+            <Text style={styles.loginText}>Sign In</Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </ImageBackground>
     )
   }
 }
@@ -41,21 +46,26 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: 'baloo',
-    fontSize: 40
+    fontSize: 40,
+    color: 'white'
   },
   formContainer: {
     flexDirection: 'column',
     alignItems: 'center'
   },
   loginButton: {
-    backgroundColor: 'white',
+    backgroundColor: 'tomato',
+    justifyContent: 'center',
     alignItems: 'center',
     marginTop: 20,
-    width: 300,
+    width: 250,
+    height: 50,
     padding: 10,
-    borderWidth: 1,
-    borderRadius: 2,
-    borderColor: 'gray'
+    borderRadius: 5
+  },
+  loginText: {
+    fontWeight: 'bold',
+    color: 'white'
   }
 })
 
