@@ -100,4 +100,5 @@ export default function * reviewsSaga () {
   yield takeLatest(actions.LIKE_REVIEW, likeReview)
   yield takeLatest(actions.UNLIKE_REVIEW, unlikeReview)
   yield takeLatest(actions.SEARCH_REVIEWS, searchReviews)
+  yield takeLatest(actions.ADD_REVIEW_PASSED, searchReviews)
 }
