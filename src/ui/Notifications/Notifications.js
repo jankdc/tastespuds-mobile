@@ -9,6 +9,7 @@ import {
 import { Divider } from 'react-native-elements'
 
 import Notification from './Notification'
+import NotificationsEmpty from './NotificationsEmpty'
 
 class Notifications extends Component {
   constructor (props) {
@@ -37,6 +38,15 @@ class Notifications extends Component {
         <View style={styles.loadingContainer}>
           <ActivityIndicator />
         </View>
+      )
+    }
+
+    if (notifications && notifications.length === 0) {
+      return (
+        <NotificationsEmpty
+          onRefresh={this.props.onRefresh}
+          refreshing={isLoading}
+        />
       )
     }
 
