@@ -7,12 +7,13 @@ import {
   StyleSheet
 } from 'react-native'
 
-const AddReviewHighlight = ({ onChangeText }) => (
+const AddReviewHighlight = ({ onChangeText, highlight }) => (
   <View style={styles.container}>
     <Text style={styles.label}>😄 Highlight</Text>
     <View style={styles.inputContainer}>
       <TextInput
         style={styles.input}
+        value={highlight}
         maxLength={50}
         onChangeText={onChangeText}
         placeholder='What is so great about it (max. 50 characters)...'

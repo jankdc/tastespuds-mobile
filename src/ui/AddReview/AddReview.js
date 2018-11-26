@@ -110,6 +110,7 @@ class AddReview extends React.Component {
   }
 
   _renderOtherFields () {
+    const { rating, highlight, suggestion } = this.state
     const selectedItem = this.props.navigation.getParam('selectedItem', null)
     const selectedPlace = this.props.navigation.getParam('selectedPlace', null)
     const isEditingReview = this.props.navigation.getParam('isEditingReview', false)
@@ -124,10 +125,12 @@ class AddReview extends React.Component {
       <View style={styles.subContainer}>
         <AddReviewHighlight
           onChangeText={this._onHighlightText}
+          highlight={highlight}
         />
 
         <AddReviewSuggestion
           onChangeText={this._onSuggestionText}
+          suggestion={suggestion}
         />
 
         <AddReviewFieldButton
@@ -147,6 +150,7 @@ class AddReview extends React.Component {
 
         <AddReviewRating
           onRatingChange={this._onRatingChange}
+          rating={rating}
         />
 
         <View style={styles.addReviewButtonContainer}>

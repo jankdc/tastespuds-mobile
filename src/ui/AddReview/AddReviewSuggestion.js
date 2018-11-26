@@ -7,12 +7,13 @@ import {
   StyleSheet
 } from 'react-native'
 
-const AddReviewSuggestion = ({ onChangeText }) => (
+const AddReviewSuggestion = ({ onChangeText, suggestion }) => (
   <View style={styles.container}>
     <Text style={styles.label}>😞 Suggestion (optional)</Text>
     <View style={styles.inputContainer}>
       <TextInput
         style={styles.input}
+        value={suggestion}
         maxLength={50}
         onChangeText={onChangeText}
         placeholder='What needs work (max. 50 characters)...'

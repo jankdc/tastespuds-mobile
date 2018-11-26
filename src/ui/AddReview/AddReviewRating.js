@@ -6,10 +6,6 @@ class AddReviewRating extends React.Component {
   constructor (props) {
     super(props)
 
-    this.state = {
-      rating: 3
-    }
-
     this._onRatingChange = this._onRatingChange.bind(this)
   }
 
@@ -19,6 +15,8 @@ class AddReviewRating extends React.Component {
   }
 
   render () {
+    const { rating } = this.props
+
     return (
       <View style={styles.container}>
         <Text style={styles.label}>✨ Rating</Text>
@@ -29,7 +27,7 @@ class AddReviewRating extends React.Component {
           <Rating
             disabled={false}
             maxStars={5}
-            rating={this.state.rating}
+            rating={rating}
             fullStarColor='#FFBF00'
             emptyStar='star'
             containerStyle={{ justifyContent: 'center', alignItems: 'center' }}
