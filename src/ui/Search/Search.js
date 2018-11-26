@@ -11,6 +11,7 @@ import { Permissions, Location } from 'expo'
 
 import SearchMenu from './SearchMenu'
 import SearchItem from './SearchItem'
+import SearchEmptyList from './SearchEmptyList'
 import SearchBarHeader from '../SearchBarHeader'
 
 const ItemSeparator = () => (
@@ -109,6 +110,14 @@ class Search extends React.Component {
       return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
           <ActivityIndicator />
+        </View>
+      )
+    }
+
+    if (this.props.items.length === 0) {
+      return (
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+          <SearchEmptyList />
         </View>
       )
     }
