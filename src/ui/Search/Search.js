@@ -156,8 +156,7 @@ const styles = StyleSheet.create({
     flex: 1
   },
   separator: {
-    alignSelf: 'center',
-    marginVertical: 5
+    alignSelf: 'center'
   }
 })
 
