@@ -1,6 +1,9 @@
 {
   "expo": {
-    "ios": { "bundleIdentifier": "app.tastespuds.tastespuds" },
+    "ios": {
+      "buildNumber": "1.0.0",
+      "bundleIdentifier": "app.tastespuds.tastespuds"
+    },
     "name": "tastespuds",
     "icon": "./assets/tastespuds-icon.png",
     "slug": "tastespuds",
@@ -9,7 +12,10 @@
       "backgroundColor": "#FFFFFF"
     },
     "version": "1.0.0",
-    "android": { "package": "app.tastespuds.tastespuds" },
+    "android": {
+      "versionCode": 1,
+      "package": "app.tastespuds.tastespuds"
+    },
     "sdkVersion": "27.0.0",
     "orientation": "portrait"
   }
