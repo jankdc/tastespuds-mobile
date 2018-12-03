@@ -60,13 +60,13 @@ class SearchItem extends PureComponent {
         <View style={styles.content}>
           <SearchItemHeader name={item.name} ranking={ranking} />
 
-          <Text style={styles.place}>
+          <Text style={styles.place} numberOfLines={1} ellipsizeMode='tail'>
             {item.place && item.place.name}
           </Text>
 
           <View style={{ flexDirection: 'row', paddingVertical: 6 }}>
             { this._renderDistanceBadge() }
-            { this._renderBadge(`${item.reviews} Review${item.reviews ? 's' : ''}`) }
+            { this._renderBadge(`${item.reviews} Review${item.reviews.length > 1 ? 's' : ''}`) }
           </View>
 
           <Text style={styles.highlight} numberOfLines={1}>💬 "{item.highlight}"</Text>
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     paddingTop: 12,
-    paddingLeft: 12
+    paddingHorizontal: 12
   },
   place: {
     fontSize: 12,

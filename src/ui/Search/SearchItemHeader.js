@@ -7,7 +7,7 @@ class SearchItemHeader extends PureComponent {
 
     return (
       <View style={styles.container}>
-        <Text style={styles.name}>{name}</Text>
+        <Text style={styles.name} numberOfLines={1} ellipsizeMode='tail'>{name}</Text>
 
         <View style={styles.rankingContainer}>
           <Text style={styles.ranking}>{ranking}.</Text>
