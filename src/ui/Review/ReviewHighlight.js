@@ -3,7 +3,9 @@ import { View, Text, StyleSheet } from 'react-native'
 
 const ReviewHighlight = ({ highlight }) => (
   <View style={styles.container}>
-    <Text style={styles.content}>😄 {highlight}</Text>
+    <Text style={styles.content} numberOfLines={1} ellipsizeMode='tail'>
+      😄 {highlight}
+    </Text>
   </View>
 )
 
@@ -11,15 +13,10 @@ const styles = StyleSheet.create({
   container: {
     marginTop: 10,
     flexDirection: 'row',
+    paddingHorizontal: 12,
     backgroundColor: 'white'
   },
-  label: {
-    marginLeft: 12,
-    fontWeight: 'bold',
-    fontSize: 12
-  },
   content: {
-    marginLeft: 12,
     fontStyle: 'italic',
     fontSize: 12
   }
