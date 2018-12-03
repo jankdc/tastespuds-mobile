@@ -61,7 +61,8 @@ Home.navigationOptions = {
   title: 'Tastespuds',
   headerTitleStyle: {
     fontFamily: 'baloo',
-    fontSize: 28
+    fontSize: 28,
+    color: 'tomato'
   }
 }
 
