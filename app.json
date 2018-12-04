@@ -1,7 +1,7 @@
 {
   "expo": {
     "ios": {
-      "buildNumber": "1.1.0",
+      "buildNumber": "1.2.0",
       "bundleIdentifier": "app.tastespuds.tastespuds"
     },
     "name": "tastespuds",
@@ -12,9 +12,9 @@
       "image": "./assets/splash-screen.png",
       "backgroundColor": "#FFFFFF"
     },
-    "version": "1.1.0",
+    "version": "1.2.0",
     "android": {
-      "versionCode": 2,
+      "versionCode": 3,
       "package": "app.tastespuds.tastespuds"
     },
     "sdkVersion": "27.0.0",
