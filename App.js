@@ -8,7 +8,7 @@ import { setTopLevelNavigator } from './src/nav/NavigationService'
 
 class App extends React.Component {
   componentDidMount () {
-    StatusBar.setBarStyle('light-content')
+    StatusBar.setBarStyle('dark-content')
   }
 
   render () {
