@@ -152,29 +152,29 @@ class AddReview extends React.Component {
           onRatingChange={this._onRatingChange}
           rating={rating}
         />
-
-        <View style={styles.addReviewButtonContainer}>
-          <AddReviewButton
-            onPress={this._onShare}
-            loading={this.props.isAddingReview}
-            disabled={!this._isReadyToShare() || this.props.isAddingReview}
-          />
-        </View>
       </View>
     )
   }
 
   render () {
     return (
-      <ScrollView style={styles.container}>
-        <AddReviewSummary
-          onBlur={this._onSummaryBlur}
-          onFocus={this._onSummaryFocus}
-          onChangeText={this._onSummaryText}
-        />
+      <View style={styles.container}>
+        <ScrollView>
+          <AddReviewSummary
+            onBlur={this._onSummaryBlur}
+            onFocus={this._onSummaryFocus}
+            onChangeText={this._onSummaryText}
+          />
 
-        { this._renderOtherFields() }
-      </ScrollView>
+          { this._renderOtherFields() }
+        </ScrollView>
+
+        <AddReviewButton
+          onPress={this._onShare}
+          loading={this.props.isAddingReview}
+          disabled={!this._isReadyToShare() || this.props.isAddingReview}
+        />
+      </View>
     )
   }
 }
@@ -211,10 +211,6 @@ const styles = StyleSheet.create({
     flex: 1,
     opacity: 0.6,
     backgroundColor: 'black'
-  },
-  addReviewButtonContainer: {
-    marginTop: 15,
-    paddingHorizontal: 15
   }
 })
 
