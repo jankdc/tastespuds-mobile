@@ -7,6 +7,7 @@
     "start": "expo start",
     "test": "jest",
     "lint": "standard",
+    "upload": "expo upload:ios && expo upload:android --track beta",
     "publish": "expo publish",
     "build:ios": "expo build:ios",
     "build:android": "expo build:android"
