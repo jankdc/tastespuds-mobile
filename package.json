@@ -10,18 +10,18 @@
     "lint": "standard"
   },
   "dependencies": {
-    "expo": "^27.0.1",
+    "expo": "^31.0.4",
     "fuzzysort": "^1.1.4",
     "getstream": "^3.23.1",
     "jwt-decode": "^2.2.0",
-    "react": "16.3.1",
-    "react-native": "~0.55.2",
+    "react": "16.5.0",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-31.0.1.tar.gz",
     "react-native-actionsheet": "2.4.2",
     "react-native-dotenv": "^0.2.0",
     "react-native-elements": "1.0.0-beta7",
     "react-native-image-progress": "^1.1.1",
     "react-native-modal": "7.0.1",
-    "react-native-screens": "1.0.0-alpha.12",
+    "react-native-screens": "^1.0.0-alpha.17",
     "react-native-star-rating": "^1.1.0",
     "react-navigation": "^2.18.2",
     "react-navigation-tabs": "~0.8.4",
@@ -31,9 +31,9 @@
     "s-ago": "^2.0.1"
   },
   "devDependencies": {
-    "jest-expo": "~27.0.0",
+    "jest-expo": "^31.0.0",
     "react-native-scripts": "1.14.1",
-    "react-test-renderer": "16.3.1",
+    "react-test-renderer": "16.5.0",
     "standard": "^12.0.1"
   }
 }
