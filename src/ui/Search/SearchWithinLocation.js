@@ -1,10 +1,26 @@
 import React from 'react'
 import { MaterialIcons } from '@expo/vector-icons'
-import { StyleSheet, View, Text } from 'react-native'
+import { TouchableOpacity, StyleSheet, Text } from 'react-native'
 
-const SearchWithinLocation = ({ level, city }) => {
+import SearchLocationModal from './SearchLocationModal'
+
+const SearchWithinLocation = ({
+  showOptions,
+  onHideOptions,
+  onOption,
+  onPress,
+  level,
+  city
+}) => {
   return (
-    <View style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={onPress}>
+      <SearchLocationModal
+        isVisible={showOptions}
+        currentOption={level}
+        onHideOptions={onHideOptions}
+        onOption={onOption}
+      />
+
       <MaterialIcons
         name='location-on'
         size={20}
@@ -15,7 +31,7 @@ const SearchWithinLocation = ({ level, city }) => {
       <Text style={styles.text}>
         { level === 'city' ? city.toUpperCase() : 'NEARBY' }
       </Text>
-    </View>
+    </TouchableOpacity>
   )
 }
 

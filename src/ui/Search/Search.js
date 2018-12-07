@@ -32,6 +32,7 @@ class Search extends React.Component {
 
     this._onClear = this._onClear.bind(this)
     this._onSearch = this._onSearch.bind(this)
+    this._onLocationOption = this._onLocationOption.bind(this)
   }
 
   componentDidMount () {
@@ -55,11 +56,35 @@ class Search extends React.Component {
     })
   }
 
-  async _onFocus () {
-    const { status } = await Permissions.askAsync(Permissions.LOCATION)
+  async _onLocationOption (option) {
+    if (option === 'city') {
+      const { city, coords } = await this._getCurrentCity()
+      if (!city) {
+        return this._updateSearch({
+          level: 'city'
+        })
+      }
 
+      this._updateSearch({
+        level: 'city',
+        location: {
+          latitude: coords.latitude,
+          longitude: coords.longitude
+        }
+      })
+    }
+
+    if (option === 'nearby') {
+      this._updateSearch({
+        level: option
+      })
+    }
+  }
+
+  async _getCurrentCity () {
+    const { status } = await Permissions.askAsync(Permissions.LOCATION)
     if (status !== 'granted') {
-      return this._updateSearch({ isReady: true })
+      return null
     }
 
     const { coords } = await Location.getCurrentPositionAsync()
@@ -67,6 +92,17 @@ class Search extends React.Component {
       latitude: coords.latitude,
       longitude: coords.longitude
     })
+
+    return { city, coords }
+  }
+
+  async _onFocus () {
+    const { city, coords } = await this._getCurrentCity()
+    if (!city) {
+      return this._updateSearch({
+        isReady: true
+      })
+    }
 
     this._updateSearch({
       location: {
@@ -149,6 +185,7 @@ class Search extends React.Component {
     return (
       <View style={styles.container}>
         <SearchMenu
+          onLocationOption={this._onLocationOption}
           level={this.state.level}
           sort={this.state.sort}
           city={this.state.city}
