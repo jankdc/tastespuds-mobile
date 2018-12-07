@@ -4,6 +4,7 @@ set -e
 
 npm ci
 npm test
-expo-cli publish
-expo-cli build:ios
-expo-cli upload:ios --app-name 'Tastespuds'
+npm run publish
+npm run build:ios
+npm run build:android
+npm run upload
