@@ -19,7 +19,7 @@ const AppTabNavigation = createBottomTabNavigator(
   {
     Home: HomeNavigation,
     Search: SearchNavigation,
-    Review: View,
+    Review: () => <View />,
     Notification: NotificationsNavigation,
     UserProfile: UserProfileNavigation
   },
