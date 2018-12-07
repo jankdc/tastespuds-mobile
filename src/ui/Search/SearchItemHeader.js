@@ -9,7 +9,7 @@ class SearchItemHeader extends PureComponent {
       <View style={styles.container}>
         <Text style={styles.name} numberOfLines={1} ellipsizeMode='tail'>{name}</Text>
 
-        <View style={styles.rankingContainer}>
+        <View>
           <Text style={styles.ranking}>{ranking}.</Text>
         </View>
       </View>
@@ -23,12 +23,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between'
   },
+  name: {
+    width: '90%'
+  },
   image: {
     height: '100%',
     width: '100%'
-  },
-  rankingContainer: {
-    marginRight: 10
   },
   ranking: {
     fontSize: 12,
