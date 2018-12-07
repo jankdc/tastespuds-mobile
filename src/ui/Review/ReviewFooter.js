@@ -56,9 +56,11 @@ class ReviewFooter extends React.Component {
           highlight={review.highlight}
         />
 
-        <ReviewSuggestion
-          suggestion={review.suggestion}
-        />
+        { review.suggestion &&
+          <ReviewSuggestion
+            suggestion={review.suggestion}
+          />
+        }
 
         <ReviewDate
           date={review.creation_date}
