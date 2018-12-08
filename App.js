@@ -8,9 +8,6 @@ import store from './src/store'
 import BootNavigation from './src/nav/BootNavigation'
 import { setTopLevelNavigator } from './src/nav/NavigationService'
 
-// Remove this once Sentry is correctly setup.
-Sentry.enableInExpoDevelopment = true
-
 Sentry.config(SENTRY_DSN).install()
 
 class App extends React.Component {
