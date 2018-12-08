@@ -18,6 +18,17 @@
       "package": "app.tastespuds.tastespuds"
     },
     "sdkVersion": "31.0.0",
-    "orientation": "portrait"
+    "orientation": "portrait",
+    "hooks": {
+      "postPublish": [
+        {
+          "file": "sentry-expo/upload-sourcemaps",
+          "config": {
+            "organization": "tastespuds",
+            "project": "tastespuds-mobile"
+          }
+        }
+      ]
+    }
   }
 }
