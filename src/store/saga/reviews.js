@@ -26,6 +26,7 @@ export function * addReview ({ value }) {
       item: value.item.id === undefined
         ? value.item
         : value.item.id,
+      price: value.price,
       rating: value.rating,
       assets: [result.id],
       user_id: profile.sub,

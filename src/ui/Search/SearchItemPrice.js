@@ -1,12 +1,25 @@
 import React from 'react'
-import { View, StyleSheet } from 'react-native'
-import { FontAwesome } from '@expo/vector-icons'
+import { View, Text, StyleSheet } from 'react-native'
 
-const SearchItemPrice = () => (
+const SearchItemPrice = ({ minPrice, maxPrice }) => (
   <View style={styles.container}>
-    <FontAwesome name='dollar' size={14} color='grey' />
-    <FontAwesome name='dollar' size={14} color='lightgrey' />
-    <FontAwesome name='dollar' size={14} color='lightgrey' />
+    {
+      minPrice === maxPrice
+        ? <Text
+          numberOfLines={1}
+          ellipsizeMode='tail'
+          style={styles.number}
+        >
+          £{minPrice}
+        </Text>
+        : <Text
+          numberOfLines={1}
+          ellipsizeMode='tail'
+          style={styles.rangedNumber}
+        >
+          £{minPrice}-£{maxPrice}
+        </Text>
+    }
   </View>
 )
 
@@ -17,12 +30,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
-  icon: {
-    fontSize: 18
-  },
   number: {
-    marginLeft: 4,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    fontSize: 14
+  },
+  rangedNumber: {
+    fontWeight: 'bold',
+    fontSize: 11
   }
 })
 

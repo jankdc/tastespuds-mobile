@@ -9,6 +9,7 @@ import {
   StyleSheet
 } from 'react-native'
 
+import AddReviewPrice, { priceRegex } from './AddReviewPrice'
 import AddReviewButton from './AddReviewButton'
 import AddReviewRating from './AddReviewRating'
 import AddReviewSummary from './AddReviewSummary'
@@ -22,6 +23,7 @@ class AddReview extends React.Component {
 
     this.state = {
       rating: 3,
+      price: '',
       summary: '',
       highlight: ''
     }
@@ -31,6 +33,7 @@ class AddReview extends React.Component {
     this._onGetPlace = this._onGetPlace.bind(this)
     this._onSummaryBlur = this._onSummaryBlur.bind(this)
     this._onSummaryText = this._onSummaryText.bind(this)
+    this._onPriceChange = this._onPriceChange.bind(this)
     this._onSummaryFocus = this._onSummaryFocus.bind(this)
     this._onRatingChange = this._onRatingChange.bind(this)
     this._onHighlightText = this._onHighlightText.bind(this)
@@ -49,6 +52,7 @@ class AddReview extends React.Component {
 
     this.props.onShare({
       item: selectedItem,
+      price: parseFloat(this.state.price),
       rating: this.state.rating,
       content: this.state.summary,
       highlight: this.state.highlight,
@@ -98,19 +102,28 @@ class AddReview extends React.Component {
     })
   }
 
+  _onPriceChange (price) {
+    this.setState({ price })
+  }
+
   _onRatingChange (rating) {
     this.setState({ rating })
   }
 
   _isReadyToShare () {
-    const { rating, summary, highlight } = this.state
+    const { rating, price, summary, highlight } = this.state
     const selectedItem = this.props.navigation.getParam('selectedItem', null)
     const selectedPlace = this.props.navigation.getParam('selectedPlace', null)
-    return !!rating && !!summary && !!selectedItem && !!selectedPlace && !!highlight
+    return !!rating &&
+      !!priceRegex.test(price) &&
+      !!summary &&
+      !!selectedItem &&
+      !!selectedPlace &&
+      !!highlight
   }
 
   _renderOtherFields () {
-    const { rating, highlight, suggestion } = this.state
+    const { rating, price, highlight, suggestion } = this.state
     const selectedItem = this.props.navigation.getParam('selectedItem', null)
     const selectedPlace = this.props.navigation.getParam('selectedPlace', null)
     const isEditingReview = this.props.navigation.getParam('isEditingReview', false)
@@ -146,6 +159,11 @@ class AddReview extends React.Component {
           onPress={this._onGetItem}
           disabled={selectedPlace === null}
           placeholder='Enter the item...'
+        />
+
+        <AddReviewPrice
+          onPriceChange={this._onPriceChange}
+          price={price}
         />
 
         <AddReviewRating

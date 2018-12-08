@@ -16,6 +16,7 @@ export async function makeReview (review) {
   return post('/reviews', {
     body: {
       item: review.item,
+      price: review.price,
       assets: review.assets,
       rating: review.rating,
       user_id: review.user_id,

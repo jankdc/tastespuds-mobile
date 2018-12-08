@@ -5,6 +5,7 @@ import { StyleSheet, View, Text } from 'react-native'
 
 import SearchItemImage from './SearchItemImage'
 import SearchItemLikes from './SearchItemLikes'
+import SearchItemPrice from './SearchItemPrice'
 import SearchItemHeader from './SearchItemHeader'
 import SearchItemRating from './SearchItemRating'
 
@@ -74,6 +75,11 @@ class SearchItem extends PureComponent {
           <View style={styles.rowContent}>
             <SearchItemRating rating={item.rating} />
             <SearchItemLikes likes={item.likes} />
+
+            <SearchItemPrice
+              minPrice={item.min_price}
+              maxPrice={item.max_price}
+            />
           </View>
         </View>
       </View>
