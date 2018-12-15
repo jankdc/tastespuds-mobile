@@ -150,7 +150,7 @@ class Search extends React.Component {
       )
     }
 
-    if (this.props.items.length === 0) {
+    if (!this.props.items) {
       return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
           <SearchEmptyList />
