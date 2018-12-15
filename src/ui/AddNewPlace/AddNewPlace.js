@@ -10,6 +10,12 @@ const initialRegion = {
   longitudeDelta: 0.0421
 }
 
+const placeTypes = [
+  'Restaurant',
+  'Cafe',
+  'Bar'
+]
+
 class AddNewPlace extends Component {
   constructor (props) {
     super(props)
@@ -32,7 +38,11 @@ class AddNewPlace extends Component {
   }
 
   _onConfirm () {
-    console.log('What is the point?')
+    this.props.onSubmit({
+      name: this.props.navigation.getParam('name'),
+      types: [placeTypes[this.state.selectedTypeIndex].toLowerCase()],
+      location: this.props.location
+    })
   }
 
   _onChangeText (search) {
@@ -45,7 +55,7 @@ class AddNewPlace extends Component {
 
   render () {
     const name = this.props.navigation.getParam('name')
-    const { location, isGeocoding } = this.props
+    const { isAdding, location, isGeocoding } = this.props
 
     return (
       <View style={styles.container}>
@@ -85,13 +95,13 @@ class AddNewPlace extends Component {
           <View style={styles.typeContainer}>
             <ButtonGroup
               onPress={this._onChangeType}
-              buttons={[ 'Restaurant', 'Cafe', 'Bar' ]}
+              buttons={placeTypes}
               selectedIndex={this.state.selectedTypeIndex}
             />
           </View>
           <Button
             title={`Submit '${name}'`}
-            disabled={location === null}
+            disabled={location === null || isAdding}
             disabledStyle={{
               backgroundColor: 'silver'
             }}
@@ -100,6 +110,7 @@ class AddNewPlace extends Component {
               padding: 10
             }}
             onPress={this._onConfirm}
+            loading={isAdding}
           />
         </View>
       </View>

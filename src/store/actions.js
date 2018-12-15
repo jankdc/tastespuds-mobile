@@ -76,3 +76,7 @@ export const GET_NOTIFICATIONS_FAILED = 'tastespuds/notification/GET_NOTIFICATIO
 export const GEOCODE_PLACE = 'tastespuds/add-place/GEOCODE_PLACE'
 export const GEOCODE_PLACE_PASSED = 'tastespuds/add-place/GEOCODE_PLACE_PASSED'
 export const GEOCODE_PLACE_FAILED = 'tastespuds/add-place/GEOCODE_PLACE_FAILED'
+
+export const ADD_NEW_PLACE = 'tastespuds/add-place/ADD_NEW_PLACE'
+export const ADD_NEW_PLACE_PASSED = 'tastespuds/add-place/ADD_NEW_PLACE_PASSED'
+export const ADD_NEW_PLACE_FAILED = 'tastespuds/add-place/ADD_NEW_PLACE_FAILED'

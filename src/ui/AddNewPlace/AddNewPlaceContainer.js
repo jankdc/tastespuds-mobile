@@ -6,6 +6,9 @@ const mapDispatchToProps = dispatch => {
   return {
     onSearch: (address) => {
       dispatch({ type: actions.GEOCODE_PLACE, value: address })
+    },
+    onSubmit: (newPlace) => {
+      dispatch({ type: actions.ADD_NEW_PLACE, value: newPlace })
     }
   }
 }
