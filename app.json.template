@@ -1,6 +1,9 @@
 {
   "expo": {
     "ios": {
+      "config": {
+        "googleMapsApiKey": "$GOOGLE_MAPS_IOS_API_KEY"
+      },
       "buildNumber": "1.3.1",
       "bundleIdentifier": "app.tastespuds.tastespuds"
     },
@@ -15,7 +18,10 @@
     "version": "1.3.1",
     "android": {
       "versionCode": 7,
-      "package": "app.tastespuds.tastespuds"
+      "package": "app.tastespuds.tastespuds",
+      "googleMaps": {
+        "apiKey": "$GOOGLE_MAPS_ANDROID_API_KEY"
+      }
     },
     "sdkVersion": "31.0.0",
     "orientation": "portrait",
