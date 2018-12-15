@@ -7,13 +7,13 @@ import { createBottomTabNavigator } from 'react-navigation-tabs'
 
 import AddReview from '../ui/AddReview'
 import AddReviewName from '../ui/AddReviewName'
-import AddReviewPlace from '../ui/AddReviewPlace'
 
 import BottomTabBar from './BottomTabBar'
 import HomeNavigation from './HomeNavigation'
 import SearchNavigation from './SearchNavigation'
 import UserProfileNavigation from './UserProfileNavigation'
 import NotificationsNavigation from './NotificationsNavigation'
+import AddReviewPlaceNavigation from './AddReviewPlaceNavigation'
 
 const AppTabNavigation = createBottomTabNavigator(
   {
@@ -63,7 +63,7 @@ export default createStackNavigator(
       screen: AddReviewName
     },
     AddReviewPlace: {
-      screen: AddReviewPlace
+      screen: AddReviewPlaceNavigation
     }
   },
   {

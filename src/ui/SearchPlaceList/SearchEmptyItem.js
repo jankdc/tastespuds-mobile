@@ -6,14 +6,16 @@ import {
   StyleSheet
 } from 'react-native'
 
-const SearchEmptyItem = () => (
-  <View style={styles.container}>
-    <Text style={styles.text}>No results</Text>
+const SearchEmptyItem = ({ disabled, onPress }) => (
+  <View>
+    <View style={styles.placeholder}>
+      <Text style={styles.placeholderText}>No results</Text>
+    </View>
   </View>
 )
 
 const styles = StyleSheet.create({
-  container: {
+  placeholder: {
     borderBottomWidth: 1,
     borderBottomColor: '#d3d3d3',
     paddingHorizontal: 10,
@@ -21,7 +23,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     justifyContent: 'center'
   },
-  text: {
+  placeholderText: {
     fontSize: 15,
     color: 'grey'
   }

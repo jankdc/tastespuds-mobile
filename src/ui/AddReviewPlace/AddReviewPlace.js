@@ -2,6 +2,7 @@ import React from 'react'
 
 import {
   ActivityIndicator,
+  TouchableOpacity,
   StyleSheet,
   TextInput,
   Platform,
@@ -9,8 +10,6 @@ import {
   Text,
   View
 } from 'react-native'
-
-import fuzzysort from 'fuzzysort'
 
 import SearchPlaceList from '../SearchPlaceList'
 
@@ -23,6 +22,8 @@ class AddReviewPlace extends React.Component {
     }
 
     this._onSelect = this._onSelect.bind(this)
+    this._onSearch = this._onSearch.bind(this)
+    this._onRegister = this._onRegister.bind(this)
     this._onChangeText = this._onChangeText.bind(this)
   }
 
@@ -34,23 +35,28 @@ class AddReviewPlace extends React.Component {
     this.props.onClear()
   }
 
+  _onSearch () {
+    if (this.state.search) {
+      this.props.onSearch(this.state.search)
+    } else {
+      this.props.onEmpty()
+    }
+  }
+
   _onSelect (selectedPlace) {
     this.props.navigation.navigate('AddReview', {
       selectedPlace
     })
   }
 
-  _onChangeText (text) {
-    this.setState({ search: text })
+  _onRegister () {
+    this.props.navigation.navigate('AddNewPlace', {
+      name: this.state.search
+    })
   }
 
-  _filterByName () {
-    return fuzzysort
-      .go(this.state.search, this.props.searchedPlaces, {
-        key: 'name',
-        allowTypo: true
-      })
-      .map(result => result.obj)
+  _onChangeText (text) {
+    this.setState({ search: text })
   }
 
   _renderSearch () {
@@ -64,10 +70,7 @@ class AddReviewPlace extends React.Component {
 
         <SearchPlaceList
           onSelect={this._onSelect}
-          searchResults={this.state.search
-            ? this._filterByName()
-            : this.props.searchedPlaces
-          }
+          searchResults={this.props.searchedPlaces}
         />
       </View>
     )
@@ -93,18 +96,29 @@ class AddReviewPlace extends React.Component {
             style={styles.input}
             autoFocus
             autoCorrect
-            placeholder='Filter the place here...'
+            placeholder='Search the place here...'
             onChangeText={this._onChangeText}
-            returnKeyType='done'
+            returnKeyType='search'
             clearButtonMode='while-editing'
-            onSubmitEditing={this._onSubmit}
+            onSubmitEditing={this._onSearch}
             underlineColorAndroid='transparent'
             contextMenuHidden
           />
 
           { this._renderLoading() }
         </View>
+
         { this._renderSearch() }
+
+        {
+          this.state.search !== '' &&
+          <TouchableOpacity
+            style={styles.registerItemButton}
+            onPress={this._onRegister}
+          >
+            <Text style={styles.registerItemText}>Add New Item</Text>
+          </TouchableOpacity>
+        }
       </View>
     )
   }
@@ -134,6 +148,19 @@ const styles = StyleSheet.create({
   input: {
     flex: 1,
     fontSize: 16
+  },
+  registerItemButton: {
+    backgroundColor: 'tomato',
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
+    paddingVertical: 20,
+    width: '100%'
+  },
+  registerItemText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold'
   }
 })
 
