@@ -17,7 +17,8 @@ export const GET_ITEMS_IN_PLACE_CLEAR = 'tastespuds/add-review/GET_ITEMS_IN_PLAC
 export const GET_ITEMS_IN_PLACE_FAILED = 'tastespuds/add-review/GET_ITEMS_IN_PLACE_FAILED'
 export const GET_ITEMS_IN_PLACE_PASSED = 'tastespuds/add-review/GET_ITEMS_IN_PLACE_PASSED'
 
-export const SEARCH_PLACES = 'tastespuds/add-review/SEARCH_PLACES'
+export const SEARCH_PLACES_NEARBY = 'tastespuds/add-review/SEARCH_PLACES_NEARBY'
+export const SEARCH_PLACES_BY_KEYWORD = 'tastespuds/add-review/SEARCH_PLACES_BY_KEYWORD'
 export const SEARCH_PLACES_CLEAR = 'tastespuds/add-review/SEARCH_PLACES_CLEAR'
 export const SEARCH_PLACES_FAILED = 'tastespuds/add-review/SEARCH_PLACES_FAILED'
 export const SEARCH_PLACES_PASSED = 'tastespuds/add-review/SEARCH_PLACES_PASSED'
@@ -70,3 +71,8 @@ export const CLEAR_COMMENTS = 'tastespuds/comments/CLEAR_COMMENTS'
 export const GET_NOTIFICATIONS = 'tastespuds/notification/GET_NOTIFICATIONS'
 export const GET_NOTIFICATIONS_PASSED = 'tastespuds/notification/GET_NOTIFICATIONS_PASSEDS'
 export const GET_NOTIFICATIONS_FAILED = 'tastespuds/notification/GET_NOTIFICATIONS_FAILED'
+
+// add-place
+export const GEOCODE_PLACE = 'tastespuds/add-place/GEOCODE_PLACE'
+export const GEOCODE_PLACE_PASSED = 'tastespuds/add-place/GEOCODE_PLACE_PASSED'
+export const GEOCODE_PLACE_FAILED = 'tastespuds/add-place/GEOCODE_PLACE_FAILED'

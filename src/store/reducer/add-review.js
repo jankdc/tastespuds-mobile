@@ -25,14 +25,21 @@ export default function addReview (state = initialState, action = {}) {
         ...state,
         isAddingReview: false
       }
-    case actions.SEARCH_PLACES:
+    case actions.SEARCH_PLACES_BY_KEYWORD:
+      return {
+        ...state,
+        isSearching: true
+      }
+    case actions.SEARCH_PLACES_NEARBY:
       return {
         ...state,
         isSearching: true
       }
     case actions.SEARCH_PLACES_CLEAR:
       return {
-        ...initialState
+        ...state,
+        isSearching: false,
+        searchedPlaces: null
       }
     case actions.SEARCH_PLACES_FAILED:
       return {
