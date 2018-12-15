@@ -1,19 +1,25 @@
 import { Location, Permissions } from 'expo'
 import { put, call, takeLatest } from 'redux-saga/effects'
+import { Alert } from 'react-native'
 import { navigate } from '../../nav/NavigationService'
 import * as platform from '../../clients/platform'
 import * as actions from '../actions'
+
+import {
+  ReverseGeocodeError,
+  LocationPermissionError
+} from '../../utils/errors'
 
 export function * addNewPlace ({ value: newPlace }) {
   try {
     const { status } = yield call(Permissions.askAsync, Permissions.LOCATION)
     if (status !== 'granted') {
-      throw new Error('Needs permission to geocode location')
+      throw new LocationPermissionError('Needs permission to geocode location')
     }
 
     const [ address ] = yield call(Location.reverseGeocodeAsync, newPlace.location)
     if (!address) {
-      throw new Error('Location does not exist')
+      throw new ReverseGeocodeError('Location does not exist')
     }
 
     const place = yield call(platform.addPlace, {
@@ -30,8 +36,36 @@ export function * addNewPlace ({ value: newPlace }) {
     yield put({ type: actions.ADD_NEW_PLACE_PASSED, value: place })
     yield call(navigate, 'AddReview', { selectedPlace: place })
   } catch (error) {
-    console.log(error)
     yield put({ type: actions.ADD_NEW_PLACE_FAILED, error })
+
+    if (error instanceof LocationPermissionError) {
+      yield call(Alert.alert,
+        'Oops! We need permission!',
+        'Please turn on your location service',
+        [
+          { text: 'Close', onPress: () => {} }
+        ],
+        { cancelable: true }
+      )
+    } else if (error instanceof ReverseGeocodeError) {
+      yield call(Alert.alert,
+        'You sure that\'s a valid address?',
+        'Please enter a valid address like the place\'s street name or its post code',
+        [
+          { text: 'Close' }
+        ],
+        { cancelable: true }
+      )
+    } else {
+      yield call(Alert.alert,
+        'Oops! Something went wrong',
+        'Please logout and try again later',
+        [
+          { text: 'Close' }
+        ],
+        { cancelable: true }
+      )
+    }
   }
 }
 
