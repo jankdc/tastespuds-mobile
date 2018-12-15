@@ -44,6 +44,7 @@ class AddNewPlace extends Component {
   }
 
   render () {
+    const name = this.props.navigation.getParam('name')
     const { location, isGeocoding } = this.props
 
     return (
@@ -89,7 +90,7 @@ class AddNewPlace extends Component {
             />
           </View>
           <Button
-            title='Submit'
+            title={`Submit '${name}'`}
             disabled={location === null}
             disabledStyle={{
               backgroundColor: 'silver'
@@ -106,13 +107,9 @@ class AddNewPlace extends Component {
   }
 }
 
-AddNewPlace.navigationOptions = ({ navigation }) => {
-  const name = navigation.getParam('name')
-
-  return {
-    title: `Add '${name}' place`,
-    headerBackTitle: ''
-  }
+AddNewPlace.navigationOptions = {
+  title: `Add New Place`,
+  headerBackTitle: ''
 }
 
 const styles = StyleSheet.create({
