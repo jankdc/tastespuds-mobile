@@ -2,6 +2,7 @@ import React from 'react'
 
 import {
   ActivityIndicator,
+  TouchableOpacity,
   StyleSheet,
   TextInput,
   Platform,
@@ -109,7 +110,7 @@ class AddReviewName extends React.Component {
             style={styles.input}
             autoFocus
             autoCorrect
-            placeholder='Search the item here...'
+            placeholder='Filter the item here...'
             onChangeText={this._onChangeText}
             returnKeyType='done'
             clearButtonMode='while-editing'
@@ -120,6 +121,16 @@ class AddReviewName extends React.Component {
           { this._renderLoading() }
         </View>
         { this._renderSearch() }
+
+        {
+          this.state.search !== '' &&
+          <TouchableOpacity
+            style={styles.registerItemButton}
+            onPress={this._onRegister}
+          >
+            <Text style={styles.registerItemText}>Add New Item</Text>
+          </TouchableOpacity>
+        }
       </View>
     )
   }
@@ -149,6 +160,19 @@ const styles = StyleSheet.create({
   input: {
     flex: 1,
     fontSize: 16
+  },
+  registerItemButton: {
+    backgroundColor: 'tomato',
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
+    paddingVertical: 20,
+    width: '100%'
+  },
+  registerItemText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold'
   }
 })
 
