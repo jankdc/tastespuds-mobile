@@ -12,3 +12,10 @@ export class ReverseGeocodeError extends Error {
     this.name = 'ReverseGeocodeError'
   }
 }
+
+export class GeocodePlaceError extends Error {
+  constructor (...args) {
+    super(...args)
+    this.name = 'GeocodePlaceError'
+  }
+}

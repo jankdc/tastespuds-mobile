@@ -6,6 +6,7 @@ import * as platform from '../../clients/platform'
 import * as actions from '../actions'
 
 import {
+  GeocodePlaceError,
   ReverseGeocodeError,
   LocationPermissionError
 } from '../../utils/errors'
@@ -73,17 +74,46 @@ export function * geocodePlace ({ value: address }) {
   try {
     const { status } = yield call(Permissions.askAsync, Permissions.LOCATION)
     if (status !== 'granted') {
-      throw new Error('Needs permission to geocode location')
+      throw new LocationPermissionError('Needs permission to geocode location')
     }
 
     const locations = yield call(Location.geocodeAsync, address)
     if (locations.length === 0) {
-      throw new Error('Address does not exist')
+      throw new GeocodePlaceError('Address does not exist')
     }
 
     yield put({ type: actions.GEOCODE_PLACE_PASSED, value: locations[0] })
   } catch (error) {
     yield put({ type: actions.GEOCODE_PLACE_FAILED, error })
+
+    if (error instanceof LocationPermissionError) {
+      yield call(Alert.alert,
+        'Oops! We need permission!',
+        'Please turn on your location service',
+        [
+          { text: 'Close', onPress: () => {} }
+        ],
+        { cancelable: true }
+      )
+    } else if (error instanceof GeocodePlaceError) {
+      yield call(Alert.alert,
+        'You sure that\'s a valid address?',
+        'Please enter a valid address like the place\'s street name or its post code',
+        [
+          { text: 'Close' }
+        ],
+        { cancelable: true }
+      )
+    } else {
+      yield call(Alert.alert,
+        'Oops! Something went wrong',
+        'Please logout and try again later',
+        [
+          { text: 'Close' }
+        ],
+        { cancelable: true }
+      )
+    }
   }
 }
 
