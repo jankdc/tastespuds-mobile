@@ -164,12 +164,20 @@ const styles = StyleSheet.create({
   }
 })
 
-AddReviewPlace.navigationOptions = {
-  headerLeft: Platform.select({
-    ios: (props) => <Button {...props} title='Cancel' />,
-    android: null
-  }),
-  title: 'Choose Place'
+AddReviewPlace.navigationOptions = ({ navigation }) => {
+  return {
+    headerLeft: Platform.select({
+      ios: (props) => (
+        <Button
+          {...props}
+          title='Cancel'
+          onPress={() => navigation.navigate('AddReview')}
+        />
+      ),
+      android: null
+    }),
+    title: 'Choose Place'
+  }
 }
 
 export default AddReviewPlace
