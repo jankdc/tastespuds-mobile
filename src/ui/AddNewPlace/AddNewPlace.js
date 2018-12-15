@@ -60,6 +60,7 @@ class AddNewPlace extends Component {
     return (
       <View style={styles.container}>
         <MapView
+          provider='google'
           style={styles.mapContainer}
           region={{
             ...initialRegion,
