@@ -51,8 +51,7 @@ class BottomTabBar extends React.Component {
     let imageData = null
     if (option === 'Load Existing Image') {
       imageData = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: 'Images',
-        allowsEditing: true
+        mediaTypes: 'Images'
       })
     }
 
