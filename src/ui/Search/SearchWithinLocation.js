@@ -6,6 +6,7 @@ import SearchLocationModal from './SearchLocationModal'
 
 const SearchWithinLocation = ({
   showOptions,
+  onSendOptions,
   onHideOptions,
   onOption,
   onPress,
@@ -18,6 +19,7 @@ const SearchWithinLocation = ({
         isVisible={showOptions}
         currentOption={level}
         onHideOptions={onHideOptions}
+        onSendOptions={onSendOptions}
         onOption={onOption}
       />
 

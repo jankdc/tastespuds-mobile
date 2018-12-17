@@ -22,6 +22,7 @@ const SearchLocationOption = ({ selected, label, onPress }) => (
 
 const SearchLocationModal = ({
   currentOption,
+  onSendOptions,
   onHideOptions,
   onOption,
   isVisible
@@ -29,6 +30,7 @@ const SearchLocationModal = ({
   <Modal
     style={styles.container}
     isVisible={isVisible}
+    onModalHide={onSendOptions}
     onBackdropPress={onHideOptions}
   >
     <View style={styles.modalContent}>
@@ -45,7 +47,7 @@ const SearchLocationModal = ({
 
       <Button
         title='Close'
-        onPress={onHideOptions}
+        onPress={() => onOption(null)}
         buttonStyle={{
           backgroundColor: 'lightgrey'
         }}

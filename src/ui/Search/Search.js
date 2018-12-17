@@ -3,6 +3,7 @@ import React from 'react'
 import {
   ActivityIndicator,
   StyleSheet,
+  Alert,
   FlatList,
   View
 } from 'react-native'
@@ -75,16 +76,32 @@ class Search extends React.Component {
     }
 
     if (option === 'nearby') {
-      this._updateSearch({
-        level: option
-      })
+      const { coords } = await this._getCurrentCity()
+      if (!coords) {
+        Alert.alert(
+          'Oops! Something went wrong!',
+          'Please make sure your location service is turned on',
+          [
+            { text: 'Close', onPress: () => {} }
+          ],
+          { cancelable: true }
+        )
+      } else {
+        this._updateSearch({
+          level: 'nearby',
+          location: {
+            latitude: coords.latitude,
+            longitude: coords.longitude
+          }
+        })
+      }
     }
   }
 
   async _getCurrentCity () {
     const { status } = await Permissions.askAsync(Permissions.LOCATION)
     if (status !== 'granted') {
-      return null
+      return {}
     }
 
     const { coords } = await Location.getCurrentPositionAsync()
