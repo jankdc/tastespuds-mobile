@@ -14,16 +14,9 @@ class SearchMenu extends Component {
       showLocationOptions: false
     }
 
-    this._onLocationHide = this._onLocationHide.bind(this)
     this._onLocationPress = this._onLocationPress.bind(this)
     this._onLocationOption = this._onLocationOption.bind(this)
     this._onSendLocationOption = this._onSendLocationOption.bind(this)
-  }
-
-  _onLocationHide () {
-    this.setState({
-      showLocationOptions: false
-    })
   }
 
   _onLocationPress () {
@@ -59,7 +52,6 @@ class SearchMenu extends Component {
           onOption={this._onLocationOption}
           showOptions={this.state.showLocationOptions}
           onSendOptions={this._onSendLocationOption}
-          onHideOptions={this._onLocationHide}
         />
       </View>
     )
