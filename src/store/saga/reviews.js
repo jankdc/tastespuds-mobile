@@ -1,6 +1,6 @@
 import { Alert } from 'react-native'
 import { put, call, takeLatest } from 'redux-saga/effects'
-import { Location, Permissions, SecureStore } from 'expo'
+import { ImageManipulator, Location, Permissions, SecureStore } from 'expo'
 import jwtDecode from 'jwt-decode'
 
 import { navigate } from '../../nav/NavigationService'
@@ -13,8 +13,17 @@ import {
 
 export function * addReview ({ value }) {
   try {
+    let imageData = value.imageData
+
+    if (imageData.width > 2500 || imageData.height > 2500) {
+      const biggerDimension = imageData.width > imageData.height ? 'width' : 'height'
+      imageData = yield call(ImageManipulator.manipulateAsync, imageData.uri, [{
+        resize: { [biggerDimension]: 2500 }
+      }])
+    }
+
     const fileMeta = {
-      uri: value.imageData.uri,
+      uri: imageData.uri,
       type: 'image/jpeg',
       name: `${Date.now()}.jpg`
     }
@@ -23,8 +32,8 @@ export function * addReview ({ value }) {
     const profile = yield call(jwtDecode, idToken)
 
     const result = yield call(platform.makeAsset, fileMeta, {
-      width: `${value.imageData.width}`,
-      height: `${value.imageData.height}`
+      width: `${imageData.width}`,
+      height: `${imageData.height}`
     })
 
     const review = yield call(platform.makeReview, {
