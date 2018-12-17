@@ -1,5 +1,5 @@
 import React from 'react'
-import { View } from 'react-native'
+import { Alert, View } from 'react-native'
 import ActionSheet from 'react-native-actionsheet'
 import ReactNavigationTabs from 'react-navigation-tabs'
 import { Permissions, ImagePicker } from 'expo'
@@ -29,6 +29,14 @@ class BottomTabBar extends React.Component {
     )
 
     if (locationStatus !== 'granted') {
+      Alert.alert(
+        'Oops! We need permission!',
+        'Unable to use feature without location service',
+        [
+          { text: 'Close' }
+        ],
+        { cancelable: true }
+      )
       return
     }
 
@@ -37,6 +45,14 @@ class BottomTabBar extends React.Component {
     )
 
     if (cameraStatus !== 'granted') {
+      Alert.alert(
+        'Oops! We need permission!',
+        'Unable to use feature without the camera service',
+        [
+          { text: 'Close' }
+        ],
+        { cancelable: true }
+      )
       return
     }
 
@@ -45,6 +61,14 @@ class BottomTabBar extends React.Component {
     )
 
     if (cameraRollStatus !== 'granted') {
+      Alert.alert(
+        'Oops! We need permission!',
+        'Unable to use feature without the camera roll service',
+        [
+          { text: 'Close' }
+        ],
+        { cancelable: true }
+      )
       return
     }
 
