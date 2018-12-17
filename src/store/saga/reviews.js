@@ -1,3 +1,4 @@
+import { Alert } from 'react-native'
 import { put, call, takeLatest } from 'redux-saga/effects'
 import { Location, Permissions, SecureStore } from 'expo'
 import jwtDecode from 'jwt-decode'
@@ -5,6 +6,10 @@ import jwtDecode from 'jwt-decode'
 import { navigate } from '../../nav/NavigationService'
 import * as platform from '../../clients/platform'
 import * as actions from '../actions'
+
+import {
+  LocationPermissionError
+} from '../../utils/errors'
 
 export function * addReview ({ value }) {
   try {
@@ -72,7 +77,7 @@ export function * searchReviews () {
     const { status } = yield call(Permissions.askAsync, Permissions.LOCATION)
 
     if (status !== 'granted') {
-      throw new Error('Needs permission to get current user location')
+      throw new LocationPermissionError('Needs permission to get current user location')
     }
 
     const { coords } = yield call(Location.getCurrentPositionAsync)
@@ -82,6 +87,26 @@ export function * searchReviews () {
     yield put({ type: actions.SEARCH_REVIEWS_PASSED, value: reviews })
   } catch (error) {
     yield put({ type: actions.SEARCH_REVIEWS_FAILED, error })
+
+    if (error instanceof LocationPermissionError) {
+      yield call(Alert.alert,
+        'Oops! We need permission!',
+        'Please turn on your location service',
+        [
+          { text: 'Close', onPress: () => {} }
+        ],
+        { cancelable: true }
+      )
+    } else {
+      yield call(Alert.alert,
+        'Oops! Something went wrong',
+        'Please try again later',
+        [
+          { text: 'Close' }
+        ],
+        { cancelable: true }
+      )
+    }
   }
 }
 

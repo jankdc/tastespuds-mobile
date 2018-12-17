@@ -3,7 +3,7 @@ import React from 'react'
 import { View, FlatList, StyleSheet } from 'react-native'
 
 import Review from '../Review'
-import ReviewListEmpty from './ReviewListEmpty'
+import ReviewListWarning from './ReviewListWarning'
 
 const ReviewList = ({
   reviews,
@@ -13,11 +13,22 @@ const ReviewList = ({
   onUnlike,
   onLike
 }) => {
-  if (reviews && reviews.length === 0) {
+  if (!reviews) {
     return (
-      <ReviewListEmpty
+      <ReviewListWarning
         refreshing={refreshing}
         onRefresh={onRefresh}
+        message='Could not get nearby reviews'
+      />
+    )
+  }
+
+  if (reviews.length === 0) {
+    return (
+      <ReviewListWarning
+        refreshing={refreshing}
+        onRefresh={onRefresh}
+        message='No reviews near you at the moment'
       />
     )
   }

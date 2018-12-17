@@ -9,7 +9,7 @@ import {
 
 import { MaterialIcons } from '@expo/vector-icons'
 
-const ReviewEmptyList = ({ onRefresh, refreshing }) => (
+const ReviewListWarning = ({ message, onRefresh, refreshing }) => (
   <ScrollView
     contentContainerStyle={styles.container}
     showsVerticalScrollIndicator={false}
@@ -26,7 +26,7 @@ const ReviewEmptyList = ({ onRefresh, refreshing }) => (
       color='#C0C0C0'
     />
     <Text style={styles.message}>
-      No reviews at the moment
+      { message }
     </Text>
   </ScrollView>
 )
@@ -44,4 +44,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default ReviewEmptyList
+export default ReviewListWarning
